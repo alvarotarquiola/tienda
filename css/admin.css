@@ -1495,3 +1495,7 @@ ul.box_manu_cus li .box_supp_ref div label{
     background-color: #FFFFFF;
 }
 /* fin */
+
+.hide_tag{
+    display: none;
+}
