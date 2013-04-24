@@ -127,6 +127,13 @@ class AdminProducts extends AdminTab
 	{
 		global $currentIndex;
 		
+        /* Control Stock */
+        if(isset($_GET["stockcontrol"]) && $_GET["stockcontrol"] == 1)
+        {
+            $this->ActiveControlStock();
+            exit();
+        }
+        
 		/* Add a new product */
 		if (Tools::isSubmit('submitAddproduct') OR Tools::isSubmit('submitAddproductAndStay'))
 		{
@@ -1716,11 +1723,12 @@ class AdminProducts extends AdminTab
                     <tr>
                         <td colspan="2"><hr style="width:100%;" /></td>
                     </tr>';
+                $stockcontrol = Configuration::get("PS_CONTROL_STOCK");
                 if($obj->id != null){
                     echo '<tr>
                             <td colspan="2">
                                 <div class="row_quantity">
-                                    <div class="col_quantity stockname">
+                                    <div class="col_quantity stockname" '.($stockcontrol == 1 ? '' : 'style="border: none;"').'>
                                         <h3>'.$this->l("Stock").'</h3>
                                         <div class="row">
                                             <label class="stock_name">'.$this->l('Positivo:').'</label>
@@ -1732,7 +1740,7 @@ class AdminProducts extends AdminTab
                                         </div>
                                     </div>
                                     
-                                    <div class="col_quantity" style="border-right:1px solid #DDDDDD;margin:0 40px 0 0;padding: 0 25px 0 0;width:230px;">
+                                    <div '.($stockcontrol == 1 ? ' class="col_quantity"' : 'class="col_quantity hide_tag"').' style="border-right:1px solid #DDDDDD;margin:0 40px 0 0;padding: 0 25px 0 0;width:230px;">
                                         <h3>'.$this->l("Regularizar").'</h3>
                                         <div class="row">
                                             <label class="stock_name_2">'.$this->l('Positivo').':</label>
@@ -1747,7 +1755,7 @@ class AdminProducts extends AdminTab
                                         <p>'.$this->l('Suma o resta el stock').'</p>
                                     </div>
                                     
-                                    <div class="col_quantity">
+                                    <div '.($stockcontrol == 1 ? 'class="col_quantity"' : 'class="col_quantity hide_tag"').'>
                                         <h3>'.$this->l("Restablecer").'</h3>
                                         <div class="row">
                                             <label class="stock_name_2">'.$this->l('Positivo:').'</label>
@@ -3340,6 +3348,78 @@ class AdminProducts extends AdminTab
             echo 'Debe guarda el producto para crear accesorios';
         }        
         echo '</div>';
+    }
+    
+    public function ActiveControlStock()
+    {
+        global $cookie;
+        
+        $backuprestore = $_GET["backuprestore"];
+        $enable_stock = Configuration::get("PS_CONTROL_STOCK");
+        
+        echo '
+        <script type="text/javascript">
+            jQuery(function(){
+                jQuery("#form_control_stock").submit(function(){
+                    var ele = jQuery(this);
+                    var datos = ele.serialize();
+                    $.blockUI(
+                    { 
+                        message: $("#messageGlobal"),
+                        css: {width: "300px"} 
+                    });
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "ajax.php",
+                        data: datos,
+                        success: function(res){
+                            if(res == "success"){
+                                setTimeout($.unblockUI, 200);
+                                jQuery("#message_success_control_stock").css("display", "block");
+                                setTimeout(function() {
+                                      jQuery("#message_success_control_stock").css("display", "none");
+                                }, 10000);
+                                //jQuery("#btn_backup_restore").blur();   
+                            }
+                            
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+        ';
+        
+        echo '
+            <div id="message_success_control_stock" class="message_result" style="display: none; width: 400px;">
+                <img src="../img/admin/ok.gif" alt="">'.$this->l("Settings update successful").'
+            </div>
+            
+            <form id="form_control_stock" action="ajax.php" method="post" class="width2" enctype="multipart/form-data" style="width:520px" onsubmit="return false;">
+                <fieldset>
+                    <div class="PS_CONTROL_STOCK" style="clear: both; display: block; overflow: hidden;">
+                        <label style="width: 120px;text-align: left;">'.$this->l('Control Stock:').'</label>
+                        <div class="margin-form" style="float:left; margin-left:5px; padding:3px 0 0 0;">
+                            <label for="PS_CONTROL_STOCK_on" class="t">
+                                <img title="Sí" alt="Sí" src="../img/admin/enabled.gif">
+                            </label>
+                            <input type="radio" "'.($enable_stock ? ' checked="checked"' : '').'" value="1" id="PS_CONTROL_STOCK_on" name="PS_CONTROL_STOCK">
+                            <label class="t" for="PS_CONTROL_STOCK_off"> '.$this->l('Yes').'</label>
+                            <label class="t" for="PS_CONTROL_STOCK_off">
+                                <img style="margin-left: 10px;" title="No" alt="No" src="../img/admin/disabled.gif">
+                            </label>
+                            <input type="radio" "'.(!$enable_stock ? ' checked="checked"' : '').'" value="0" id="PS_CONTROL_STOCK_off" name="PS_CONTROL_STOCK">
+                            <label for="PS_CONTROL_STOCK_off" class="t"> '.$this->l('No').'</label>
+                        </div>
+                    </div>
+                    <input type="hidden" id="control_stock" name="control_stock" value="controlstock">
+                    <div style="text-align: center; margin: 20px 10px 0 0;">
+    					<input type="submit" id="btn_control_stock" class="button" name="savecontrolstock" value="'.$this->l('   Save   ').'">
+    				</div>
+                </fieldset>
+            </form>
+            <br/><br/>
+        ';
     }
 }
 

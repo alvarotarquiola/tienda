@@ -340,4 +340,18 @@ if(isset($_POST['store_remote']) && $_POST['store_remote'] != "")
     echo $res;
 }
 
+if(isset($_POST["control_stock"]) && $_POST["control_stock"] != "")
+{
+    $control_stock = $_POST['control_stock'];
+    $PS_CONTROL_STOCK = $_POST['PS_CONTROL_STOCK'];
+    if(isset($control_stock) && $control_stock == "controlstock")
+    {
+        Configuration::updateValue("PS_CONTROL_STOCK", $PS_CONTROL_STOCK);
+        $res = "success";
+    }else{
+        $res = "error";
+    }
+    echo $res;
+}
+
 ?>

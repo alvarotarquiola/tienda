@@ -155,6 +155,17 @@ require_once(dirname(__FILE__).'/init.php');
 	</head>
 	<body>
         <!--<div id="div_hide_dir"></div>-->
+        <div>
+        
+        </div>
+        <div style="display: none;">
+            <div id="messageGlobal" style="margin:0 auto;overflow: hidden;padding: 10px 0;width: 250px;">
+                <div style="float:left;margin:0 10px 0 0;">
+                    <img src="../img/admin/loading2.gif" />
+                </div>
+                <h1 style="float:left;margin:5px 0 0 0;"><?php echo translate("Espere por favor...") ?></h1>
+            </div>
+        </div>
 		<div id="container">
 			<div style="float: left; margin-top: 11px">
 				<form action="index.php?tab=AdminSearch&token=<?php echo Tools::getAdminToken('AdminSearch'.intval(Tab::getIdFromClassName('AdminSearch')).intval($cookie->id_employee)) ?>" method="post">

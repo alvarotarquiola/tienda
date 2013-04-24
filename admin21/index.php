@@ -526,6 +526,12 @@ else /* Else display homepage */
                             <?php echo translate('Comprobar Backup') ?>
                         </a>
                     </li>
+                    <li>
+                        <span>2-10</span>
+                        <a href="<?php echo $base_remoto ?>/index.php?tab=AdminCatalog&token=<?=Tools::getAdminToken("AdminCatalog".intval(Tab::getIdFromClassName("AdminCatalog")).intval($cookie->id_employee))?>&stockcontrol=1">
+                            <?php echo translate('Control Stock') ?>
+                        </a>
+                    </li>
                 </ul>
             </fieldset>
         </div>
