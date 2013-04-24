@@ -75,7 +75,9 @@ h1 {
 h2 {
 	font-size: 1.4em;
 	margin: 0 0 .83em 0;
-	color: #268CCD;
+	/*color: #268CCD;*/
+	color: #004B82;
+	font-family: verdana;
 }
 h3 {
 	font-size: 1.1em;
@@ -1461,9 +1463,10 @@ ul.box_manu_cus li .box_supp_ref div label{
     margin-right: 5px;
 }
 .box_link_main .column .links_main li a{
-	font-family: Arial;
-    font-size: 12px;
+	font-family: verdana;
+    font-size: 13px;
     color: 000000;
+    font-weight: bold
 }
 .box_link_main .column .links_main li a:hover{
 	color: #268CCD;
