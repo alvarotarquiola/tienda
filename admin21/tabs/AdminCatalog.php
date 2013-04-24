@@ -150,7 +150,10 @@ class AdminCatalog extends AdminTab
 					$catBarIndex = preg_replace('/&'.$tab.'Orderby=([a-z _]*)&'.$tab.'Orderway=([a-z]*)/i', '', $currentIndex);
 			
 			echo '<div class="cat_bar"><span style="color: #3C8534;">'.$this->l('Current category').' :</span>&nbsp;&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).'</div>';
-			echo '<h2>'.$this->l('Categories').'</h2>';
+			echo '<h2>'.$this->l('Categories').'</h2>';	
+			$this->displayConf();		
+			$this->postProcess();
+			$this->displayErrors();
 			//echo '<h3>'.$this->l('Current category').'&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).'</h3>';
 			$this->adminCategories->display($this->token);
 			echo '<div style="margin:10px">&nbsp;</div>';
