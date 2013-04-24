@@ -139,6 +139,14 @@ if ($tab)
                     </li>
                     ';
     		}
+            /*modificando*/
+            if(isset($_GET["tab"]) && $_GET["tab"]=="AdminCatalog"){
+                
+                echo '<li>
+                    <a href="index.php?tab=AdminCatalogs&token='.Tools::getAdminToken("AdminCatalog".intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminCatalog.gif"></a>
+                    <a href="index.php?tab=AdminCatalog&token='.Tools::getAdminToken("AdminCatalog".intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'">'.translate('Catalog').'</a>
+                </li>';
+            }
     		
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminManufacturers"){
     			$id_parent = -1;
@@ -278,6 +286,13 @@ if ($tab)
         }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCustomers"){
             echo "<h2 class='sub_title_tab'>".translate("Cliente")."</h2>";
         }
+        elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCatalog"){
+            if (isset($_GET["addcategory"])) {
+              //echo "<h2 class='sub_title_tab'>".translate("Editar Categoria")."</h2>";
+            }elseif (isset($_GET["addproduct"])) {
+              //echo "<h2 class='sub_title_tab'>".translate("Editar Producto")."</h2>";
+            }            
+        }
         
 
 		if (Validate::isLoadedObject($adminObj))
@@ -307,9 +322,9 @@ if ($tab)
 				elseif (strncmp($key, $adminObj->table.'OrderBy', 7) === 0 OR strncmp($key, $adminObj->table.'Orderway', 12) === 0)
 					$cookie->$key = $value;
 
-		$adminObj->displayConf();
-		$adminObj->postProcess();
-		$adminObj->displayErrors();
+		//$adminObj->displayConf();
+		//$adminObj->postProcess();
+		//$adminObj->displayErrors();
 		$adminObj->display();
 	}
 }
@@ -359,7 +374,7 @@ else /* Else display homepage */
 	color: #004b82;
 }
 .Estilo8 {font-size: 14px}
--->
+
             </style>
             
     <script type="text/javascript">
@@ -431,7 +446,7 @@ else /* Else display homepage */
                         <?php $base_remoto = Configuration::get("PS_STORE_REMOTE") ?>
                         <span>1-7</span>
                         <a id="shop_remote_update_catalog" data-url_remote='<?php echo $base_remoto ?>' target="_blank" href="<?php echo $base_remoto ?>/index.php?tab=AdminImportv2&token=<?=Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee))?>">
-                            <?php echo translate('Actulizar Catalogo') ?>
+                            <?php echo translate('Actualizar Catalogo') ?>
                         </a>
                         <!--<a target="_blank" href="index.php?tab=AdminImportv2&token=<?=Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee))?>">
                             <?php echo translate('Importaciones') ?>
