@@ -290,7 +290,10 @@ if ($tab)
             if (isset($_GET["addcategory"])) {
               //echo "<h2 class='sub_title_tab'>".translate("Editar Categoria")."</h2>";
             }elseif (isset($_GET["addproduct"])) {
+
               //echo "<h2 class='sub_title_tab'>".translate("Editar Producto")."</h2>";
+              echo "<h2 class='sub_title_tab'>".translate("Editar Producto")."</h2>";
+
             }            
         }
         
