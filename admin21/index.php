@@ -150,9 +150,17 @@ if ($tab)
     		
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminManufacturers"){
     			$id_parent = -1;
+                 echo '<li>
+                    <a href="index.php?tab=AdminManufacturers&token='.Tools::getAdminToken("AdminManufacturers".intval(Tab::getIdFromClassName('AdminManufacturers')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminManufacturers.gif"></a>
+                    <a href="index.php?tab=AdminManufacturers&token='.Tools::getAdminToken("AdminManufacturers".intval(Tab::getIdFromClassName('AdminManufacturers')).intval($cookie->id_employee)).'">'.translate('Manufacturers').'</a>
+                </li>';
     		}
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminSuppliers"){
     			$id_parent = -1;
+                 echo '<li>
+                    <a href="index.php?tab=AdminSuppliers&token='.Tools::getAdminToken("AdminSuppliers".intval(Tab::getIdFromClassName('AdminSuppliers')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminSuppliers.gif"></a>
+                    <a href="index.php?tab=AdminSuppliers&token='.Tools::getAdminToken("AdminSuppliers".intval(Tab::getIdFromClassName('AdminSuppliers')).intval($cookie->id_employee)).'">'.translate('Suppliers').'</a>
+                </li>';
     		}
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminImport"){
     			$id_parent = -1;
@@ -285,18 +293,20 @@ if ($tab)
             echo "<h2 class='sub_title_tab'>".translate("Direcciones")."</h2>";
         }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCustomers"){
             echo "<h2 class='sub_title_tab'>".translate("Cliente")."</h2>";
-        }
-        elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCatalog"){
+        }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCatalog"){
             if (isset($_GET["addcategory"])) {
               //echo "<h2 class='sub_title_tab'>".translate("Editar Categoria")."</h2>";
             }elseif (isset($_GET["addproduct"])) {
-
               //echo "<h2 class='sub_title_tab'>".translate("Editar Producto")."</h2>";
               echo "<h2 class='sub_title_tab'>".translate("Editar Producto")."</h2>";
-
             }            
-        }
-        
+        }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminSuppliers"&& !isset($_GET["viewsupplier"])){
+            if (isset($_GET["updatesupplier"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Edit Supplier")."</h2>";             
+            }elseif (condition) {
+                echo "<h2 class='sub_title_tab'>".translate("Supplier")."</h2>";   
+            }            
+        }        
 
 		if (Validate::isLoadedObject($adminObj))
 			if (!$adminObj->checkToken())

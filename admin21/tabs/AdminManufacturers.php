@@ -94,24 +94,24 @@ class AdminManufacturers extends AdminTab
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data" class="width3">
 		'.($manufacturer->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$manufacturer->id.'" />' : '').'
 			<fieldset style="width: 850px;">
-				<legend><img src="../img/admin/manufacturers.gif" />'.$this->l('Manufacturers').'</legend>
+				<br />
 				<label>'.$this->l('Name:').'</label>
 				<div class="margin-form">
 					<input type="text" size="40" name="name" value="'.htmlentities(Tools::getValue('name', $manufacturer->name), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 				</div>';
 
-		echo '<br class="clear" /><label>'.$this->l('Short description:').'</label>
-				<div class="margin-form">';
-		foreach ($this->_languages as $language)
+		//echo '<br class="clear" /><label>'.$this->l('Short description:').'</label>';
+				//<div class="margin-form">';
+		/*foreach ($this->_languages as $language)
 			echo '
 							<div id="cdesc2_'.$language['id_lang'].'" style="float: left;'.($language['id_lang'] != $this->_defaultFormLanguage ? 'display:none;' : '').'">
 								<textarea class="rte" cols="48" rows="5" id="short_description_'.$language['id_lang'].'" name="short_description_'.$language['id_lang'].'">'.htmlentities(stripslashes($this->getFieldValue($manufacturer, 'short_description', $language['id_lang'])), ENT_COMPAT, 'UTF-8').'</textarea>
 							</div>';
 		$this->displayFlags($this->_languages, $this->_defaultFormLanguage, $langtags, 'cdesc2');
 		echo '</div>';
-				
-		echo '<br class="clear" /><br /><br /><label>'.$this->l('Description:').'</label>
+				*/
+		echo '<br class="clear" /><br /><label>'.$this->l('Description:').'</label>
 				<div class="margin-form">';
 		foreach ($this->_languages as $language)
 			echo '
