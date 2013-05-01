@@ -41,7 +41,7 @@ class AdminOrderMessage extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&token='.$this->token.'&submitAdd'.$this->table.'=1" method="post" id="form_order_message">
 		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/email.gif" />'.$this->l('Order messages').'</legend>
+			<fieldset class="width3">
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 				foreach ($this->_languages as $language)

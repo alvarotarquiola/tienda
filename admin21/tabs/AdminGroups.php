@@ -68,7 +68,8 @@ class AdminGroups extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3" id="form_groups">
 		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/tab-groups.gif" />'.$this->l('Group').'</legend>
+			<fieldset>
+			<br/>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 				foreach ($this->_languages as $language)

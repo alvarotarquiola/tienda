@@ -468,7 +468,7 @@ select optgroup option {
 }
 
 #content .conf {
-	width: 400px;
+	max-width: 455px;
 	margin: 0 0 15px 0;
 	line-height: 20px;
 	padding: 10px 15px;

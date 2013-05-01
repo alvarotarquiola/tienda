@@ -43,8 +43,9 @@ class AdminContacts extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3">
 		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/contact.gif" />'.$this->l('Contacts').'</legend>
-				<label>'.$this->l('Title:').' </label>
+			<fieldset> <br />';
+			//<legend><img src="../img/admin/contact.gif" />'.$this->l('Contacts').'</legend>
+			echo '<label>'.$this->l('Title:').' </label>
 				<div class="margin-form">';
 				foreach ($this->_languages as $language)
 					echo '

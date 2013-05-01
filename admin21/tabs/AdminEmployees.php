@@ -79,8 +79,9 @@ class AdminEmployees extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data" class="width2">
 		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/nav-user.gif" />'.$this->l('Employees').'</legend>
-				<label>'.$this->l('Last name:').' </label>
+			<fieldset><br>';
+			//<legend><img src="../img/admin/nav-user.gif" />'.$this->l('Employees').'</legend>
+				echo '<label>'.$this->l('Last name:').' </label>
 				<div class="margin-form">
 					<input type="text" size="33" name="lastname" value="'.htmlentities($this->getFieldValue($obj, 'lastname'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 				</div>

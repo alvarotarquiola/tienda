@@ -1579,8 +1579,8 @@ class AdminProducts extends AdminTab
 			<h4 class="tab">1. '.$this->l('Info.').'</h4>
             <div style="position:absolute;right:0;top: -35px;">
     			<div>
-    				<input type="submit" value="    '.$this->l('Save').'    " name="submitAdd'.$this->table.'" class="button action_submit_form" />
-    			</div>	
+    				';//<input type="submit" value="    '.$this->l('Save').'    " name="submitAdd'.$this->table.'" class="button action_submit_form" />
+    			echo '</div>	
     		</div>
 			<script type="text/javascript">
 				$(document).ready(function() {
@@ -1599,7 +1599,7 @@ class AdminProducts extends AdminTab
 		echo '	
 			<hr class="clear"/>
 			<br />
-				<table cellpadding="5" style="width:100%">
+			<table cellpadding="5" style="width:100%">
 					<tr>
 						<td class="col-left">'.$this->l('Name:').'</td>
 						<td style="padding-bottom:5px;" class="translatable">';
@@ -1972,7 +1972,7 @@ class AdminProducts extends AdminTab
 							<input type="submit" value="'.$this->l('Save').'" name="submitAdd'.$this->table.'" class="button" />
 							&nbsp;<!--<input type="submit" value="'.$this->l('Save and stay').'" name="submitAdd'.$this->table.'AndStay" class="button" />-->
                         </td>
-					</tr>-->
+					</tr>
                     <!--<tr><td colspan="2"><hr style="width:100%;" /></td></tr>
 					<tr>
                         <td>
@@ -2611,7 +2611,7 @@ class AdminProducts extends AdminTab
 						<td colspan="2" style="text-align:center;">
 							<input type="hidden" value="off" name="productCreated" />
 							'.(Tools::isSubmit('id_category') ? '<!--<input type="submit" value="'.$this->l('Save').'" name="submitAdd'.$this->table.'" class="button" />-->' : '').'
-							&nbsp;<input type="submit" value="'.$this->l('Save and stay').'" name="submitAdd'.$this->table.'AndStay" class="button" /></td>
+							&nbsp;<input type="submit" value="'.$this->l('Save').'" name="submitAdd'.$this->table.'AndStay" class="button" /></td>
 					</tr>';
 					else
 					{

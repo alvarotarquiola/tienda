@@ -196,9 +196,14 @@ if ($tab)
             
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminContact"){
     			$id_parent = -1;
+
     		}
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminContacts"){
     			$id_parent = -1;
+                echo '<li>
+                    <a href="index.php?tab=AdminContacts&token='.Tools::getAdminToken("AdminContacts".intval(Tab::getIdFromClassName('AdminContacts')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminContacts.gif"></a>
+                    <a href="index.php?tab=AdminContacts&token='.Tools::getAdminToken("AdminContacts".intval(Tab::getIdFromClassName('AdminContacts')).intval($cookie->id_employee)).'">'.translate('Email soporte').'</a>
+                </li>';
     		}
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminAppearance"){
     			$id_parent = -1;
@@ -206,6 +211,10 @@ if ($tab)
     		
     		if(isset($_GET["tab"]) && $_GET["tab"]=="AdminCMS"){
     			$id_parent = -1;
+                echo '<li>
+                    <a href="index.php?tab=AdminCMS&token='.Tools::getAdminToken("AdminCMS".intval(Tab::getIdFromClassName('AdminCMS')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminCMS.gif"></a>
+                    <a href="index.php?tab=AdminCMS&token='.Tools::getAdminToken("AdminCMS".intval(Tab::getIdFromClassName('AdminCMS')).intval($cookie->id_employee)).'">'.translate('CMS').'</a>
+                </li>';
     		}
             if(isset($_GET["tab"]) && $_GET["tab"]=="adminImageAttachments"){
     			$id_parent = -1;
@@ -229,6 +238,10 @@ if ($tab)
     		}
             if(isset($_GET["tab"]) && $_GET["tab"]=="adminExportDatas"){
     			$id_parent = -1;
+                 echo '<li>
+                    <a href="index.php?tab=adminExportDatas&token='.Tools::getAdminToken("adminExportDatas".intval(Tab::getIdFromClassName('adminExportDatas')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/adminExportDatas.gif"></a>
+                    <a href="index.php?tab=adminExportDatas&token='.Tools::getAdminToken("adminExportDatas".intval(Tab::getIdFromClassName('adminExportDatas')).intval($cookie->id_employee)).'">'.translate('Exportacion').'</a>
+                </li>';
     		}
             if(isset($_GET["tab"]) && $_GET["tab"] == "AdminOrders"){
     			$id_parent = 3;
@@ -241,14 +254,24 @@ if ($tab)
             if(isset($_GET["tab"]) && $_GET["tab"]=="AdminPayment"){
     			$id_parent = 4;
                  echo '<li><a href="index.php?tab=AdminPayment&token='.Tools::getAdminToken("AdminPayment".intval(Tab::getIdFromClassName('AdminPayment')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminPayment.gif"></a>
-                    <a href="index.php?tab=AdminPayment&token='.Tools::getAdminToken("AdminPayment".intval(Tab::getIdFromClassName('AdminPayment')).intval($cookie->id_employee)).'">'.translate('Payment').'</a>
+                    <a href="index.php?tab=AdminPayment&token='.Tools::getAdminToken("AdminPayment".intval(Tab::getIdFromClassName('AdminPayment')).intval($cookie->id_employee)).'">'.translate('formas de Pago').'</a>
                 </li>'; 
     		}elseif((isset($_GET["tab"]) && $_GET["tab"]=="AdminCurrencies") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminTaxes")){
                  echo '<li><a href="index.php?tab=AdminPayment&token='.Tools::getAdminToken("AdminPayment".intval(Tab::getIdFromClassName('AdminPayment')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminPayment.gif"></a>
-                    <a href="index.php?tab=AdminPayment&token='.Tools::getAdminToken("AdminPayment".intval(Tab::getIdFromClassName('AdminPayment')).intval($cookie->id_employee)).'">'.translate('Payment').'</a></li>'; 
+                    <a href="index.php?tab=AdminPayment&token='.Tools::getAdminToken("AdminPayment".intval(Tab::getIdFromClassName('AdminPayment')).intval($cookie->id_employee)).'">'.translate('formas de Pago').'</a></li>'; 
     		}
+            /*modificando*/
+            if(isset($_GET["tab"]) && $_GET["tab"]=="AdminEmployees"){
+                $id_parent = -1;
+                 echo '<li><a href="index.php?tab=AdminEmployees&token='.Tools::getAdminToken("AdminEmployees".intval(Tab::getIdFromClassName('AdminEmployees')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminEmployees.gif"></a>
+                    <a href="index.php?tab=AdminEmployees&token='.Tools::getAdminToken("AdminEmployees".intval(Tab::getIdFromClassName('AdminEmployees')).intval($cookie->id_employee)).'">'.translate('Empleados').'</a>
+                </li>'; 
+            }
             if(isset($_GET["tab"]) && $_GET["tab"]=="AdminMeta"){
     			$id_parent = -1;
+                 echo '<li><a href="index.php?tab=AdminMeta&token='.Tools::getAdminToken("AdminMeta".intval(Tab::getIdFromClassName('AdminMeta')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminMeta.Meta-tags"></a>
+                    <a href="index.php?tab=AdminMeta&token='.Tools::getAdminToken("AdminMeta".intval(Tab::getIdFromClassName('AdminMeta')).intval($cookie->id_employee)).'">'.translate('Meta-tags').'</a>
+                </li>'; 
     		}
 										
 			if (isset($id_parent) AND $id_parent != -1 AND $id_parent!= 0)
@@ -290,10 +313,44 @@ if ($tab)
         }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminManufacturers"){
             echo "<h2 class='sub_title_tab'>".translate("Manufacturers")."</h2>";
         }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminAddresses"){
-            echo "<h2 class='sub_title_tab'>".translate("Direcciones")."</h2>";
+            if (isset($_GET["updateaddress"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar direccion cliente")."</h2>";
+            }elseif (isset($_GET["addaddress"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Nuevo cliente")."</h2>";
+            }else{
+                echo "<h2 class='sub_title_tab'>".translate("Direcciones")."</h2>";
+            }
+            
         }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCustomers"){
-            echo "<h2 class='sub_title_tab'>".translate("Cliente")."</h2>";
-        }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCatalog"){
+            if (isset($_GET["viewcustomer"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Customer")."</h2>";
+            }else{
+            echo "<h2 class='sub_title_tab'>".translate("Customers")."</h2>";
+            }
+        }
+        if(isset($_GET["tab"]) && $_GET["tab"]=="AdminContacts"){
+            echo "<h2 class='sub_title_tab'>".translate("Email soporte")."</h2>";
+        }
+        if (isset($_GET["tab"]) && $_GET["tab"]=="AdminEmployees") {
+              echo "<h2 class='sub_title_tab'>".translate("Empleados")."</h2>";
+        }
+        if(isset($_GET["tab"]) && $_GET["tab"]=="AdminGroups"){
+            if (isset($_GET["addgroup"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Añadir grupo de descuento")."</h2>";
+            }elseif (isset($_GET["updategroup"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar grupo de descuento")."</h2>";
+            }else{
+                echo "<h2 class='sub_title_tab'>".translate("Grupos de descuento")."</h2>";
+            }             
+        }
+        if(isset($_GET["tab"]) && $_GET["tab"]=="AdminCMS"){
+            if (isset($_GET["updatecms"])) {
+               echo "<h2 class='sub_title_tab'>".translate("Editor CMS")."</h2>";
+            }else{
+                echo "<h2 class='sub_title_tab'>".translate("CMS")."</h2>";
+            }            
+        }
+        elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminCatalog"){
             if (isset($_GET["addcategory"])) {
               //echo "<h2 class='sub_title_tab'>".translate("Editar Categoria")."</h2>";
             }elseif (isset($_GET["addproduct"])) {
@@ -306,7 +363,73 @@ if ($tab)
             }elseif (condition) {
                 echo "<h2 class='sub_title_tab'>".translate("Supplier")."</h2>";   
             }            
-        }        
+        }elseif(isset($_GET["tab"]) && $_GET["tab"]=="AdminOrders"){
+            echo "<h2 class='sub_title_tab'>".translate("Orders")."</h2>";   
+        }elseif (isset($_GET["tab"]) && $_GET["tab"]=="AdminMessages") {
+            echo "<h2 class='sub_title_tab'>".translate("Mensajes del cliente")."</h2>";   
+        }elseif (isset($_GET["tab"]) && $_GET["tab"]=="AdminOrderMessage") {
+            echo "<h2 class='sub_title_tab'>".translate("Mensajes de orden")."</h2>";   
+        }    
+        if (isset($_GET["tab"]) && $_GET["tab"]=="AdminPayment") {
+              echo "<h2 class='sub_title_tab'>".translate("Formas de pago")."</h2>";   
+        }
+        if (isset($_GET["tab"]) && $_GET["tab"]=="AdminCurrencies") {
+            if (isset($_GET["updatecurrency"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar divisa")."</h2>";   
+            }elseif (isset($_GET["addcurrency"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Nueva divisa")."</h2>";   
+            }else{
+                echo "<h2 class='sub_title_tab'>".translate("Divisas")."</h2>";   
+            }           
+            
+        }  
+        if (isset($_GET["tab"]) && $_GET["tab"]=="AdminTaxes") {
+            if (isset($_GET["updatetax"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar Impuesto")."</h2>";   
+            }elseif (isset($_GET["addtax"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Nueva impuesto")."</h2>";   
+            }else{
+                echo "<h2 class='sub_title_tab'>".translate("Impuestos")."</h2>";   
+            }           
+            
+        }  
+        if (isset($_GET["tab"]) && $_GET["tab"]=="AdminCarriers") {
+            if (isset($_GET["addcarrier"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Nuevo Transportista")."</h2>";
+            }elseif (isset($_GET["updatecarrier"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar Transportista")."</h2>";
+            } else{
+                echo "<h2 class='sub_title_tab'>".translate("Carriers")."</h2>";
+            }             
+        }elseif (isset($_GET["tab"]) && $_GET["tab"] =="AdminRangePrice") {
+            if (isset($_GET["addrange_price"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Añadir Franja de precio")."</h2>";
+            }elseif (isset($_GET["updaterange_price"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar Franja de precio")."</h2>";
+            }
+            else{
+                echo "<h2 class='sub_title_tab'>".translate("Franja de precios")."</h2>";
+            }            
+        }elseif (isset($_GET["tab"]) && $_GET["tab"] =="AdminRangeWeight") {
+            if (isset($_GET["addrange_weight"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Añadir Franja de peso")."</h2>";
+            }elseif (isset($_GET["updaterange_weight"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar Franja de peso")."</h2>";
+            }
+            else{
+                echo "<h2 class='sub_title_tab'>".translate("Franja de pesos")."</h2>";
+            }            
+        }
+        if (isset($_GET["tab"]) && $_GET["tab"] =="AdminMeta") {
+            if (isset($_GET["addmeta"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Añadir Meta-tag")."</h2>";
+            }elseif (isset($_GET["updatemeta"])) {
+                echo "<h2 class='sub_title_tab'>".translate("Editar Meta-tag")."</h2>";
+            }else{
+                echo "<h2 class='sub_title_tab'>".translate("Meta-tags")."</h2>";
+            }
+            
+        }
 
 		if (Validate::isLoadedObject($adminObj))
 			if (!$adminObj->checkToken())
@@ -576,7 +699,7 @@ else /* Else display homepage */
                     <li>
                         <span>3-5</span>
                         <a href="index.php?tab=AdminContacts&id_contact=2&updatecontact&token=<?=Tools::getAdminToken("AdminContacts".intval(Tab::getIdFromClassName("AdminContacts")).intval($cookie->id_employee))?>">
-                            <?php echo translate('Contact') ?>
+                            <?php echo translate('Email soporte') ?>
                         </a>
                     </li>
                     <li>

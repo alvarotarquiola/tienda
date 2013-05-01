@@ -43,8 +43,8 @@ class AdminMeta extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&token='.$this->token.'&submitAdd'.$this->table.'=1" method="post" class="width3" style="width:650px;">
 		'.($meta->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$meta->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/metatags.gif" />'.$this->l('Meta-Tags').'</legend>
-				<label>'.$this->l('Page:').' </label>
+			<fieldset><br />';//<legend><img src="../img/admin/metatags.gif" />'.$this->l('Meta-Tags').'</legend>
+				echo '<label>'.$this->l('Page:').' </label>
 				<div class="margin-form">';
 				if (!sizeof($files))
 					echo '<p>'.$this->l('There is no page available!').'</p>';
