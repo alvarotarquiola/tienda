@@ -909,7 +909,7 @@ $_LANGADM['AdminImportv2678eccbba3c127b8e9adee34c9fa797a'] = 'El accesorio ya ex
 $_LANGADM['AdminImportv27abf3a6a589c247c0e3f4d4490dfa00e'] = 'Referencia';
 $_LANGADM['AdminImportv29c1338cbacbce149f75d2dbd50864a11'] = 'No hay accesorios.';
 //$_LANGADM['AdminImport2628fbfc7462b2873bb027ee850185859'] = 'ninguna entidad seleccionada';
-$_LANGADM['AdminImportv289cf4be41c63ef1b50e91fc3b42bdafb'] = 'Actulizar índice búsquedas';
+$_LANGADM['AdminImportv289cf4be41c63ef1b50e91fc3b42bdafb'] = 'Actualizar índice búsquedas';
 
 $_LANGADM['AdminImportv233d611e5fc213062465fef29ea8588b7'] = 'Tenga especial cuidado con las columas a importar, ya que sustituirá los cambios realizados manualmente desde el Back Office.';
 $_LANGADM['AdminImportv29ee086806d5665373747834c1ef6b9bc'] = 'Ejemplo: si importar las columnas "1-Cat-order", "2-Cat-order", "3-Cat-order", perderá el orden asignado manualmente desde el Back Office.';
@@ -1610,8 +1610,8 @@ $_LANGADM['AdminProductsfbb7d71920afdff488c3514f3f99fe7c'] = 'Subir Archivo';
 $_LANGADM['AdminProducts7269c45ce455de97e7e814e0168a7f4b'] = 'Debe seleccionar para eliminar.';
 $_LANGADM['AdminProducts45b45d0a884181f5696b2de39262c259'] = 'Stock faltantes';
 $_LANGADM['AdminProducts1fa119a99ae24433a8a010c3aa73637e'] = 'Añadir Faltantes';
-$_LANGADM['AdminProducts8721e3d55b53389fab08c5accaae23ac'] = 'Actulizar Faltantes';
-$_LANGADM['AdminProducts39d616ecc73e174052f1877ac2b3c853'] = 'Actulizar:';
+$_LANGADM['AdminProducts8721e3d55b53389fab08c5accaae23ac'] = 'Actualizar Faltantes';
+$_LANGADM['AdminProducts39d616ecc73e174052f1877ac2b3c853'] = 'Actualizar:';
 $_LANGADM['AdminProducts12b88cee80920e98e2b1490c69700f2f'] = 'En Rebaja:';
 
 $_LANGADM['AdminProfilesb718adec73e04ce3ec720dd11a06a308'] = 'ID';

@@ -250,11 +250,11 @@ class AdminCategories extends AdminTab
                 $catBarIndex = preg_replace('/&'.$tab.'Orderby=([a-z _]*)&'.$tab.'Orderway=([a-z]*)/i', '', $currentIndex);
     		
   		echo '<div class="cat_bar"><span style="color: #3C8534;">'.$this->l('Current category').' :</span>&nbsp;&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).'</div>';
-
+  				echo '<h2>'.$this->l('Edit Categories').'</h2>';
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.($token!=NULL ? $token : $this->token).'" method="post" enctype="multipart/form-data">
 		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width2" style="width:520px;"><legend><img src="../img/admin/tab-categories.gif" />'.$this->l('Category').'</legend>
+			<fieldset class="width2" style="width:520px;">
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form translatable names_translatable">';
 		foreach ($this->_languages as $language)
