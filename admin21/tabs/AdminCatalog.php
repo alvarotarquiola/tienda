@@ -148,8 +148,13 @@ class AdminCatalog extends AdminTab
 			foreach ($catalog_tabs AS $tab)
 				if (Tools::getValue($tab.'Orderby') && Tools::getValue($tab.'Orderway')) 
 					$catBarIndex = preg_replace('/&'.$tab.'Orderby=([a-z _]*)&'.$tab.'Orderway=([a-z]*)/i', '', $currentIndex);
-			
-			echo '<div class="cat_bar"><span style="color: #3C8534;">'.$this->l('Current category').' :</span>&nbsp;&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).'</div>';
+            
+            $url_grafico = $currentIndex."&token=".$this->token."&verifyproducts=1";
+			echo '
+                <div class="cat_bar"><span style="color: #3C8534;">
+                    '.$this->l('Current category').' :</span>&nbsp;&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).' 
+                    <a href="'.$url_grafico.'" style="float:right;margin: 0 20px 0 0;">'.$this->l("Grafico").'</a>
+                </div>';
 			echo '<h2>'.$this->l('Categories').'</h2>';
 			//echo '<h3>'.$this->l('Current category').'&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).'</h3>';
 			$this->adminCategories->display($this->token);

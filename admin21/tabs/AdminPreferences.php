@@ -72,11 +72,11 @@ class AdminPreferences extends AdminTab
 
 	public function display()
 	{
-        $this->displayFormBackuoRestore();	
+	    $this->_displayForm('general', $this->_fieldsGeneral, $this->l('General'), 'width2', 'tab-preferences');	
         echo "</br>";
         $this->showOnlineVisitors();
         echo "</br>";
-        $this->_displayForm('general', $this->_fieldsGeneral, $this->l('General'), 'width2', 'tab-preferences');
+        $this->displayFormBackuoRestore();
         echo "</br>";
 	}
 

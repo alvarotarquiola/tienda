@@ -195,6 +195,10 @@ abstract class AdminTab
   
         $adminTab = explode("=",$currentIndex);
     	$adminTab = $adminTab[1];
+        
+        $comes = $_GET["comes"];
+        $base_remoto = Configuration::get("PS_STORE_REMOTE");
+        $token_import2 = Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName('AdminImportv2')).intval($cookie->id_employee));
 
 		// Include other tab in current tab
 		if ($this->includeSubTab('display', array('submitAdd2', 'add', 'update', 'view')));
@@ -205,7 +209,13 @@ abstract class AdminTab
 			if ($this->tabAccess['add'] === '1')
 			{
 				$this->displayForm();
-				echo '<br /><br /><a id="'.$adminTab.'" class="action_back_list" href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
+                if(isset($comes) && $comes != "")
+                {
+                    echo '<br /><br /><a class="action_back_list" href="'.$base_remoto.'/index.php?tab=AdminImportv2&token='.$token_import2.'"><img src="../img/admin/arrow2.gif" border="0" /> '.$this->l('Volver Tienda-remota').'</a>';
+                }else{
+                    echo '<br /><br /><a id="'.$adminTab.'" class="action_back_list" href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';    
+                }
+				//echo '<br /><br /><a id="'.$adminTab.'" class="action_back_list" href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
 			}
 			else
 				echo $this->l('You do not have permission to add here');
@@ -215,7 +225,14 @@ abstract class AdminTab
 			if ($this->tabAccess['edit'] === '1')
 			{
 				$this->displayForm();
-				echo '<br /><br /><a id="'.$adminTab.'" class="action_back_list" href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
+                
+                if(isset($comes) && $comes != "")
+                {
+                    echo '<br /><br /><a class="action_back_list" href="'.$base_remoto.'/index.php?tab=AdminImportv2&token='.$token_import2.'"><img src="../img/admin/arrow2.gif" border="0" /> '.$this->l('Volver Tienda-remota').'</a>';
+                }else{
+                    echo '<br /><br /><a id="'.$adminTab.'" class="action_back_list" href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';    
+                }
+				//echo '<br /><br /><a id="'.$adminTab.'" class="action_back_list" href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
 			}
 			else
 				echo $this->l('You do not have permission to edit here');
@@ -1652,6 +1669,8 @@ abstract class AdminTab
     public function displayFormRemote($token = null, $table)
     {
         
+        $url_remota = Configuration::get("PS_STORE_REMOTE");
+        
         if($table == "employee")
         {
             echo '
@@ -1674,7 +1693,7 @@ abstract class AdminTab
                                     success: function(res){
                                         if(res == "success"){
                                             jQuery("#message_success_store_remote").css("display", "block");
-                                            url.val("");    
+                                            //url.val("");    
                                         }
                                     }     
                                 });
@@ -1686,7 +1705,7 @@ abstract class AdminTab
                     });
                 </script>
             ';
-            
+            $value_remota = $url_remota != "" ? $url_remota : "";
             echo '
                 </br>
                 <div id="message_success_store_remote" class="message_result" style="display: none; width: 400px;">
@@ -1696,7 +1715,7 @@ abstract class AdminTab
                     <h2>'.$this->l("Direccion tienda remota").'</h2>
                     <p id="error_address_remote" style="color:red; display:none;">'.$this->l("No es valido la direccion remota.").'</p>
     				<div class="">
-    					<input type="text" size="45" name="name_store_remote" id="name_store_remote" value="" />
+    					<input type="text" size="45" name="name_store_remote" id="name_store_remote"  value="'.$value_remota.'" />
                         <input type="hidden" name="store_remote" id="store_remote" value="store_remote" />
                         <input type="submit" value="'.$this->l('   Save   ').'" name="" class="button" />
     				</div>
