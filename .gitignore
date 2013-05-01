@@ -1,0 +1,9 @@
+/config/
+/config/settings.inc.php
+/config/config.inc.php
+/config/defines.inc.php
+/config/index.php
+/config/smarty.config.inc.php
+/admin21/backups/
+/admin21/export/category/
+/tools/smarty/compile/
