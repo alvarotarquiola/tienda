@@ -123,6 +123,7 @@ class AdminBackup extends AdminTab
 		global $currentIndex;
         //echo "<h2 class='sub_title_tab'>".$this->l("Backup")."</h2>";
 		$object = $this->loadObject();
+        
 		if ($object->id)
 		{
 			$url = $object->getBackupURL();
@@ -141,14 +142,30 @@ class AdminBackup extends AdminTab
 
 	public function displayList()
 	{
-		global $currentIndex;
+		global $currentIndex, $cookie;
+        $comes = $_GET["comes"];
+        $base_remoto = Configuration::get("PS_STORE_REMOTE");
+        $token_import2 = Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName('AdminImportv2')).intval($cookie->id_employee));
         
 		// Test if the backup dir is writable
 		if(!is_writable(PS_ADMIN_DIR.'/backups/'))
 			$this->displayWarning($this->l('dir backups on admin dir must be writable (CHMOD 777)'));
 
 		$this->displayErrors();
-		echo '<br /><a class="action_add_new" href="'.$currentIndex.'&add'.$this->table.'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0" /> '.$this->l('Create new back-up').'</a><br /><br />';
+        
+        if(isset($comes) && $comes != "")
+        {
+            echo '
+                <div>
+                    <a class="action_add_new" style="float:left;" href="'.$currentIndex.'&add'.$this->table.'&token='.$this->token.'&comes=remoto"><img src="../img/admin/add.gif" border="0" /> '.$this->l('Create new back-up').'</a>
+                    <a class="action_add_new" style="float:right; margin:0 130px 0 0;" href="'.$base_remoto.'/index.php?tab=AdminImportv2&token='.$token_import2.'"><img src="../img/admin/arrow2.gif" border="0" /> '.$this->l('Volver Tienda-remota').'</a>
+                </div>
+                <div class="clear">
+                </div>
+            ';
+        }
+        else
+            echo '<br /><a class="action_add_new" href="'.$currentIndex.'&add'.$this->table.'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0" /> '.$this->l('Create new back-up').'</a><br /><br />';
 		parent::displayList();
 	}
 

@@ -23,8 +23,13 @@ include(PS_ADMIN_DIR.'/header.inc.php');
 //ini_set('display_errors', 1)
 //echo ini_get('display_errors');
 
+
+$comes = $_GET["comes"];
+$base_remoto = Configuration::get("PS_STORE_REMOTE");
+
 if ($tab)
 {
+    $comes = $_GET["comes"];
     $base_remoto = Configuration::get("PS_STORE_REMOTE");
     
 	if ($id_tab = checkingTab($tab))
@@ -94,19 +99,29 @@ if ($tab)
             $tabs = $aux_tabs;
         }
         
-		echo '<div class="path_bar"><img src="../img/admin/prefs.gif" style="margin-right:10px" /><a href="?token='.Tools::getAdminToken($tab.intval(Tab::getIdFromClassName($tab)).intval($cookie->id_employee)).'&id_lang='.$cookie->id_lang.'&adminlang=1">'.translate('Back home').'</a>';
+        
+        if($comes == "remoto"){
+                echo '<div class="path_bar"><img src="../img/admin/prefs.gif" style="margin-right:10px" /><a href="?token='.Tools::getAdminToken($tab.intval(Tab::getIdFromClassName($tab)).intval($cookie->id_employee)).'&id_lang='.$cookie->id_lang.'&adminlang=1">'.translate('Tienda-cliente').'</a>';
+        }else{
+            echo '<div class="path_bar"><img src="../img/admin/prefs.gif" style="margin-right:10px" /><a href="?token='.Tools::getAdminToken($tab.intval(Tab::getIdFromClassName($tab)).intval($cookie->id_employee)).'&id_lang='.$cookie->id_lang.'&adminlang=1">'.translate('Back home').'</a>';
+        }
 		
-		/*foreach ($tabs AS $key => $item){
+        $token_import2 = Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName('AdminImportv2')).intval($cookie->id_employee));
+
+		foreach ($tabs AS $key => $item){
 			//echo ' >> <img src="'.((trim($item['module']) != '') ? _MODULE_DIR_.$item['module'].'/'.$item['class_name'].'.gif' : '../img/t/'.$item['class_name'].'.gif').'" style="margin-right:5px" />'.((sizeof($tabs) - 1 > $key) ? '<a href="?tab='.$item['class_name'].'&token='.Tools::getAdminToken($item['class_name'].intval($item['id_tab']).intval($cookie->id_employee)).'">' : '').$item['name'].((sizeof($tabs) - 1 > $key) ? '</a>' : '');
             //echo ' >> <img src="'.((trim($item['module']) != '') ? _MODULE_DIR_.$item['module'].'/'.$item['class_name'].'.gif' : '../img/t/'.$item['class_name'].'.gif').'" style="margin-right:5px" />'.('<a href="?tab='.$item['class_name'].'&token='.Tools::getAdminToken($item['class_name'].intval($item['id_tab']).intval($cookie->id_employee)).'">').$item['name'].'</a>';
-            if($item['class_name'] == "AdminModules"){
+            /*if($item['class_name'] == "AdminModules"){
                 echo ' >> <img src="'.((trim($item['module']) != '') ? _MODULE_DIR_.$item['module'].'/'.$item['class_name'].'.gif' : '../img/t/'.$item['class_name'].'.gif').'" style="margin-right:5px" />'.$item['name'];
             }elseif($item['class_name'] == "adminImageAttachments"){
                 echo ' >> <img src="'.((trim($item['module']) != '') ? _MODULE_DIR_.$item['module'].'/'.$item['class_name'].'.gif' : '../img/t/'.$item['class_name'].'.gif').'" style="margin-right:5px" />'.('<a href="?tab='.$item['class_name'].'&token='.Tools::getAdminToken($item['class_name'].intval($item['id_tab']).intval($cookie->id_employee)).'&imgatt=imagesattchment">').$item['name'].'</a>';
             }else{
                 echo ' >> <img src="'.((trim($item['module']) != '') ? _MODULE_DIR_.$item['module'].'/'.$item['class_name'].'.gif' : '../img/t/'.$item['class_name'].'.gif').'" style="margin-right:5px" />'.('<a href="?tab='.$item['class_name'].'&token='.Tools::getAdminToken($item['class_name'].intval($item['id_tab']).intval($cookie->id_employee)).'">').$item['name'].'</a>';    
+            }*/
+            if(($item['class_name'] == "AdminBackup" && $comes == "remoto") || ($item['class_name'] == "AdminRestore" && $comes == "remoto")){
+                echo ' >> '.('<a href="'.$base_remoto.'/index.php?tab=AdminImportv2&token='.$token_import2.'">').translate("Tienda-remota").'</a>';
             }
-		}*/
+		}
 		echo '</div>';
         
         echo '<ul class="sub_menu_shop">';
@@ -180,17 +195,17 @@ if ($tab)
                     <li id="AdminPreferences">
                         <a href="index.php?tab=AdminPreferences&token='.Tools::getAdminToken("AdminPreferences".intval(Tab::getIdFromClassName('AdminPreferences')).intval($cookie->id_employee)).'">1. '.translate('Enable / Disable Shop').'</a>
                     </li>
-                    <li id="AdminImportv2">
+                    <!--<li id="AdminImportv2">
                         <a target="_blank" href="'.$base_remoto.'/index.php?tab=AdminImportv2&token='.Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName('AdminImportv2')).intval($cookie->id_employee)).'">2. '.translate('Actualizar Catalogo').'</a>
-                    </li>
+                    </li>-->
                     <li id="AdminBackup">
-                        <a href="index.php?tab=AdminBackup&token='.Tools::getAdminToken("AdminBackup".intval(Tab::getIdFromClassName('AdminBackup')).intval($cookie->id_employee)).'">3. '.translate('Backup').'</a>
+                        <a href="index.php?tab=AdminBackup&token='.Tools::getAdminToken("AdminBackup".intval(Tab::getIdFromClassName('AdminBackup')).intval($cookie->id_employee)).'">2. '.translate('Backup').'</a>
                     </li>
                     <li id="AdminRestore">
-                        <a href="index.php?tab=AdminRestore&token='.Tools::getAdminToken("AdminRestore".intval(Tab::getIdFromClassName('AdminRestore')).intval($cookie->id_employee)).'">4. '.translate('Restore').'</a>
+                        <a href="index.php?tab=AdminRestore&token='.Tools::getAdminToken("AdminRestore".intval(Tab::getIdFromClassName('AdminRestore')).intval($cookie->id_employee)).'">3. '.translate('Restore').'</a>
                     </li>
                     <li>
-                        <a href="'.__PS_BASE_URI__.'" target="_blank">5. '.translate('See Shop').'</a>
+                        <a href="'.__PS_BASE_URI__.'" target="_blank">4. '.translate('See Shop').'</a>
                     </li>';
     		}
             
@@ -527,11 +542,9 @@ else /* Else display homepage */
                     alert("Debe guardar la direccion tienda remota.");
                     return false;    
                 }
-            });
+            }); 
             
-            
-            
-        })
+        });
     
     </script>
 
@@ -581,7 +594,7 @@ else /* Else display homepage */
                     <li>
                         <?php $base_remoto = Configuration::get("PS_STORE_REMOTE") ?>
                         <span>1-7</span>
-                        <a id="shop_remote_update_catalog" data-url_remote='<?php echo $base_remoto ?>' target="_blank" href="<?php echo $base_remoto ?>/index.php?tab=AdminImportv2&token=<?=Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee))?>">
+                        <a id="shop_remote_update_catalog" data-url_remote='<?php echo $base_remoto ?>' href="<?php echo $base_remoto ?>/index.php?tab=AdminImportv2&token=<?=Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee))?>">
                             <?php echo translate('Actualizar Catalogo') ?>
                         </a>
                         <!--<a target="_blank" href="index.php?tab=AdminImportv2&token=<?=Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee))?>">
@@ -635,32 +648,32 @@ else /* Else display homepage */
                         <span>2-5</span>
                         <a><?php echo translate('Create newsletters') ?></a>
                     </li>
-                    <li>
+                    <!--<li>
                         <span>2-6</span>
                         <a class="options_shop" href="index.php?tab=AdminPreferences&token=<?=Tools::getAdminToken("AdminPreferences".intval(Tab::getIdFromClassName("AdminPreferences")).intval($cookie->id_employee))?>">
                             <?php echo translate('Activar / Desactivar tienda') ?>
                         </a>
-                    </li>
+                    </li>-->
                     <li>
-                        <span>2-7</span>
+                        <span>2-6</span>
                         <a class="options_shop" href="index.php?tab=AdminStats&token=<?=Tools::getAdminToken("AdminStats".intval(Tab::getIdFromClassName("AdminStats")).intval($cookie->id_employee))?>">
                             <?php echo translate('Estadisticas') ?>
                         </a>
                     </li>
                     <li>
-                        <span>2-8</span>
-                        <a class="options_shop" href="index.php?tab=AdminRestore&token=<?=Tools::getAdminToken("AdminRestore".intval(Tab::getIdFromClassName("AdminRestore")).intval($cookie->id_employee))?>">
+                        <span>2-7</span>
+                        <a class="options_shop" href="index.php?tab=AdminBackup&token=<?=Tools::getAdminToken("AdminBackup".intval(Tab::getIdFromClassName("AdminBackup")).intval($cookie->id_employee))?>">
                             <?php echo translate('Backup y Restaurar') ?>
                         </a>
                     </li>
                     <li>
-                        <span>2-9</span>
-                        <a target="_blank" href="<?php echo $base_remoto ?>/index.php?tab=AdminPreferences&token=<?=Tools::getAdminToken("AdminPreferences".intval(Tab::getIdFromClassName("AdminPreferences")).intval($cookie->id_employee))?>">
+                        <span>2-8</span>
+                        <a href="<?php echo $base_remoto ?>/index.php?tab=AdminPreferences&token=<?=Tools::getAdminToken("AdminPreferences".intval(Tab::getIdFromClassName("AdminPreferences")).intval($cookie->id_employee))?>">
                             <?php echo translate('Comprobar Backup') ?>
                         </a>
                     </li>
                     <li>
-                        <span>2-10</span>
+                        <span>2-9</span>
                         <a href="<?php echo $base_remoto ?>/index.php?tab=AdminCatalog&token=<?=Tools::getAdminToken("AdminCatalog".intval(Tab::getIdFromClassName("AdminCatalog")).intval($cookie->id_employee))?>&stockcontrol=1">
                             <?php echo translate('Control Stock') ?>
                         </a>

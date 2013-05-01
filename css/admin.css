@@ -1502,3 +1502,7 @@ ul.box_manu_cus li .box_supp_ref div label{
 .hide_tag{
     display: none;
 }
+
+#main .bg-remote, #main .bg-remote form.width3 fieldset{
+    background: #FAF1DC;
+}

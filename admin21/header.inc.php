@@ -475,4 +475,5 @@ require_once(dirname(__FILE__).'/init.php');
 					}
 				?>
 				</ul>
-				<div id="content">
+                <?php $comes = $_GET["comes"];?>
+				<div id="content" class="<?php echo (isset($comes) && $comes != "") ? 'bg-remote' : '' ?>">
