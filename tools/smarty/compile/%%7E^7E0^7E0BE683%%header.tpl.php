@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-07 02:53:11
+<?php /* Smarty version 2.6.20, created on 2013-05-07 03:16:19
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda%5Cmodules%5Cblocksearch/header.tpl */ ?>
 <!-- Block search module HEADER -->
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['content_dir']; ?>

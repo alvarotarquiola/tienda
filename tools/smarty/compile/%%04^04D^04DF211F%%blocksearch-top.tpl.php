@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-07 02:53:16
+<?php /* Smarty version 2.6.20, created on 2013-05-07 03:16:24
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda%5Cmodules%5Cblocksearch/blocksearch-top.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'htmlentities', 'D:\\xampp\\htdocs\\tienda\\modules\\blocksearch/blocksearch-top.tpl', 8, false),array('modifier', 'stripslashes', 'D:\\xampp\\htdocs\\tienda\\modules\\blocksearch/blocksearch-top.tpl', 8, false),array('function', 'l', 'D:\\xampp\\htdocs\\tienda\\modules\\blocksearch/blocksearch-top.tpl', 9, false),)), $this); ?>

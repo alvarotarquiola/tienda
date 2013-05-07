@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-07 02:53:16
+<?php /* Smarty version 2.6.20, created on 2013-05-07 03:16:24
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda%5Cmodules%5Cblockpermanentlinks/blockpermanentlinks-header.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'l', 'D:\\xampp\\htdocs\\tienda\\modules\\blockpermanentlinks/blockpermanentlinks-header.tpl', 3, false),array('modifier', 'addslashes', 'D:\\xampp\\htdocs\\tienda\\modules\\blockpermanentlinks/blockpermanentlinks-header.tpl', 6, false),)), $this); ?>
