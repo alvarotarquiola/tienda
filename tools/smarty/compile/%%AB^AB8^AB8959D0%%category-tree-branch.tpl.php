@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-04-17 03:50:35
+<?php /* Smarty version 2.6.20, created on 2013-05-07 02:53:15
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda/modules/blockcategories/category-tree-branch.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda/modules/blockcategories/category-tree-branch.tpl', 2, false),array('modifier', 'count', 'D:\\xampp\\htdocs\\tienda/modules/blockcategories/category-tree-branch.tpl', 3, false),)), $this); ?>

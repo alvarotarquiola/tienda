@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-04-17 03:49:27
+<?php /* Smarty version 2.6.20, created on 2013-05-07 01:34:28
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda/themes/Rojo/./pagination.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'intval', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./pagination.tpl', 2, false),array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./pagination.tpl', 31, false),array('function', 'l', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./pagination.tpl', 21, false),)), $this); ?>

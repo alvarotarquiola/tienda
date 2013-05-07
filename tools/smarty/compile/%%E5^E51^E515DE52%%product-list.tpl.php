@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-04-17 03:49:26
+<?php /* Smarty version 2.6.20, created on 2013-05-07 01:34:27
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda/themes/Rojo/./product-list.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./product-list.tpl', 7, false),array('modifier', 'truncate', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./product-list.tpl', 8, false),array('modifier', 'strip_tags', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./product-list.tpl', 9, false),array('modifier', 'date_format', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./product-list.tpl', 14, false),array('modifier', 'intval', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./product-list.tpl', 22, false),array('function', 'l', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./product-list.tpl', 8, false),array('function', 'convertPrice', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./product-list.tpl', 18, false),)), $this); ?>
