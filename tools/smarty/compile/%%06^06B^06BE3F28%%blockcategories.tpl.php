@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-07 03:16:19
+<?php /* Smarty version 2.6.20, created on 2013-05-08 03:58:47
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda%5Cmodules%5Cblockcategories/blockcategories.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'l', 'D:\\xampp\\htdocs\\tienda\\modules\\blockcategories/blockcategories.tpl', 5, false),)), $this); ?>

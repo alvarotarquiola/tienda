@@ -15,12 +15,13 @@
 	{if $form_list}
 		<form action="{$smarty.server.SCRIPT_NAME}" method="get">
 			<p>
+				<!-- modificando
 				<select id="manufacturer_list" onchange="autoUrl('manufacturer_list', '');">
 					<option value="0">{l s='All manufacturers' mod='blockmanufacturer'}</option>
 				{foreach from=$manufacturers item=manufacturer}
 					<option value="{$link->getmanufacturerLink($manufacturer.id_manufacturer, $manufacturer.link_rewrite)}">{$manufacturer.name|escape:'htmlall':'UTF-8'}</option>
 				{/foreach}
-				</select>
+				</select -->
 			</p>
 		</form>
 	{/if}

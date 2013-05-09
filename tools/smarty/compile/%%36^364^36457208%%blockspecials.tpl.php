@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-07 03:16:25
+<?php /* Smarty version 2.6.20, created on 2013-05-08 03:58:49
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda%5Cmodules%5Cblockspecials/blockspecials.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'l', 'D:\\xampp\\htdocs\\tienda\\modules\\blockspecials/blockspecials.tpl', 3, false),array('function', 'displayWtPrice', 'D:\\xampp\\htdocs\\tienda\\modules\\blockspecials/blockspecials.tpl', 12, false),array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda\\modules\\blockspecials/blockspecials.tpl', 8, false),)), $this); ?>

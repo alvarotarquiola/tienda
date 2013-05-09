@@ -1236,8 +1236,8 @@ a.tag_level1 { font-size: 1em; color:#888!important;}
 
 /* Block Viewed Products */
 div#viewed-products_block_left div.block_content ul.products li { height:85px; }
-/*add style*/
-  div#viewed-products_block_left div.block_content ul.products li.last_item { height:190px; }
+/*add style alvaro*/
+div#viewed-products_block_left div.block_content ul.products li.last_item { height:185px; }
 /*end*/
 div#viewed-products_block_left div.block_content ul.products li img { margin-right:7px; }
 
@@ -1865,6 +1865,8 @@ div.sitemap_block{
 	padding:0;
 	float:left;
 	width:30%;
+	/*modificando*/
+	margin-right: 10px
 }
 div.sitemap_block ul{ text-align:left; }
 div.sitemap_block h3, .categTree h3{

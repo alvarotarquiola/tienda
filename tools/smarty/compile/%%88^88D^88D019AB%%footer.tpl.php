@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-07 03:16:26
+<?php /* Smarty version 2.6.20, created on 2013-05-08 03:58:49
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda/themes/Rojo/footer.tpl */ ?>
 		<?php if (! $this->_tpl_vars['content_only']): ?>
 				</div>
