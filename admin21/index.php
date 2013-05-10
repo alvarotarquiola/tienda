@@ -388,10 +388,10 @@ if ($tab)
         if (isset($_GET["tab"]) && $_GET["tab"]=="AdminPayment") {
               echo "<h2 class='sub_title_tab'>".translate("Formas de pago")."</h2>";   
         }
-        if (isset($_GET["tab"]) && $_GET["tab"]=="AdminCurrencies") {
+        if (isset($_GET["tab"]) && $_GET["tab"] == "AdminCurrencies") {
             if (isset($_GET["updatecurrency"])) {
                 echo "<h2 class='sub_title_tab'>".translate("Editar divisa")."</h2>";   
-            }elseif (isset($_GET["addcurrency"])) {
+            }elseif(isset($_GET["addcurrency"])){
                 echo "<h2 class='sub_title_tab'>".translate("Nueva divisa")."</h2>";   
             }else{
                 echo "<h2 class='sub_title_tab'>".translate("Divisas")."</h2>";   
@@ -473,9 +473,9 @@ if ($tab)
 				elseif (strncmp($key, $adminObj->table.'OrderBy', 7) === 0 OR strncmp($key, $adminObj->table.'Orderway', 12) === 0)
 					$cookie->$key = $value;
 
-		//$adminObj->displayConf();
-		//$adminObj->postProcess();
-		//$adminObj->displayErrors();
+		$adminObj->displayConf();
+		$adminObj->postProcess();
+		$adminObj->displayErrors();
 		$adminObj->display();
 	}
 }

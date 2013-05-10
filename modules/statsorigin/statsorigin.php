@@ -80,7 +80,7 @@ class StatsOrigin extends ModuleGraph
 		else
 			$this->_html .= '<p><strong>'.$this->l('Direct links only').'</strong></p>';
 		$this->_html .= '</fieldset><br />
-		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
+		<fieldset class="width3 hide_tag"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 		<h2>'.$this->l('What is a referrer website?').'</h2>
 			<p>
 				'.$this->l('When visiting a webpage, the referrer is the URL of the previous webpage from which a link was followed.').'<br />

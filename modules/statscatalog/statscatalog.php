@@ -149,7 +149,8 @@ class StatsCatalog extends Module
 		
 		$html = '
 		<script type="text/javascript" language="javascript">openCloseLayer(\'calendar\');</script>
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
+		<fieldset class="width3">
+		<!--<legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>-->
 			<label>
 				'.$this->l('Choose a category').'
 			</label>
@@ -164,7 +165,7 @@ class StatsCatalog extends Module
 				</form>
 			</div>
 			<div class="clear space"></div>
-			<table>
+			<table class="hide_tag">
 				'.$this->returnLine($this->l('Products available:'), intval($total)).'
 				'.$this->returnLine($this->l('Average price (base price):'), Tools::displayPrice($averagePrice, $currency)).'
 				'.$this->returnLine($this->l('Product pages viewed:'), intval($totalPageViewed)).'
@@ -177,7 +178,7 @@ class StatsCatalog extends Module
 				'.$this->returnLine('<a style="cursor : pointer" onclick="openCloseLayer(\'pnb\')">'.$this->l('Products never bought:').'</a>', intval($totalNB).' / '.intval($total)).'
 				'.$this->returnLine($this->l('Conversion rate*:'), $conversion).'
 			</table>
-			<div style="margin-top: 20px;">
+			<div style="margin-top: 20px;" class="hide_tag">
 				<span style="color:red;font-weight:bold">*</span> 
 				'.$this->l('Average conversion rate for the product page. It is possible to purchase a product without viewing the product page, so this rate can be greater than 1.').'
 			</div>

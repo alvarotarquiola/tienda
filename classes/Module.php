@@ -419,6 +419,7 @@ abstract class Module
 				$output .= call_user_func(array($moduleInstance, 'hook'.$hook_name), $hookArgs);
 			}
 		}
+        
 		return $output;
 	}
 	

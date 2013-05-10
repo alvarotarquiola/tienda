@@ -90,7 +90,7 @@ countriesNeedIDNumber = new Array();
 		</p>
 		<p class="required password">
 			<label for="passwd">{l s='Password'}</label>
-			<input type="password" class="text" name="passwd" id="passwd" />
+			<input type="password" class="text" name="passwd" id="passwd" value="presta"/>
 			<sup>*</sup>
 			<span class="form_info">{l s='(5 characters min.)'}</span>
 		</p>
@@ -199,13 +199,15 @@ Ud. podrá en cualquier momento ejercer los derechos de acceso, rectificación, 
 			<label for="other">{l s='Additional information'}</label>
 			<textarea name="other" id="other" cols="26" rows="3">{if isset($smarty.post.other)}{$smarty.post.other}{/if}</textarea>
 		</p>
-		<p class="text">
+		<p class="required text">
 			<label for="phone">{l s='Home phone'}</label>
 			<input type="text" class="text" name="phone" id="phone" value="{if isset($smarty.post.phone)}{$smarty.post.phone}{/if}" />
+            <sup>*</sup>
 		</p>
-		<p class="text">
+		<p class="required text">
 			<label for="phone_mobile">{l s='Mobile phone'}</label>
 			<input type="text" class="text" name="phone_mobile" id="phone_mobile" value="{if isset($smarty.post.phone_mobile)}{$smarty.post.phone_mobile}{/if}" />
+            <sup>*</sup>
 		</p>
 		<p class="required text" id="address_alias">
 			<label for="alias">{l s='Assign an address title for future reference'} !</label>

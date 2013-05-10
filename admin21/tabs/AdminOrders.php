@@ -184,10 +184,8 @@ class AdminOrders extends AdminTab
 			
 			$duplicavars = $_POST['duplicarvar']; 
 			if(sizeof($duplicavars) > 0){
-				print_r($_POST['duplicarvar']);
+				//print_r($_POST['duplicarvar']);
 				//if(!$order->isduplicated($order->id)){
-					
-					
 					
 					$neworderid = $order->copyorder($order->id);
 					$base = str_replace(__PS_BASE_URI__,"",$_SERVER["SCRIPT_NAME"]);
@@ -447,7 +445,10 @@ class AdminOrders extends AdminTab
 		$sources = ConnectionsSource::getOrderSources($order->id);
 		$cart = Cart::getCartByOrderId($order->id);
 		$link = new Link();
-
+        
+        $totalprod = 0;
+        foreach($products as $prod)
+            $totalprod = $totalprod + $prod['product_quantity'];
 
 		/*
 		if($_GET["duplicar"]=="si"){
@@ -617,6 +618,7 @@ class AdminOrders extends AdminTab
 		<fieldset style="width: 400px">
 			<legend><img src="../img/admin/delivery.gif" /> '.$this->l('Shipping information').'</legend>
 			'.$this->l('Total weight:').' <b>'.number_format($order->getTotalWeight(), 3).' '.Configuration::get('PS_WEIGHT_UNIT').'</b><br />
+            '.$this->l('Total Productos:').' <b>'.$totalprod.'</b><br />
 			'.$this->l('Carrier:').' <b>'.($carrier->name == '0' ? Configuration::get('PS_SHOP_NAME') : $carrier->name).'</b>
 			'.(($currentState->delivery OR $order->delivery_number) ? '<br /><a href="pdf.php?id_delivery='.$order->delivery_number.'">'.$this->l('Delivery slip #').'<b>'.Configuration::get('PS_DELIVERY_PREFIX', intval($cookie->id_lang)).sprintf('%06d', $order->delivery_number).'</b></a><br />' : '');
 			if ($order->shipping_number)

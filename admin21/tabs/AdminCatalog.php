@@ -156,9 +156,6 @@ class AdminCatalog extends AdminTab
                     <a href="'.$url_grafico.'" style="float:right;margin: 0 20px 0 0;">'.$this->l("Grafico").'</a>
                 </div>';
 			echo '<h2>'.$this->l('Categories').'</h2>';	
-			$this->displayConf();		
-			$this->postProcess();
-			$this->displayErrors();
 			//echo '<h3>'.$this->l('Current category').'&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).'</h3>';
 			$this->adminCategories->display($this->token);
 			echo '<div style="margin:10px">&nbsp;</div>';

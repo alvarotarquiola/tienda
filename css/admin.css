@@ -1506,3 +1506,10 @@ ul.box_manu_cus li .box_supp_ref div label{
 #main .bg-remote, #main .bg-remote form.width3 fieldset{
     background: #FAF1DC;
 }
+
+/*=================== Estilos para ocultar columnas customer ====================*/
+.customer_form tr td table.table tr th.customer_id_gender,
+.customer_form tr td table.table tr td.customer_id_gender,
+.customer_Filter_id_gender{
+    display: none;
+}

@@ -86,6 +86,16 @@ class AdminSearch extends AdminTab
 			{
 				$this->fieldsDisplay['customers'] = (array(
 					'ID' => array('title' => $this->l('ID')),
+					'name' => array('title' => $this->l('Name')),
+					'e-mail' => array('title' => $this->l('e-mail')),
+					'register_date' => array('title' => $this->l('Register date')),
+					'orders' => array('title' => $this->l('Orders')),
+					'status' => array('title' => $this->l('Status')),
+					'actions' => array('title' => $this->l('Actions'))
+				));
+                
+                /*$this->fieldsDisplay['customers'] = (array(
+					'ID' => array('title' => $this->l('ID')),
 					'sex' => array('title' => $this->l('Sex')),
 					'name' => array('title' => $this->l('Name')),
 					'e-mail' => array('title' => $this->l('e-mail')),
@@ -94,7 +104,7 @@ class AdminSearch extends AdminTab
 					'orders' => array('title' => $this->l('Orders')),
 					'status' => array('title' => $this->l('Status')),
 					'actions' => array('title' => $this->l('Actions'))
-				));
+				));*/
 
 				/* Handle customer ID */
 				if (intval($_POST['bo_search_type']) AND intval($_POST['bo_query']) AND Validate::isUnsignedInt(intval($_POST['bo_query'])))
@@ -237,10 +247,10 @@ class AdminSearch extends AdminTab
 				echo '
 				<tr class="'.($irow++ % 2 ? 'alt_row' : '').'">
 					<td>'.$customer['id_customer'].'</td>
-					<td class="center">'.$imgGender.'</td>
+					<td class="center hide_tag">'.$imgGender.'</td>
 					<td>'.stripslashes($customer['lastname']).' '.stripslashes($customer['firstname']).'</td>
 					<td>'.stripslashes($customer['email']).'<a href="mailto:'.stripslashes($customer['email']).'"> <img src="../img/admin/email_edit.gif" alt="'.$this->l('Write to this customer').'" /></a></td>
-					<td>'.Tools::displayDate($customer['birthday'], intval($cookie->id_lang)).'</td>
+					<td class="hide_tag">'.Tools::displayDate($customer['birthday'], intval($cookie->id_lang)).'</td>
 					<td>'.Tools::displayDate($customer['date_add'], intval($cookie->id_lang)).'</td>
 					<td>'.Order::getCustomerNbOrders($customer['id_customer']).'</td>
 					<td class="center"><img src="../img/admin/'.($customer['active'] ? 'enabled.gif' : 'forbbiden.gif').'" alt="" /></td>

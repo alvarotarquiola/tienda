@@ -544,8 +544,10 @@ class		Order extends ObjectModel
 		
 		$result = Db::getInstance()->ExecuteS($sql);
 		
-		//print_r($result);
-		
+        echo "<pre>";
+		print_r($result);
+		echo "</pre>";
+        
 		//echo "<hr>";
 		$sqlvals = "";
 		$resulta = $result[0];
@@ -571,6 +573,11 @@ class		Order extends ObjectModel
 			}
 			
 		}
+        
+        echo "<pre>";
+		print_r($sqlvals);
+		echo "</pre>";
+
 		
 		$sql = "
 		INSERT INTO  `"._DB_PREFIX_."orders` (
@@ -585,12 +592,20 @@ class		Order extends ObjectModel
 		`secure_key` ,
 		`payment` ,
 		`module` ,`recyclable` ,
-		`gift` ,`gift_message` ,`shipping_number` ,`total_discounts` ,`total_paid` ,`total_paid_real` ,`total_products` ,`total_products_wt` ,`total_shipping` ,`total_wrapping` ,`invoice_number` ,`delivery_number` ,`invoice_date` ,`delivery_date` ,`valid` ,`date_add` ,`date_upd`
+		`gift` ,`gift_message` ,
+        `shipping_number` ,
+        `total_discounts` ,
+        `total_paid` ,
+        `total_paid_real` ,
+        `total_products` ,
+        `total_products_wt` ,
+        `total_shipping` ,`total_wrapping` ,`invoice_number` ,`delivery_number` ,`invoice_date` ,`delivery_date` ,`valid` ,`date_add` ,`date_upd`
 		)
 		VALUES (".$sqlvals.");
 		";
 		
 		//echo $sql;
+        //esto comento alex
 		if(!Db::getInstance()->Execute($sql)){
 			echo $sql;
 			echo Db::getInstance()->getMsgError(); 
@@ -620,6 +635,10 @@ class		Order extends ObjectModel
 		
 		$sql2 = ");";
 		
+        echo "<pre>";
+        print_r($result);
+        echo "</pre>";
+        //exit();
 		
 		$siacopiar = $_POST['duplicarvar'];
 		
@@ -658,6 +677,13 @@ class		Order extends ObjectModel
 			
 			$sqlfinal = $sql1.$sqlvals.$sql2;	
 			//echo $sqlfinal;
+            
+            echo "<pre>";
+            print_r($sqlfinal);
+            echo "</pre>";
+            
+            echo "Cantidad es ".$cantidad."<br>";
+            //exit();
 			
 			if(!Db::getInstance()->Execute($sqlfinal)){
 				echo $sqlfinal;
@@ -671,20 +697,23 @@ class		Order extends ObjectModel
 			$produ = new Product($detalle['product_id']); 
 			$precioprodwt = $produ->getPrice();
 			$subtotawt = floatval($precioprodwt) * intval($cantidad);
+            echo "Precio es ".$precioprodwt."<br>";
+            echo "Cantidad 2 es ".$subtotawt."<br>";
 			if($subtotawt > 0){
 				$totalwt = $totalwt + $subtotawt;
 				}
-				
+			echo "Cantidad 3 es ".$totalwt."<br>";	
 			$precioprod = $produ->getPrice(false);
 			$subtota = floatval($precioprod) * intval($cantidad);
 			if($subtota > 0){
 				$total = $total + $subtota;
 				}
-			}	
+			}
+            //exit();	
 		}
 		
 		// actualizando el precio total de la orden
-		$sqlu = "UPDATE `"._DB_PREFIX_."orders`
+		/*$sqlu = "UPDATE `"._DB_PREFIX_."orders`
 				SET total_paid = '".$totalwt."', 
 				total_products_wt = '".$totalwt."',
 				total_paid_real = '0',
@@ -697,11 +726,7 @@ class		Order extends ObjectModel
 				echo $sqlu;
 				//mail("pa.navarrete@gmail.com","pruebaerror",$sqlu);	
 				echo Db::getInstance()->getMsgError(); 
-			}		
-		
-		
-		
-		
+			}*/		
 		
 		//copiando la historia
 		
