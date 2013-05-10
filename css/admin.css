@@ -1518,3 +1518,7 @@ ul.box_manu_cus li .box_supp_ref div label{
 .customer_Filter_id_gender{
     display: none;
 }
+
+#PS_LOGO .margin-form img{
+    width: 505px;
+}
