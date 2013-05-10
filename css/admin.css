@@ -204,6 +204,11 @@ label.t {
 	font-weight: normal;
 	font-size: 12px;
 }
+/*modificando*/
+label.t > img{
+	display: none;
+}
+/*fin*/
 label.std {
 	float: none;
 	margin: 0px;
