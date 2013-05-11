@@ -64,6 +64,8 @@ class AdminOrders extends AdminTab
 		/* Update shipping number */
 		if (Tools::isSubmit('submitShippingNumber') AND ($id_order = intval(Tools::getValue('id_order'))) AND Validate::isLoadedObject($order = new Order($id_order)))
 		{
+            echo "entra";
+            exit();
 			if ($this->tabAccess['edit'] === '1')
 			{
 				if (!$order->hasBeenShipped())
@@ -97,7 +99,7 @@ class AdminOrders extends AdminTab
 		/* Change order state, add a new entry in order history and send an e-mail to the customer if needed */
 		elseif (Tools::isSubmit('submitState') AND ($id_order = intval(Tools::getValue('id_order'))) AND Validate::isLoadedObject($order = new Order($id_order)))
 		{
-            //echo "entra submitState";
+            echo "entra submitState";
 			if ($this->tabAccess['edit'] === '1')
 			{
 				$_GET['view'.$this->table] = true;
@@ -186,14 +188,11 @@ class AdminOrders extends AdminTab
 			if(sizeof($duplicavars) > 0){
 				//print_r($_POST['duplicarvar']);
 				//if(!$order->isduplicated($order->id)){
-					
 					$neworderid = $order->copyorder($order->id);
 					$base = str_replace(__PS_BASE_URI__,"",$_SERVER["SCRIPT_NAME"]);
 					//Tools::redirect($base.'?tab=AdminOrders&id_order='.$neworderid.'&vieworder&token='.$_GET["token"]);
 					$pasar = "si";
 				//}
-				
-			
 			}
 
 		 	if ($this->tabAccess['delete'] === '1')
@@ -808,15 +807,14 @@ class AdminOrders extends AdminTab
 									echo '<input type="hidden" name="cancelQuantity['.$k.']" value="0" />';
 								elseif (!$order->hasBeenDelivered() OR Configuration::get('PS_ORDER_RETURN'))
 									//echo '<input type="text" id="cancelQuantity_'.intval($product['id_order_detail']).'" name="cancelQuantity['.$k.']" size="2" onclick="selectCheckbox(this);" value="" /> ';
-									echo '<input type="text" id="cancelQuantity_'.intval($product['id_order_detail']).'" name="cancelQuantity['.$k.']" size="2" value="" /> ';
+									echo '<input type="text" id="cancelQuantity_'.intval($product['id_order_detail']).'" name="cancelQuantity['.$k.']" size="2" value=""/> ';
 								echo $this->getCancelledProductNumber($order, $product).'
 									</td>';
 									
 									//if(!$order->isduplicated($order->id)){
 									echo '
-									<td>
-									<input type="checkbox" name="duplicarvar['.intval($product['id_order_detail']).']" value="'.$product['product_id'].'">
-									
+									<td class="check_duplicarvar">
+									<input type="checkbox" name="duplicarvar['.intval($product['id_order_detail']).']" value="'.$product['product_id'].'" disabled="disabled"/>
 									</td>';
 									//}
 								echo '</tr>';
@@ -954,6 +952,23 @@ class AdminOrders extends AdminTab
 		</div>';
 		echo '<div class="clear">&nbsp;</div>';
 		echo '<br /><br /><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
+        
+        echo '
+            <script type="text/javascript">
+                jQuery(function(){
+                    jQuery(".cancelCheck [type=checkbox]").click(function(){
+                        var ele = jQuery(this);
+                        var duplicar = jQuery(this).parent().parent().find(".check_duplicarvar [type=checkbox]");
+                        if(ele.is(":checked"))
+                        {
+                            duplicar.removeAttr("disabled");
+                        }else{
+                            duplicar.attr("disabled", "disabled");
+                        }
+                    });
+                });
+            </script>
+        ';
 	}
 	
 	public function display()
