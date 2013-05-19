@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-08 03:42:27
+<?php /* Smarty version 2.6.20, created on 2013-05-09 03:12:23
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda%5Cmodules%5Ceditorial/editorial.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda\\modules\\editorial/editorial.tpl', 3, false),array('modifier', 'stripslashes', 'D:\\xampp\\htdocs\\tienda\\modules\\editorial/editorial.tpl', 3, false),)), $this); ?>

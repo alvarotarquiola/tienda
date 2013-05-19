@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-08 03:53:47
+<?php /* Smarty version 2.6.20, created on 2013-05-10 04:10:10
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda/themes/Rojo/./errors.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'count', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./errors.tpl', 3, false),array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./errors.tpl', 9, false),array('modifier', 'secureReferrer', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./errors.tpl', 9, false),array('function', 'l', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/./errors.tpl', 3, false),)), $this); ?>

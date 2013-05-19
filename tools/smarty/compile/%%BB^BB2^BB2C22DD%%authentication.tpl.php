@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-05-08 03:53:47
+<?php /* Smarty version 2.6.20, created on 2013-05-10 04:01:15
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda/themes/Rojo/authentication.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'l', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 1, false),array('modifier', 'intval', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 6, false),array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 13, false),array('modifier', 'stripslashes', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 37, false),)), $this); ?>
