@@ -8,10 +8,10 @@ class adminImageAttachments extends AdminTab
     public function display(){
         
         global $currentIndex, $cookie;//dvuelve la url actual donde esta.
-        //$token = Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee));
-        //$dirroot = PS_ADMIN_DIR."/../../..";
+        $token = Tools::getAdminToken("adminImageAttachments".intval(Tab::getIdFromClassName("adminImageAttachments")).intval($cookie->id_employee));
+
         $dirt = _PS_ROOT_DIR_."/files";
-        $href = $currentIndex.'&token='.$this->token.'&imgatt=imagesattchment';
+        $href = $currentIndex.'&success=ok&token='.$this->token.'&imgatt=imagesattchment';
         
         echo '
 			<script type="text/javascript">
@@ -23,6 +23,14 @@ class adminImageAttachments extends AdminTab
 			</script>
 		';
         
+        if(isset($_GET['success']) && $_GET['success'] == "ok"){
+            echo '<div class="conf confirm"><img src="../img/admin/ok.gif" />&nbsp;'.$this->l($cookie->msg_setting_images).' !</div>';
+        }
+        
+        if(isset($_GET['success']) && $_GET['success'] == "error"){
+            echo '<div class="alert error"><h3>&nbsp;'.$this->l($cookie->msg_delete_images).' </h3></div>';
+        }
+        
         echo '
             <div class="box_text_ia">
                 <p class="text_ia">Los ficheros de Im&aacute;genes y Adjuntos se asignan por el nombre de la Referencia del Producto</p>
@@ -33,33 +41,43 @@ class adminImageAttachments extends AdminTab
                 <p class="text_ia_2">1.- Preciamente puede ser necesario dimensionar y comprimir sus Im&aacute;genes. Ver Gu&iacute;a</p>
                 <p class="text_ia_2">2.- Ubicar todas sus Im&aacute;genes y Adjuntos en una carpeta local, segun estructura:</p>
                 <div class="box_sub_tex_ia">
-                    <p><span>Im&aacute;genes Categor&iacute;as y Fabricantes</span><span>c:/Files</span></p>
-                    <p><span>Im&aacute;genes Productos</span><span>c:/Files/Images</span></p>
-                    <p><span>Adjuntos Productos</span><span>c:/Files/Attachments</span></p>
+                    <p><span>Im&aacute;genes Categor&iacute;as</span><span>c:/files/categories</span></p>
+                    <p><span>Im&aacute;genes Fabricantes</span><span>c:/files/manufacturers</span></p>
+                    <p><span>Im&aacute;genes Productos</span><span>c:/files/products</span></p>
+                    <p><span>Adjuntos Productos</span><span>c:/files/attachments</span></p>
                 </div>
-                <p class="text_ia_2">3.- Copiar carpeta c:/Files a su Servidor de Hospedaje. Ver Gu&iacute;a</p>
+                <p class="text_ia_2">3.- Copiar carpeta c:/files a su Servidor de Hospedaje. Ver Gu&iacute;a</p>
                 <p class="text_ia_2">4.- Al finalizar; botones "Ajuste de Im&aacute;genes" y "Ajuste de Adjuntos"</p>
             </div>
         ';
         
-        if(isset($_GET['imgatt']) && $_GET['imgatt'] != ""){
-            
-            echo '<div class="import_image_attachment">
-              <div class="box_link_ia">
-                  <a class="enlace_del_ia" delete="images" onclick="return confirm(\''.$this->l('Delete all Images').'\');" href="index.php?tab=adminImageAttachments&token='.$this->token.'&delimages=imagenes">'.$this->l('Delete all Images').'</a>
-                  <a class="enlace_ia ajusting_image" adjusting="images"  href="index.php?tab=adminImageAttachments&token='.$this->token.'&dirimages=images">'.$this->l('Adjusting Images').'</a>
-              </div>
-              <div class="box_link_ia">
-                  <a class="enlace_del_ia" delete="attachments" onclick="return confirm(\''.$this->l('Delete all Attachments').'\');" href="index.php?tab=adminImageAttachments&token='.$this->token.'&delattachment=adjuntos">'.$this->l('Delete all Attachments').'</a>
-                  <a class="enlace_ia" adjusting="attachments" href="index.php?tab=adminImageAttachments&token='.$this->token.'&dirattachment=attachments">'.$this->l('Adjusting Attachments').'</a>
-              </div>
+        echo '
+            <div class="import_image_attachment">
+                <div class="box_link_ia">
+                    <h2>'.$this->l("Imagenes Categorias").'</h2>
+                    <a class="enlace_del_ia" delete="images" message="'.$this->l('Delete all Images').'" href="index.php?tab=adminImageAttachments&token='.$this->token.'&delimages=categories">'.$this->l('Delete all Images').'</a>
+                    <a class="enlace_ia ajusting_image" adjusting="images"  href="index.php?tab=adminImageAttachments&token='.$this->token.'&dirimages=categories">'.$this->l('Adjusting Images').'</a>
+                </div>
+                <div class="box_link_ia">
+                    <h2>'.$this->l("Imagenes Fabricantes").'</h2>
+                    <a class="enlace_del_ia" delete="images" message="'.$this->l('Delete all Images').'" href="index.php?tab=adminImageAttachments&token='.$this->token.'&delimages=manufacturers">'.$this->l('Delete all Images').'</a>
+                    <a class="enlace_ia ajusting_image" adjusting="images"  href="index.php?tab=adminImageAttachments&token='.$this->token.'&dirimages=manufacturers">'.$this->l('Adjusting Images').'</a>
+                </div>
+                <div class="box_link_ia">
+                    <h2>'.$this->l("Imagenes Productos").'</h2>
+                    <a class="enlace_del_ia" delete="images" message="'.$this->l('Delete all Images').'" href="index.php?tab=adminImageAttachments&token='.$this->token.'&delimages=products">'.$this->l('Delete all Images').'</a>
+                    <a class="enlace_ia ajusting_image" adjusting="images"  href="index.php?tab=adminImageAttachments&token='.$this->token.'&dirimages=products">'.$this->l('Adjusting Images').'</a>
+                </div>
+                <div class="box_link_ia">
+                    <h2>'.$this->l("Adjuntos Productos").'</h2>
+                    <a class="enlace_del_ia" delete="attachments" message="'.$this->l('Delete all Attachments').'" href="index.php?tab=adminImageAttachments&token='.$this->token.'&delattachment=adjuntos">'.$this->l('Delete all Attachments').'</a>
+                    <a class="enlace_ia" adjusting="attachments" href="index.php?tab=adminImageAttachments&token='.$this->token.'&dirattachment=attachments">'.$this->l('Adjusting Attachments').'</a>
+                </div>
             </div>';
-        }
         
         if(isset($_GET["dirimages"]) && $_GET["dirimages"] != ""){ 
             
-            $nombreDir = "images";
-            //$dirimages = $dirt."/".$_GET["dirimages"];
+            $nombreDir = $_GET["dirimages"];
             $dirimages = $dirt."/".$nombreDir;
             $enlace = $_SERVER['PHP_SELF']."?ajuste=image";
             $nombreEnlace = $this->l('Back to list');
@@ -70,47 +88,23 @@ class adminImageAttachments extends AdminTab
             
             if(count($imagenes) > 0){
                 
-                $respuesta = $this->importarImagenes($imagenes, $dirimages);
+                $respuesta = $this->importarImagenes($imagenes, $dirimages, $nombreDir);
                 //$respuesta = array(true, 2);
                 if($respuesta[0] == true && $respuesta[1] > 0){
                     //$mensaje = $this->l("The imported was successful.");
                     $mensaje = $this->l("The images were imported successfully.");
-                    echo '
-            			<script type="text/javascript">
-                            jQuery(function(){
-                                var mensaje = \''.$mensaje.'\';
-                                var redirigir = \''.$href.'\';
-                                alert(mensaje);
-                                window.location= redirigir;
-                            });
-            			</script>
-            			'; 
+                    $cookie->msg_setting_images = $mensaje;
+                    Tools::redirectAdmin($currentIndex.'&success=ok&token='.$token);
                 }else{
-                    $mensaje = $this->l("Failed to import.")." ".$this->l("The images already exist, or not created products.");
-                    echo '
-            			<script type="text/javascript">
-                            jQuery(function(){
-                                var mensaje = \''.$mensaje.'\';
-                                var redirigir = \''.$href.'\';
-                                alert(mensaje);
-                                window.location= redirigir;
-                            });
-            			</script>
-            			';
+                    $tipo_msg = "The images already exist, or not created ".$respuesta[2];
+                    $mensaje = $this->l("Failed to import.")." ".$this->l($tipo_msg);
+                    $cookie->msg_setting_images = $mensaje;
+                    Tools::redirectAdmin($currentIndex.'&success=error&token='.$token);
                 } 
             }else{
                 $mensaje = $this->l("Failed to import.")." ".$this->l("The folder has no images.");
-                echo '
-        			<script type="text/javascript">
-                        jQuery(function(){
-                            var mensaje = \''.$mensaje.'\';
-                            var redirigir = \''.$href.'\';
-            				alert(mensaje);
-                            window.location= redirigir;
-                        });
-                        
-        			</script>
-        			';  
+                $cookie->msg_delete_images = $mensaje;
+                Tools::redirectAdmin($currentIndex.'&success=error&token='.$token);  
             }   
         }
         
@@ -126,80 +120,31 @@ class adminImageAttachments extends AdminTab
             if(count($adjuntos) > 0){
                 
                 $respuesta = $this->importarAdjuntos($adjuntos, $diriadjuntos);
-                //$respuesta = true;
                 if($respuesta){  
-                    //$mensaje = $this->l("The imported was successful.");
                     $mensaje = $this->l("Attachments are imported successfully.");
-                    echo '
-            			<script type="text/javascript">
-                            jQuery(function(){
-                                var mensaje = \''.$mensaje.'\';
-                                var redirigir = \''.$href.'\';
-                                alert(mensaje);
-                                window.location= redirigir;
-                            });
-            			</script>
-            			'; 
-                }/*else{
-                    $mensaje = $this->l("Failed to import.");
-                    //$mensaje2 = $this->l("You must create products for import.");
-                    $mensaje2 = $this->l("The existing attachments, or not created products.");
-                    echo '
-            			<script type="text/javascript">
-                            jQuery(function(){
-                                var mensaje = \''.$mensaje.'\';
-            				    var mensaje2 = \''.$mensaje2.'\';
-                                alert(mensaje);
-                                jQuery(".title_import_img").text(mensaje2).css("color", "red"); 
-                            });
-            			</script>
-            			';
-                }*/  
+                    $cookie->msg_setting_images = $mensaje;
+                    Tools::redirectAdmin($currentIndex.'&success=ok&token='.$token);
+                }  
             }else{
                 $mensaje = $this->l("Failed to import.")." ".$this->l("The folder has no attachments.");
-                echo '
-        			<script type="text/javascript">
-                        jQuery(function(){
-                            var mensaje = \''.$mensaje.'\';
-                            var redirigir = \''.$href.'\';
-            				alert(mensaje);
-                            window.location= redirigir;
-                        });  
-        			</script>
-        			';  
+                $cookie->msg_delete_images = $mensaje;
+                Tools::redirectAdmin($currentIndex.'&success=error&token='.$token);
             }
         }
         
         if(isset($_GET['delimages']) && isset($_GET['delimages']) != ''){
-            $respuesta = ImageAttachments::deleteImages();
+            $namedir = $_GET['delimages'];
+            $this->imagesDelete($namedir);
             $msg_del_image = $this->l('The images were successfully removed');
-            //echo '<div class="msg_acction_ok" ><span>'.$this->l('The images were successfully removed').'</span></div>';
-            echo '
-    			<script type="text/javascript">
-                    jQuery(function(){
-                        var mensaje = \''.$msg_del_image.'\';
-                        var redirigir = \''.$href.'\';
-        				alert(mensaje);
-                        window.location= redirigir;
-                    });  
-    			</script>
-    			';
+            $cookie->msg_setting_images = $msg_del_image;
+            Tools::redirectAdmin($currentIndex.'&success=ok&token='.$token);
         }
         
         if(isset($_GET['delattachment']) && isset($_GET['delattachment']) != ''){
             $respuesta = ImageAttachments::deleteAttachments();
             $msg_del_attach = $this->l('The attachements were successfully removed');
-            //echo '<div class="msg_acction_ok" ><span>'.$this->l('The attachements were successfully removed').'</span></div>';
-            echo '
-    			<script type="text/javascript">
-                    jQuery(function(){
-                        var mensaje = \''.$msg_del_attach.'\';
-                        var redirigir = \''.$href.'\';
-        				alert(mensaje);
-                        window.location= redirigir;
-                    });  
-    			</script>
-    			';
+            $cookie->msg_setting_images = $msg_del_attach;
+            Tools::redirectAdmin($currentIndex.'&success=ok&token='.$token);
         }
     }
     
@@ -255,11 +200,90 @@ class adminImageAttachments extends AdminTab
         return $results;
     }
     
-    public function importarImagenes($imagenes, $dirimages=null)
+    public function importarImagenes($imagenes, $dirimages=null, $tipo)
     {
-        $dirroot = PS_ADMIN_DIR."/../../..";
+        
+        if($tipo == "categories"){
+            return $this->copyImagesCategories($imagenes, $dirimages, $tipo);        
+        }elseif($tipo == "manufacturers"){
+            return $this->copyImagesManufacturers($imagenes, $dirimages, $tipo);
+        }elseif($tipo == "products"){
+            return $this->copyImagesProducts($imagenes, $dirimages);
+        }
+    }
+    
+    public function copyImagesCategories($imagenes, $dirimages, $tipo)
+    {
+        $cant = 0;
+        $res = false;
+        if(count($imagenes) > 0){
+            foreach($imagenes as $imagen):
+                $id_category = Category::getFilenameCatgory($imagen);
+                if($id_category != "" || $id_category != NULL)
+                {
+                    $this->copyImg($id_category, NULL, $imagen, $tipo, $dirimages);
+                    $cant++;
+                }
+            endforeach;
+            $res = true;
+        }
+        return array($res, $cant, "categories");  
+    }
+    
+    public function copyImagesManufacturers($imagenes, $dirimages, $tipo)
+    {
+        $cant = 0;
+        $res = false;
+        if(count($imagenes) > 0){
+            foreach($imagenes as $imagen):
+                $id_manufacturer = Manufacturer::getFilenameManufacturer($imagen);
+                if($id_manufacturer != "" || $id_manufacturer != NULL)
+                {
+                    $this->copyImg($id_manufacturer, NULL, $imagen, $tipo, $dirimages); 
+                    $cant++;
+                }
+            endforeach;
+            $res = true;
+        }
+        return array($res, $cant, "manufacturers");
+    }
+    
+    public function copyImg($id_entity, $id_image = NULL, $url, $entity = 'products', $dirimages)
+    {
+    	$tmpfile = tempnam(_PS_TMP_IMG_DIR_, 'PS');
+        //$dirImages = _PS_ROOT_DIR_."/files";
+        $url_image = $dirimages."/".$url;
+    	
+    	switch($entity)
+    	{
+    		default:
+    		case 'categories':
+    			$path = _PS_CAT_IMG_DIR_.intval($id_entity);
+    		break;
+    		case 'manufacturers':
+    			$path = _PS_MANU_IMG_DIR_.intval($id_entity);
+    		break;
+    	}
+
+        if (@copy($url_image, $tmpfile))
+    	{
+    		imageResize($tmpfile, $path.'.jpg');
+    		$imagesTypes = ImageType::getImagesTypes($entity);
+    		foreach ($imagesTypes AS $k => $imageType)
+    			imageResize($tmpfile, $path.'-'.stripslashes($imageType['name']).'.jpg', $imageType['width'], $imageType['height']);
+    	}else{
+    		echo "<br>Error al copiar la imagen desde ".$url." a ".$path;
+    		unlink($tmpfile);
+    		return false;
+    	}
+    	return true;
+    }
+    
+    public function copyImagesProducts($imagenes, $dirimages)
+    {
         $res = false;
         $cant = 0;
+        
         if(count($imagenes) > 0){
                 
             foreach($imagenes as $imagen){
@@ -278,11 +302,9 @@ class adminImageAttachments extends AdminTab
                 
             	if($idProducto){
         			$archivo = $dirimages."/".$imagen;
-                    //$archivo = $dirimgs."/".$imagen;
                     $existe = ImageAttachments::verificarImage($idProducto, $imagen);
                     if(!$existe){
                         $archidesti = $this->copiaraDestinoIMGs($archivo,$idProducto);
-                        //echo "<br> >> Produciendo tamaños para ".$archidesti;
                         $this->ponertamanos($archidesti);
                         $cant++;
                     }else{
@@ -292,7 +314,7 @@ class adminImageAttachments extends AdminTab
             }//fin foreach imagenes
             $res = true;  
         }
-        return array($res, $cant);
+        return array($res, $cant, "products");
     }
     
     public function copiaraDestinoIMGs($archivo,$idproduct)
@@ -329,9 +351,8 @@ class adminImageAttachments extends AdminTab
     	$dirdestino = _PS_ROOT_DIR_."/img/p";
     	$nuevonombre = $dirdestino."/".$idproduct."-".$idImagen.".".$extension;
         
-        copy($archivo, $nuevonombre);
+        @copy($archivo, $nuevonombre);
         
-    	//echo $nuevonombre;
     	echo system("cp -af ".$archivo." ".$nuevonombre);
     	
     	return $nuevonombre;
@@ -543,6 +564,28 @@ class adminImageAttachments extends AdminTab
         }
     	
     	return $nuevonombre;
+    }
+    
+    public function imagesDelete($dirname)
+    {
+        if($dirname == "categories")
+        {
+            $dirdel = _PS_CAT_IMG_DIR_;
+            $dirtmp = _PS_TMP_IMG_DIR_.'category';
+            $dirtmp_mini = _PS_TMP_IMG_DIR_.'category_mini';
+            $tipo = "category";
+        }elseif($dirname == "manufacturers"){
+            $dirdel = _PS_MANU_IMG_DIR_;
+            $dirtmp = _PS_TMP_IMG_DIR_.'manufacturer';
+            $dirtmp_mini = _PS_TMP_IMG_DIR_.'manufacturer_mini';
+            $tipo = "manufacturer";
+        }elseif($dirname == "products"){
+            $dirdel = _PS_PROD_IMG_DIR_;
+            $dirtmp = _PS_TMP_IMG_DIR_.'product';
+            $dirtmp_mini = _PS_TMP_IMG_DIR_.'product_mini';
+            $tipo = "product";
+        }
+        ImageAttachments::deleteImages($dirdel, $dirtmp, $dirtmp_mini, $tipo);
     }
 }
 ?>

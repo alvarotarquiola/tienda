@@ -1056,6 +1056,19 @@ class		Category extends ObjectModel
         }
     }
     
+    static public function getFilenameCatgory($filename)
+    {   
+        $query = Db::getInstance()->ExecuteS('
+            SELECT *
+            FROM `'._DB_PREFIX_.'category`
+            WHERE `file_name` = "'.$filename.'"
+        ');
+        
+        $id_category = $query[0]['id_category'];
+        
+        return $id_category;
+    }
+    
 }
 
 ?>

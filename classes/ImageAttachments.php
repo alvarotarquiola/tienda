@@ -196,19 +196,63 @@ class ImageAttachments extends ObjectModel
         return $result;
     }
     
-    static public function deleteImages()
+    static public function deleteImages($dirdel, $dirtmp, $dirtmp_mini, $tipo)
 	{
-        $products = ExportReports::getAllProducts();
-        
-        foreach($products as $product){
-            $prod = ExportReports::getProduct($product['id_product']);
-            $result = ImageAttachments::getImagesProduct($product['id_product']);
-            foreach($result as $row)
-    			if (!deleteImage(intval($product['id_product']), $row['id_image']) OR !Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'image_lang` WHERE `id_image` = '.intval($row['id_image'])))
-    				return false;
-            Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'image` WHERE `id_product` = '.intval($product['id_product']));    
+        if($tipo == "category")
+        {
+            $categories = ExportReports::getAllCategories();
+            if(count($categories) > 0)
+            {
+                foreach($categories as $category):
+                    if($category["id_category"] != 1)
+                    {
+                        $id_category = $category["id_category"];
+                        ImageAttachments::imagesDelete($dirdel, $dirtmp, $dirtmp_mini, $id_category);    
+                    }
+                endforeach;   
+            }
+        }elseif($tipo == "manufacturer"){
+            $manufacturers = ExportReports::getAllManufacturers();
+            if(count($manufacturers) > 0)
+            {
+                foreach($manufacturers as $manufacturer):
+                    $id_manufacturer = $manufacturer["id_manufacturer"];
+                    //$this->imagesDelete($dirdel, $dirtmp, $dirtmp_mini, $id_manufacturer);
+                    ImageAttachments::imagesDelete($dirdel, $dirtmp, $dirtmp_mini, $id_manufacturer);
+                endforeach;
+            }            
+        }elseif($tipo == "product"){
+            $products = ExportReports::getAllProducts();
+            foreach($products as $product):
+                $prod = ExportReports::getProduct($product['id_product']);
+                $result = ImageAttachments::getImagesProduct($product['id_product']);
+                foreach($result as $row)
+        			if (!deleteImage(intval($product['id_product']), $row['id_image']) OR !Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'image_lang` WHERE `id_image` = '.intval($row['id_image'])))
+        				return false;
+                Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'image` WHERE `id_product` = '.intval($product['id_product']));    
+            endforeach;      
         }
+        
+        
 	}
+    
+    static public function imagesDelete($dirdel, $dirtmp, $dirtmp_mini, $id)
+    {
+        if (file_exists($dirtmp.'_'.$id.'.jpg'))
+            unlink($dirtmp.'_'.$id.'.jpg');
+        
+        if (file_exists($dirtmp_mini.'_'.$id.'.jpg'))
+            unlink($dirtmp_mini.'_'.$id.'.jpg');
+        
+        if (file_exists($dirdel.$id.'.jpg'))
+            unlink($dirdel.$id.'.jpg');
+
+        $types = ImageType::getImagesTypes();
+		foreach ($types AS $imageType):
+			if(file_exists($dirdel.$id.'-'.stripslashes($imageType['name']).'.jpg'))
+                unlink($dirdel.$id.'-'.stripslashes($imageType['name']).'.jpg');
+        endforeach;   
+    }
     
     static public function getAttachmentsProduct($id_product)
     {    

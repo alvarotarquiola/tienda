@@ -2353,6 +2353,11 @@ $_LANGADM['adminImageAttachments8570095b5185f0a6fc032ef60c66932e'] = "El carpeta
 //$_LANGADM['adminImageAttachmentsee84f3662b989eac75438397a2cc88da'] = "Debe crear productos para la importacion.";
 $_LANGADM['adminImageAttachments6419295966c8edde8505c56e58445b5c'] = "La imagenes ya existen, o no se han  creado productos.";
 $_LANGADM['adminImageAttachments2cdb333106f301ae710bede32d9b4a8e'] = "Los adjuntos ya existen, o no se han  creado productos.";
+
+$_LANGADM['adminImageAttachments5acc0979ce7dd389211391eb2cf2a5d4'] = "La imagenes ya existen, o no se han  creado categorias.";
+$_LANGADM['adminImageAttachments0ceadab29cba55d6617c2bba384c9ccf'] = "La imagenes ya existen, o no se han  creado productos.";
+$_LANGADM['adminImageAttachments53a16e37fadd57d463e2e96323fda3e4'] = "La imagenes ya existen, o no se han  creado fabricantes.";
+
 $_LANGADM['adminImageAttachmentsd367eb14d4fdb0037934c2eea75d8cd0'] = "Eliminar todas las Imagenes";
 $_LANGADM['adminImageAttachments482e16c8d247b2915f5e05c3f46b950e'] = "Eliminar todas los Adjuntos";
 $_LANGADM['adminImageAttachments67b6034d8e7053cd50c89d32f2553ff2'] = 'Ajuste de Imágenes';
