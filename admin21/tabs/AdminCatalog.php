@@ -160,8 +160,7 @@ class AdminCatalog extends AdminTab
 			
 			//echo '<h3>'.$this->l('Current category').'&nbsp;&nbsp;'.getPath($catBarIndex, $id_category).'</h3>';
 			$this->adminCategories->display($this->token);
-			echo '<div style="margin:10px">&nbsp;</div>';
-			echo '<h2 class="sub_title_tab right-h2">'.$this->l('Productos').'</h2>';
+			echo '<div style="margin:10px">&nbsp;</div>';			
 			echo '<h2>'.$this->l('Products in this category').'</h2>';
 
 			$this->adminProducts->display($this->token);
