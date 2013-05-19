@@ -35,17 +35,19 @@ class AdminCustomers extends AdminTab
 		$genders = array(1 => $this->l('M'), 2 => $this->l('F'), 9 => $this->l('?'));
  		$this->fieldsDisplay = array(
 		'id_customer' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
-		'id_gender' => array('title' => $this->l('Gender'), 'width' => 25, 'align' => 'center', 'icon' => array(1 => 'male.gif', 2 => 'female.gif', 'default' => 'unknown.gif'), 'orderby' => false, 'type' => 'select', 'select' => $genders, 'filter_key' => 'a!id_gender'),
-		'lastname' => array('title' => $this->l('Last Name'), 'width' => 80),
+		//'id_gender' => array('title' => $this->l('Gender'), 'width' => 25, 'align' => 'center', 'icon' => array(1 => 'male.gif', 2 => 'female.gif', 'default' => 'unknown.gif'), 'orderby' => false, 'type' => 'select', 'select' => $genders, 'filter_key' => 'a!id_gender'),
 		'firstname' => array('title' => $this->l('First name'), 'width' => 60),
+		'lastname' => array('title' => $this->l('Last Name'), 'width' => 80),		
 		'email' => array('title' => $this->l('E-mail address'), 'width' => 120, 'maxlength' => 19),
-		'age' => array('title' => $this->l('Age'), 'width' => 30, 'search' => false),
-		'active' => array('title' => $this->l('Enabled'), 'width' => 25, 'align' => 'center', 'active' => 'status', 'type' => 'bool', 'orderby' => false),
-        'tax' => array('title' => $this->l('Tax'), 'width' => 25, 'align' => 'center', 'type' => 'bool'),
-		'newsletter' => array('title' => $this->l('News.'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'icon' => array(0 => 'disabled.gif', 1 => 'enabled.gif'), 'orderby' => false),
+		//'age' => array('title' => $this->l('Age'), 'width' => 30, 'search' => false),
+		'id_default_group' => array('title' => $this->l('Grupo por defecto'), 'align'=> 'center', 'search' => false, ),
+		'active' => array('title' => $this->l('Activo'), 'width' => 25, 'align' => 'center', 'active' => 'status', 'type' => 'bool', 'orderby' => false),
+        //'tax' => array('title' => $this->l('Tax'), 'width' => 25, 'align' => 'center', 'type' => 'bool'),
+		//'newsletter' => array('title' => $this->l('News.'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'icon' => array(0 => 'disabled.gif', 1 => 'enabled.gif'), 'orderby' => false),
 		
-		'date_add' => array('title' => $this->l('Registration'), 'width' => 60, 'type' => 'date'),
-		'connect' => array('title' => $this->l('Connection'), 'width' => 60, 'type' => 'datetime', 'search' => false));
+		//'date_add' => array('title' => $this->l('Registration'), 'width' => 60, 'type' => 'date'),
+		//'connect' => array('title' => $this->l('Connection'), 'width' => 60, 'type' => 'datetime', 'search' => false)
+		);
 
 		$this->optionTitle = $this->l('Customers options');
 		$this->_fieldsOptions = array(

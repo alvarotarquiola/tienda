@@ -20,6 +20,7 @@ class AdminOrders extends AdminTab
 		global $cookie, $currentIndex;
 
 	 	$this->table = 'order';
+	 	$this->lang = false;
 	 	$this->className = 'Order';
 	 	$this->view = true;
 		$this->colorOnBackground = true;
@@ -44,12 +45,13 @@ class AdminOrders extends AdminTab
 			$statesArray[$state['id_order_state']] = $state['name'];
  		$this->fieldsDisplay = array(
 		'id_order' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
-		'new' => array('title' => $this->l('New'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'filter_key' => 'new', 'tmpTableFilter' => true, 'icon' => array(0 => 'blank.gif', 1 => 'news-new.gif'), 'orderby' => false),
-		'customer' => array('title' => $this->l('Customer'), 'widthColumn' => 160, 'width' => 140, 'filter_key' => 'customer', 'tmpTableFilter' => true),
-		'total_paid' => array('title' => $this->l('Total'), 'width' => 70, 'align' => 'right', 'prefix' => '<b>', 'suffix' => '</b>', 'price' => true, 'currency' => true),
+		'new' => array('title' => $this->l('Pedido'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'filter_key' => 'new', 'tmpTableFilter' => true, 'icon' => array(0 => 'blank.gif', 1 => 'news-new.gif'), 'orderby' => false),
+		'customer' => array('title' => $this->l('Customer'), 'widthColumn' => 140, 'width' => 120, 'filter_key' => 'customer', 'tmpTableFilter' => true),
+		'email' => array('title' => $this->l('Email'), 'width' => 120, 'maxlength' => 19),
+		'total_paid' => array('title' => $this->l('Total con Tax'), 'width' => 40, 'align' => 'right', 'prefix' => '<b>', 'suffix' => '</b>', 'price' => true, 'currency' => true),
 		'payment' => array('title' => $this->l('Payment'), 'width' => 100),
-		'osname' => array('title' => $this->l('Status'), 'widthColumn' => 250, 'type' => 'select', 'select' => $statesArray, 'filter_key' => 'os!id_order_state', 'filter_type' => 'int', 'width' => 200),
-		'date_add' => array('title' => $this->l('Date'), 'width' => 90, 'align' => 'right', 'type' => 'datetime', 'filter_key' => 'a!date_add'),
+		'osname' => array('title' => $this->l('Status'), 'widthColumn' => 250, 'type' => 'select', 'select' => $statesArray, 'filter_key' => 'os!id_order_state', 'filter_type' => 'int', 'width' => 180),
+		'date_add' => array('title' => $this->l('Date'), 'width' => 60, 'align' => 'right', 'type' => 'datetime', 'filter_key' => 'a!date_add'),
 		'id_pdf' => array('title' => $this->l('PDF'), 'callback' => 'printPDFIcons', 'orderby' => false, 'search' => false));
 		parent::__construct();
 	}

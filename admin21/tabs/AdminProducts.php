@@ -32,18 +32,20 @@ class AdminProducts extends AdminTab
 		$this->view = false;
 		$this->duplicate = true;
 		$this->imageType = 'jpg';
-
+		//
 		$this->fieldsDisplay = array(
 			'id_product' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 20),
 			'image' => array('title' => $this->l('Photo'), 'align' => 'center', 'image' => 'p', 'width' => 45, 'orderby' => false, 'filter' => false, 'search' => false),
 			'name' => array('title' => $this->l('Name'), 'width' => 220, 'filter_key' => 'b!name'),
 			'reference' => array('title' => $this->l('Reference'), 'align' => 'center', 'width' => 20), 
-			'price' => array('title' => $this->l('Base price'), 'width' => 70, 'price' => true, 'align' => 'right', 'filter_key' => 'a!price'),
-			'price_final' => array('title' => $this->l('Final price'), 'width' => 70, 'price' => true, 'align' => 'right', 'havingFilter' => true),
-			'quantity' => array('title' => $this->l('Quantity'), 'width' => 30, 'align' => 'right', 'filter_key' => 'a!quantity', 'type' => 'decimal'),
-            'quantity_missing' => array('title' => $this->l('Quantity missing'), 'width' => 30, 'align' => 'right', 'filter_key' => 'a!quantity', 'type' => 'decimal'),
-			'position' => array('title' => $this->l('Position'), 'width' => 40,'filter_key' => 'cp!position', 'align' => 'center', 'position' => 'position'),
-			'active' => array('title' => $this->l('Displayed'), 'active' => 'status', 'align' => 'center', 'type' => 'bool', 'orderby' => false));
+			'description_short' => array('title' => $this->l('Breve descripcion'), 'width' => 70, 'align' => 'center'),
+			
+			'quantity' => array('title' => $this->l('Stock positivo'), 'width' => 30, 'align' => 'right', 'filter_key' => 'a!quantity', 'type' => 'decimal'),
+            'quantity_missing' => array('title' => $this->l('Stock negativo'), 'width' => 30, 'align' => 'right', 'filter_key' => 'a!quantity', 'type' => 'decimal'),
+			//'position' => array('title' => $this->l('Position'), 'width' => 40,'filter_key' => 'cp!position', 'align' => 'center', 'position' => 'position'),
+			// Final price to Price
+			'price_final' => array('title' => $this->l('Precio'), 'width' => 70, 'price' => true, 'align' => 'right', 'havingFilter' => true),
+			'active' => array('title' => $this->l('Activo'), 'active' => 'status', 'align' => 'center', 'type' => 'bool', 'orderby' => false));
 
 		/* Join categories table */
 		$this->_category = AdminCatalog::getCurrentCategory();

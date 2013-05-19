@@ -252,7 +252,8 @@ require_once(dirname(__FILE__).'/init.php');
                     var tabActual = array_url_2[0];
                     
                     jQuery(".sub_menu_shop li#"+tabActual).addClass("active_link");
-                    //jQuery(".sub_menu_shop").css("width", jQuery(".sub_menu_shop").width());               
+                    //jQuery(".sub_menu_shop").css("width", jQuery(".sub_menu_shop").width());     
+                    jQuery(".sub_title_tab").css("width", jQuery(".form table tr td table.table").width());                         
                     
                 });
                 

@@ -26,7 +26,7 @@ class AdminManufacturers extends AdminTab
 
 		$this->table = 'manufacturer';
 		$this->className = 'Manufacturer';
-		$this->lang = false;
+		$this->lang = true;
 		$this->edit = true;
 	 	$this->delete = true;
 
@@ -59,11 +59,12 @@ class AdminManufacturers extends AdminTab
 		$this->fieldsDisplay = array(
 			'id_manufacturer' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
 			'name' => array('title' => $this->l('Name'), 'width' => 200),
-			'logo' => array('title' => $this->l('Logo'), 'align' => 'center', 'image' => 'm', 'orderby' => false, 'search' => false),
-			'addresses' => array('title' => $this->l('Addresses'), 'align' => 'right', 'tmpTableFilter' => true, 'width' => 20),
+			//'logo' => array('title' => $this->l('Logo'), 'align' => 'center', 'image' => 'm', 'orderby' => false, 'search' => false),
+			//'addresses' => array('title' => $this->l('Addresses'), 'align' => 'right', 'tmpTableFilter' => true, 'width' => 20),			
+           	'description' => array('title' => $this->l('Breve descripcion'), 'align' => 'center'),
 			'products' => array('title' => $this->l('Products'), 'align' => 'right', 'tmpTableFilter' => true, 'width' => 20)
 		);
-
+		 
 		$countries = Country::getCountries(intval($cookie->id_lang));
 		foreach ($countries AS $country)
 			$this->countriesArray[$country['id_country']] = $country['name'];

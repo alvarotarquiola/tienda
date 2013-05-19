@@ -1338,7 +1338,7 @@ a.enlace_bo_menu:hover{
 }
 
 .sub_title_tab{
-    margin: 15px 0 15px 0;
+    margin: 10px 0 0 0;
 }
 
 div.row_quantity{
@@ -1511,3 +1511,9 @@ ul.box_manu_cus li .box_supp_ref div label{
 #main .bg-remote, #main .bg-remote form.width3 fieldset{
     background: #FAF1DC;
 }
+
+/*añadiendo*/
+
+/*.form.manufacturer_form  table{ width: 100%;}
+.form.supplier_form table{width: 100%;}
+ .form.employee_form table{width: 100%}*/
