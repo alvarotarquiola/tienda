@@ -1060,10 +1060,10 @@ ul.btns li .btn_ajuste_a-i:hover, .import_excel .box_link_ia a:hover
 }
 
 .import_image_attachment .box_link_ia{
-    border-bottom: 1px solid #CCCCCC;
-    margin: 0 0 20px;
+    border-top: 1px solid #CCCCCC;
+    margin: 0 0 0 0;
     overflow: hidden;
-    padding: 0 0 20px;
+    padding: 15px 0 20px 0;
 }
 
 .import_image_attachment .box_link_ia a{
@@ -1512,8 +1512,17 @@ ul.box_manu_cus li .box_supp_ref div label{
     background: #FAF1DC;
 }
 
-/*añadiendo*/
 
 /*.form.manufacturer_form  table{ width: 100%;}
 .form.supplier_form table{width: 100%;}
  .form.employee_form table{width: 100%}*/
+/*=================== Estilos para ocultar columnas customer ====================*/
+.customer_form tr td table.table tr th.customer_id_gender,
+.customer_form tr td table.table tr td.customer_id_gender,
+.customer_Filter_id_gender{
+    display: none;
+}
+
+#PS_LOGO .margin-form img{
+    width: 505px;
+}
