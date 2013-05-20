@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-04-17 03:50:35
+<?php /* Smarty version 2.6.20, created on 2013-05-08 03:58:48
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda%5Cmodules%5Cblockmanufacturer/blockmanufacturer.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'l', 'D:\\xampp\\htdocs\\tienda\\modules\\blockmanufacturer/blockmanufacturer.tpl', 3, false),array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda\\modules\\blockmanufacturer/blockmanufacturer.tpl', 10, false),)), $this); ?>
@@ -31,6 +31,7 @@ if ($this->_foreach['manufacturer_list']['total'] > 0):
 		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>
 " method="get">
 			<p>
+				<!-- modificando
 				<select id="manufacturer_list" onchange="autoUrl('manufacturer_list', '');">
 					<option value="0"><?php echo smartyTranslate(array('s' => 'All manufacturers','mod' => 'blockmanufacturer'), $this);?>
 </option>
@@ -41,7 +42,7 @@ if ($this->_foreach['manufacturer_list']['total'] > 0):
 "><?php echo ((is_array($_tmp=$this->_tpl_vars['manufacturer']['name'])) ? $this->_run_mod_handler('escape', true, $_tmp, 'htmlall', 'UTF-8') : smarty_modifier_escape($_tmp, 'htmlall', 'UTF-8')); ?>
 </option>
 				<?php endforeach; endif; unset($_from); ?>
-				</select>
+				</select -->
 			</p>
 		</form>
 	<?php endif; ?>

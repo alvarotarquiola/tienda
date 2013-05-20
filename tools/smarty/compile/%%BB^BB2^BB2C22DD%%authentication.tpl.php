@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2013-04-17 03:50:35
+<?php /* Smarty version 2.6.20, created on 2013-05-08 03:53:47
          compiled from D:%5Cxampp%5Chtdocs%5Ctienda/themes/Rojo/authentication.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'l', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 1, false),array('modifier', 'intval', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 6, false),array('modifier', 'escape', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 13, false),array('modifier', 'stripslashes', 'D:\\xampp\\htdocs\\tienda/themes/Rojo/authentication.tpl', 37, false),)), $this); ?>
@@ -118,6 +118,7 @@ authentication.php" method="post" id="account-creation_form" class="std">
 	<fieldset class="account_creation">
 		<h3><?php echo smartyTranslate(array('s' => 'Your personal information'), $this);?>
 </h3>
+		<!-- modificando
 		<p class="radio required">
 			<span><?php echo smartyTranslate(array('s' => 'Title'), $this);?>
 </span>
@@ -127,7 +128,7 @@ authentication.php" method="post" id="account-creation_form" class="std">
 			<input type="radio" name="id_gender" id="id_gender2" value="2" <?php if (isset ( $_POST['id_gender'] ) && $_POST['id_gender'] == 2): ?>checked="checked"<?php endif; ?> />
 			<label for="id_gender2" class="top"><?php echo smartyTranslate(array('s' => 'Ms.'), $this);?>
 </label>
-		</p>
+		</p>-->
 		<p class="required text">
 			<label for="customer_firstname"><?php echo smartyTranslate(array('s' => 'First name'), $this);?>
 </label>
@@ -157,6 +158,7 @@ authentication.php" method="post" id="account-creation_form" class="std">
 			<span class="form_info"><?php echo smartyTranslate(array('s' => '(5 characters min.)'), $this);?>
 </span>
 		</p>
+		<!-- modificando
 		<p class="select">
 			<span><?php echo smartyTranslate(array('s' => 'Birthday'), $this);?>
 </span>
@@ -191,6 +193,7 @@ authentication.php" method="post" id="account-creation_form" class="std">
 				<?php endforeach; endif; unset($_from); ?>
 			</select>
 		</p>
+		-->
 		<p class="checkbox" >
 			<input type="checkbox" name="newsletter" id="newsletter" value="1" <?php if (isset ( $_POST['newsletter'] ) && $_POST['newsletter'] == 1): ?> checked="checked"<?php endif; ?>  checked="checked"/>
 			<label for="newsletter"><?php echo smartyTranslate(array('s' => 'Sign up for our newsletter'), $this);?>
@@ -202,11 +205,14 @@ authentication.php" method="post" id="account-creation_form" class="std">
 </label>
 		</p>
 	</fieldset>
+	<!-- modificando
+
 	CLAUSULA CONFIDENCIALIDAD DATOS CLIENTE<br/>
 En virtud del art. 5 de la vigente Ley Orgánica de Protección de Datos (Ley 15/1999, de 13 de diciembre), se pone en conocimiento que los datos de carácter personal que se faciliten quedarán registrados en un fichero titularidad de EL PROPIETARIO, con la finalidad de responder a las solicitudes de información y de inscripción en la Newsletter, manifestándole la máxima reserva y confidencialidad acerca de dichos datos, que serán utilizados exclusivamente a los fines antes indicados.
 <br/><br/>
 Con la finalidad de que la información contenida en nuestros ficheros esté siempre actualizada, les agradeceremos nos comuniquen las modificaciones y rectificaciones de sus datos personales.<br/><br/>
 Ud. podrá en cualquier momento ejercer los derechos de acceso, rectificación, cancelación y oposición ante EL PROPIETARIO en la dirección que consta en la Política privacidad.<br/>
+	--> <br>
 	<fieldset class="account_creation">
 		<h3><?php echo smartyTranslate(array('s' => 'Your address'), $this);?>
 </h3>
