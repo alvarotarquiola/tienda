@@ -38,7 +38,7 @@ class AdminCategories extends AdminTab
 		'id_category' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 30),
 		'name' => array('title' => $this->l('Name'), 'width' => 100, 'callback' => 'hideCategoryPosition'),
 		'description' => array('title' => $this->l('Description'), 'width' => 560, 'maxlength' => 90, 'orderby' => false),
-		'active' => array('title' => $this->l('Displayed'), 'active' => 'status', 'align' => 'center', 'type' => 'bool', 'orderby' => false));
+		'active' => array('title' => $this->l('Activo'), 'active' => 'status', 'align' => 'center', 'type' => 'bool', 'orderby' => false));
 		
 		$this->_category = AdminCatalog::getCurrentCategory();
         

@@ -1,14 +1,12 @@
 {include file=$tpl_dir./breadcrumb.tpl}
 
 <!-- logo -->
-<div>
-    {assign var="url_image_manu" value=$img_manu_dir|cat:$manufacturer->id|cat:'-medium.jpg'}
-    {if file_exists($url_image_manu)}
-	   <img src="{$img_manu_dir}{$manufacturer->id|escape:'htmlall':'UTF-8'}-medium.jpg" alt="" width="{$mediumSize.width}" height="{$mediumSize.height}" style="float:left;margin:5px;" />
-    {/if}
-	{$manufacturer->description}
-
-</div>
+					<div>
+					
+						<img src="{$img_manu_dir}{$manufacturer->id|escape:'htmlall':'UTF-8'}-medium.jpg" alt="" width="{$mediumSize.width}" height="{$mediumSize.height}" style="float:left;margin:5px;" />
+						{$manufacturer->description}
+					
+					</div>
 					
 <div style="width:90%;clear:both;"></div>					
 					

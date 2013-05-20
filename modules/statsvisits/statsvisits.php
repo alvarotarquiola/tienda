@@ -66,7 +66,7 @@ class StatsVisits extends ModuleGraph
 			'.($totalVisits ? ModuleGraph::engine(array('layers' => 2, 'type' => 'line', 'option' => 3)).'<br /><br />' : '').'
 		</fieldset>
 		<br class="clear" />
-		<fieldset class="width3 hide_tag"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 				<h2>'.$this->l('Determine the interest of a visit').'</h2>
 				'.$this->l('Visitors\' evolution graph strongly looks like to the visits\' graph, but provides an additional information: <strong>Do your visitors come back?</strong>').'<br />
 				<ul>

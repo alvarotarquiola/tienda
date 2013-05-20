@@ -36,10 +36,11 @@ class AdminGroups extends AdminTab
 
  		$this->fieldsDisplay = array(
 		'id_group' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
-		'name' => array('title' => $this->l('Name'), 'width' => 80, 'filter_key' => 'b!name'),
-		'reduction' => array('title' => $this->l('Reduction'), 'width' => 50, 'align' => 'right'),
-		'nb' => array('title' => $this->l('Members'), 'width' => 25, 'align' => 'center'),
-		'date_add' => array('title' => $this->l('Creation date'), 'width' => 60, 'type' => 'date'));
+		'name' => array('title' => $this->l('Name'), 'width' => 120, 'filter_key' => 'b!name'),
+		'reduction' => array('title' => $this->l('Reduction'), 'width' => 60, 'align' => 'right'),
+		'nb' => array('title' => $this->l('Members'), 'width' => 40, 'align' => 'center'),
+		//'date_add' => array('title' => $this->l('Creation date'), 'width' => 60, 'type' => 'date')
+		);
 
 		parent::__construct();
 	}

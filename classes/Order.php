@@ -627,98 +627,94 @@ class		Order extends ObjectModel
 		$total = 0;
 		foreach ($result AS $detalle){
 			
-			if(in_array($detalle['product_id'],$siacopiar))
-            {
+			if(in_array($detalle['product_id'],$siacopiar)){
 			
-                $sqlvals = "";
-                $resulta = $detalle;
+			$sqlvals = "";
+			$resulta = $detalle;
 			
 			
-    			foreach($resulta as $key => $val)
-                {
-    				if($key=="id_order_detail"){
-    					$sqlvals .= "NULL";
-    				}elseif($key=="id_order"){
-    					$sqlvals .=", '".$id_neworder."'";
-    				}elseif($key=="product_quantity"){
-    					if($_POST["cancelQuantity"][$detalle['id_order_detail']]!=""){
-    						$canti = intval($_POST["cancelQuantity"][$detalle['id_order_detail']]);
-    						if($canti<0){
-    							$canti = $canti * -1;
-    						}
-    						$cantidad = $canti;
-    						$sqlvals .=", '".$canti."'";
-    						}else{
-    						$sqlvals .=", '".$val."'";
-    						$cantidad = $val;
-    						}
-    				}else{
-    					$sqlvals .=", '".$val."'";
-    				}
-    			}
-
-    			$sqlfinal = $sql1.$sqlvals.$sql2;	
-    			//echo $sqlfinal;
-    			
-    			if(!Db::getInstance()->Execute($sqlfinal))
-                {
-    				echo $sqlfinal;
-    				echo Db::getInstance()->getMsgError(); 
-    			}
-    
-    			//Db::getInstance()->Execute($sqlfinal);
-    			//$id_neworder = Db::getInstance()->Insert_ID();
-    			$produ = new Product($detalle['product_id']); 
-    			$precioprodwt = $produ->getPrice();
-    			$subtotawt = floatval($precioprodwt) * intval($cantidad);
-    			if($subtotawt > 0)
-                {
-    				$totalwt = $totalwt + $subtotawt;
-    			}
-    				
-    			$precioprod = $produ->getPrice(false);
-    			$subtota = floatval($precioprod) * intval($cantidad);
-    			if($subtota > 0)
-                {
-    				$total = $total + $subtota;
-    			}
+			foreach($resulta as $key => $val){
+				if($key=="id_order_detail"){
+					$sqlvals .= "NULL";
+				}elseif($key=="id_order"){
+					$sqlvals .=", '".$id_neworder."'";
+				}elseif($key=="product_quantity"){
+					if($_POST["cancelQuantity"][$detalle['id_order_detail']]!=""){
+						$canti = intval($_POST["cancelQuantity"][$detalle['id_order_detail']]);
+						if($canti<0){
+							$canti = $canti * -1;
+						}
+						$cantidad = $canti;
+						$sqlvals .=", '".$canti."'";
+						}else{
+						$sqlvals .=", '".$val."'";
+						$cantidad = $val;
+						}
+				}else{
+					$sqlvals .=", '".$val."'";
+				}
+			}
+			
+			
+			$sqlfinal = $sql1.$sqlvals.$sql2;	
+			//echo $sqlfinal;
+			
+			if(!Db::getInstance()->Execute($sqlfinal)){
+				echo $sqlfinal;
+				echo Db::getInstance()->getMsgError(); 
+			}
+			
+			
+			//Db::getInstance()->Execute($sqlfinal);
+			//$id_neworder = Db::getInstance()->Insert_ID();
+			
+			$produ = new Product($detalle['product_id']); 
+			$precioprodwt = $produ->getPrice();
+			$subtotawt = floatval($precioprodwt) * intval($cantidad);
+			if($subtotawt > 0){
+				$totalwt = $totalwt + $subtotawt;
+				}
+				
+			$precioprod = $produ->getPrice(false);
+			$subtota = floatval($precioprod) * intval($cantidad);
+			if($subtota > 0){
+				$total = $total + $subtota;
+				}
 			}	
 		}
 		
 		// actualizando el precio total de la orden
-		/*$sqlu = "UPDATE `"._DB_PREFIX_."orders`
+		$sqlu = "UPDATE `"._DB_PREFIX_."orders`
 				SET total_paid = '".$totalwt."', 
 				total_products_wt = '".$totalwt."',
 				total_paid_real = '0',
 				total_products = '".$total."'
 				WHERE id_order='".$id_neworder."'
-				";*/
-        $sqlu = "UPDATE `"._DB_PREFIX_."orders`
-				SET total_paid = '".$totalwt."', 
-				total_products_wt = '".$total."',
-				total_paid_real = '".$totalwt."',
-				total_products = '".$total."'
-				WHERE id_order='".$id_neworder."'
 				";
 		
 		//mail("pa.navarrete@gmail.com","prueba",$sqlu);		
-		if(!Db::getInstance()->Execute($sqlu))
-        {
-            echo $sqlu;
-            //mail("pa.navarrete@gmail.com","pruebaerror",$sqlu);	
-            echo Db::getInstance()->getMsgError(); 
-		}		
-        
+		if(!Db::getInstance()->Execute($sqlu)){
+				echo $sqlu;
+				//mail("pa.navarrete@gmail.com","pruebaerror",$sqlu);	
+				echo Db::getInstance()->getMsgError(); 
+			}		
+		
+		
+		
+		
+		
 		//copiando la historia
+		
 		
 		$sql = '
 		SELECT * 
 		FROM `'._DB_PREFIX_.'order_history`
 		WHERE id_order='.$id_order.'
 		';
-
+		
 		$result = Db::getInstance()->ExecuteS($sql);
-
+		
+		
 		$sql1 = "
 		INSERT INTO  `"._DB_PREFIX_."order_history` (
 		`id_order_history` ,
@@ -731,30 +727,30 @@ class		Order extends ObjectModel
 		//NULL ,  '0',  '128',  '10',  '2011-11-01 18:14:05'
 		$sql2=");";
 
-		foreach ($result AS $historia)
-        {
-            $sqlvals = "";
-            $resulta = $historia;
-            foreach($resulta as $key => $val)
-            {
-            	if($key=="id_order_history")
-                {
-            		$sqlvals .= "NULL";
-            	}elseif($key=="id_order")
-                {
-            		$sqlvals .=", '".$id_neworder."'";
-            	}else{
-            		$sqlvals .=", '".$val."'";
-            	}
-            }
-            $sqlfinal = $sql1.$sqlvals.$sql2;	
+		foreach ($result AS $historia){
+			
+			$sqlvals = "";
+			$resulta = $historia;
+			foreach($resulta as $key => $val){
+				if($key=="id_order_history"){
+					$sqlvals .= "NULL";
+				}elseif($key=="id_order"){
+					$sqlvals .=", '".$id_neworder."'";
+				}else{
+					$sqlvals .=", '".$val."'";
+				}
+			}
+			$sqlfinal = $sql1.$sqlvals.$sql2;	
 			//echo $sqlfinal;
+			
+			
 			/*
 			if(!Db::getInstance()->Execute($sqlfinal)){
 				echo $sqlfinal;
 				echo Db::getInstance()->getMsgError(); 
 			}
 			*/
+			
 			//Db::getInstance()->Execute($sqlfinal);
 			//$id_neworder = Db::getInstance()->Insert_ID();	
 		}
@@ -762,19 +758,18 @@ class		Order extends ObjectModel
 		$sqlhis1 =$sql1."NULL,'0','".$id_neworder."','"._PS_OS_OUTOFSTOCK_."','".date("Y-m-d H:i:s")."'".$sql2;
 		$sqlhis2 =$sql1."NULL,'1','".$id_neworder."','"._PS_OS_OUTOFSTOCK_."','".date("Y-m-d H:i:s")."'".$sql2;
 		
-		if(!Db::getInstance()->Execute($sqlhis1))
-        {
-            echo $sqlfinal;
-            echo Db::getInstance()->getMsgError(); 
-		}
-		if(!Db::getInstance()->Execute($sqlhis2))
-        {
-            echo $sqlfinal;
-            echo Db::getInstance()->getMsgError(); 
-		}
-
-        return $id_neworder;
-    }
+		if(!Db::getInstance()->Execute($sqlhis1)){
+				echo $sqlfinal;
+				echo Db::getInstance()->getMsgError(); 
+			}
+		if(!Db::getInstance()->Execute($sqlhis2)){
+				echo $sqlfinal;
+				echo Db::getInstance()->getMsgError(); 
+			}
+		
+		
+		return $id_neworder;
+	 }
 	 
 	public function isduplicated($id_order){
 		$sql = '

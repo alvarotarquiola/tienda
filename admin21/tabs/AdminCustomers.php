@@ -35,17 +35,19 @@ class AdminCustomers extends AdminTab
 		$genders = array(1 => $this->l('M'), 2 => $this->l('F'), 9 => $this->l('?'));
  		$this->fieldsDisplay = array(
 		'id_customer' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
-		'id_gender' => array('title' => $this->l('Gender'), 'width' => 25, 'align' => 'center', 'icon' => array(1 => 'male.gif', 2 => 'female.gif', 'default' => 'unknown.gif'), 'orderby' => false, 'type' => 'select', 'select' => $genders, 'filter_key' => 'a!id_gender'),
-		'lastname' => array('title' => $this->l('Last Name'), 'width' => 80),
+		//'id_gender' => array('title' => $this->l('Gender'), 'width' => 25, 'align' => 'center', 'icon' => array(1 => 'male.gif', 2 => 'female.gif', 'default' => 'unknown.gif'), 'orderby' => false, 'type' => 'select', 'select' => $genders, 'filter_key' => 'a!id_gender'),
 		'firstname' => array('title' => $this->l('First name'), 'width' => 60),
+		'lastname' => array('title' => $this->l('Last Name'), 'width' => 80),		
 		'email' => array('title' => $this->l('E-mail address'), 'width' => 120, 'maxlength' => 19),
-		'age' => array('title' => $this->l('Age'), 'width' => 30, 'search' => false),
-		'active' => array('title' => $this->l('Enabled'), 'width' => 25, 'align' => 'center', 'active' => 'status', 'type' => 'bool', 'orderby' => false),
-        'tax' => array('title' => $this->l('Tax'), 'width' => 25, 'align' => 'center', 'type' => 'bool'),
-		'newsletter' => array('title' => $this->l('News.'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'icon' => array(0 => 'disabled.gif', 1 => 'enabled.gif'), 'orderby' => false),
+		//'age' => array('title' => $this->l('Age'), 'width' => 30, 'search' => false),
+		'id_default_group' => array('title' => $this->l('Grupo por defecto'), 'align'=> 'center', 'search' => false, ),
+		'active' => array('title' => $this->l('Activo'), 'width' => 25, 'align' => 'center', 'active' => 'status', 'type' => 'bool', 'orderby' => false),
+        //'tax' => array('title' => $this->l('Tax'), 'width' => 25, 'align' => 'center', 'type' => 'bool'),
+		//'newsletter' => array('title' => $this->l('News.'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'icon' => array(0 => 'disabled.gif', 1 => 'enabled.gif'), 'orderby' => false),
 		
-		'date_add' => array('title' => $this->l('Registration'), 'width' => 60, 'type' => 'date'),
-		'connect' => array('title' => $this->l('Connection'), 'width' => 60, 'type' => 'datetime', 'search' => false));
+		//'date_add' => array('title' => $this->l('Registration'), 'width' => 60, 'type' => 'date'),
+		//'connect' => array('title' => $this->l('Connection'), 'width' => 60, 'type' => 'datetime', 'search' => false)
+		);
 
 		$this->optionTitle = $this->l('Customers options');
 		$this->_fieldsOptions = array(
@@ -57,7 +59,7 @@ class AdminCustomers extends AdminTab
 	
 	public function postProcess()
 	{
-		global $currentIndex, $cookie;
+		global $currentIndex;
 		
 		if (Tools::getValue('submitAdd'.$this->table))
 		{
@@ -115,17 +117,10 @@ class AdminCustomers extends AdminTab
 					{
 						$object = new $this->className();
 						$this->copyFromPost($object, $this->table);
-                        /*echo "<pre>";
-                        print_r($object);
-                        echo "</pre>";
-                        exit();*/
 						if (!$object->add())
 							$this->_errors[] = Tools::displayError('an error occurred while creating object').' <b>'.$this->table.' ('.mysql_error().')</b>';
 						elseif (($_POST[$this->identifier] = $object->id /* voluntary */) AND $this->postImage($object->id) AND !sizeof($this->_errors) AND $this->_redirect)
 						{
-						    //send email custumer
-                            if (!Mail::Send(intval($cookie->id_lang), 'account', 'Welcome!', 
-				                array('{firstname}' => $object->firstname, '{lastname}' => $object->lastname, '{email}' => $object->email, '{passwd}' => Tools::getValue('passwd')), $object->email, $object->firstname.' '.$object->lastname))
 							// Add Associated groups
 							$group_list = Tools::getValue('groupBox');
 							if (is_array($group_list) && sizeof($group_list) > 0)
@@ -460,8 +455,8 @@ class AdminCustomers extends AdminTab
 		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
 			<fieldset>
                 <!--<legend><img src="../img/admin/tab-customers.gif" />'.$this->l('Customer').'</legend>-->
-				<label class="hide_tag">'.$this->l('Gender:').' </label>
-				<div class="margin-form hide_tag">
+				<label>'.$this->l('Gender:').' </label>
+				<div class="margin-form">
 					<input type="radio" size="33" name="id_gender" id="gender_1" value="1" '.($this->getFieldValue($obj, 'id_gender') == 1 ? 'checked="checked" ' : '').'/>
 					<label class="t" for="gender_1"> '.$this->l('Male').'</label>
 					<input type="radio" size="33" name="id_gender" id="gender_2" value="2" '.($this->getFieldValue($obj, 'id_gender') == 2 ? 'checked="checked" ' : '').'/>
@@ -481,14 +476,14 @@ class AdminCustomers extends AdminTab
 				</div>
 				<label>'.$this->l('Password:').' </label>
 				<div class="margin-form">
-					<input type="text" size="33" name="passwd" value="'.(!$obj->id ? 'presta' : '').'" /> '.(!$obj->id ? '<sup>*</sup>' : '').'
+					<input type="password" size="33" name="passwd" value="" /> '.(!$obj->id ? '<sup>*</sup>' : '').'
 					<p>'.($obj->id ? $this->l('Leave blank if no change') : $this->l('5 characters min., only letters, numbers, or').' -_').'</p>
 				</div>
 				<label>'.$this->l('E-mail address:').' </label>
 				<div class="margin-form">
 					<input type="text" size="33" name="email" value="'.htmlentities($this->getFieldValue($obj, 'email'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 				</div>
-				<label class="hide_tag">'.$this->l('Birthday:').' </label>';
+				<label>'.$this->l('Birthday:').' </label>';
 				$sl_year = ($this->getFieldValue($obj, 'birthday')) ? $birthday[0] : 0;
 				$years = Tools::dateYears();
 				$sl_month = ($this->getFieldValue($obj, 'birthday')) ? $birthday[1] : 0;
@@ -509,7 +504,7 @@ class AdminCustomers extends AdminTab
 					$this->l('November'),
 					$this->l('December'));
 				echo '
-					<div class="margin-form hide_tag">
+					<div class="margin-form">
 					<select name="days">
 						<option value="">-</option>';
 						foreach ($days as $v)

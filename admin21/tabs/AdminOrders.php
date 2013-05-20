@@ -20,6 +20,7 @@ class AdminOrders extends AdminTab
 		global $cookie, $currentIndex;
 
 	 	$this->table = 'order';
+	 	$this->lang = false;
 	 	$this->className = 'Order';
 	 	$this->view = true;
 		$this->colorOnBackground = true;
@@ -44,12 +45,13 @@ class AdminOrders extends AdminTab
 			$statesArray[$state['id_order_state']] = $state['name'];
  		$this->fieldsDisplay = array(
 		'id_order' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
-		'new' => array('title' => $this->l('New'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'filter_key' => 'new', 'tmpTableFilter' => true, 'icon' => array(0 => 'blank.gif', 1 => 'news-new.gif'), 'orderby' => false),
-		'customer' => array('title' => $this->l('Customer'), 'widthColumn' => 160, 'width' => 140, 'filter_key' => 'customer', 'tmpTableFilter' => true),
-		'total_paid' => array('title' => $this->l('Total'), 'width' => 70, 'align' => 'right', 'prefix' => '<b>', 'suffix' => '</b>', 'price' => true, 'currency' => true),
+		'new' => array('title' => $this->l('Pedido'), 'width' => 25, 'align' => 'center', 'type' => 'bool', 'filter_key' => 'new', 'tmpTableFilter' => true, 'icon' => array(0 => 'blank.gif', 1 => 'news-new.gif'), 'orderby' => false),
+		'customer' => array('title' => $this->l('Customer'), 'widthColumn' => 140, 'width' => 120, 'filter_key' => 'customer', 'tmpTableFilter' => true),
+		'email' => array('title' => $this->l('Email'), 'width' => 120, 'maxlength' => 19),
+		'total_paid' => array('title' => $this->l('Total con Tax'), 'width' => 40, 'align' => 'right', 'prefix' => '<b>', 'suffix' => '</b>', 'price' => true, 'currency' => true),
 		'payment' => array('title' => $this->l('Payment'), 'width' => 100),
-		'osname' => array('title' => $this->l('Status'), 'widthColumn' => 250, 'type' => 'select', 'select' => $statesArray, 'filter_key' => 'os!id_order_state', 'filter_type' => 'int', 'width' => 200),
-		'date_add' => array('title' => $this->l('Date'), 'width' => 90, 'align' => 'right', 'type' => 'datetime', 'filter_key' => 'a!date_add'),
+		'osname' => array('title' => $this->l('Status'), 'widthColumn' => 250, 'type' => 'select', 'select' => $statesArray, 'filter_key' => 'os!id_order_state', 'filter_type' => 'int', 'width' => 180),
+		'date_add' => array('title' => $this->l('Date'), 'width' => 60, 'align' => 'right', 'type' => 'datetime', 'filter_key' => 'a!date_add'),
 		'id_pdf' => array('title' => $this->l('PDF'), 'callback' => 'printPDFIcons', 'orderby' => false, 'search' => false));
 		parent::__construct();
 	}
@@ -64,8 +66,6 @@ class AdminOrders extends AdminTab
 		/* Update shipping number */
 		if (Tools::isSubmit('submitShippingNumber') AND ($id_order = intval(Tools::getValue('id_order'))) AND Validate::isLoadedObject($order = new Order($id_order)))
 		{
-            echo "entra";
-            exit();
 			if ($this->tabAccess['edit'] === '1')
 			{
 				if (!$order->hasBeenShipped())
@@ -99,7 +99,7 @@ class AdminOrders extends AdminTab
 		/* Change order state, add a new entry in order history and send an e-mail to the customer if needed */
 		elseif (Tools::isSubmit('submitState') AND ($id_order = intval(Tools::getValue('id_order'))) AND Validate::isLoadedObject($order = new Order($id_order)))
 		{
-            echo "entra submitState";
+            //echo "entra submitState";
 			if ($this->tabAccess['edit'] === '1')
 			{
 				$_GET['view'.$this->table] = true;
@@ -186,13 +186,18 @@ class AdminOrders extends AdminTab
 			
 			$duplicavars = $_POST['duplicarvar']; 
 			if(sizeof($duplicavars) > 0){
-				//print_r($_POST['duplicarvar']);
+				print_r($_POST['duplicarvar']);
 				//if(!$order->isduplicated($order->id)){
+					
+					
+					
 					$neworderid = $order->copyorder($order->id);
 					$base = str_replace(__PS_BASE_URI__,"",$_SERVER["SCRIPT_NAME"]);
 					//Tools::redirect($base.'?tab=AdminOrders&id_order='.$neworderid.'&vieworder&token='.$_GET["token"]);
 					$pasar = "si";
 				//}
+				
+			
 			}
 
 		 	if ($this->tabAccess['delete'] === '1')
@@ -444,10 +449,7 @@ class AdminOrders extends AdminTab
 		$sources = ConnectionsSource::getOrderSources($order->id);
 		$cart = Cart::getCartByOrderId($order->id);
 		$link = new Link();
-        
-        $totalprod = 0;
-        foreach($products as $prod)
-            $totalprod = $totalprod + $prod['product_quantity'];
+
 
 		/*
 		if($_GET["duplicar"]=="si"){
@@ -617,7 +619,6 @@ class AdminOrders extends AdminTab
 		<fieldset style="width: 400px">
 			<legend><img src="../img/admin/delivery.gif" /> '.$this->l('Shipping information').'</legend>
 			'.$this->l('Total weight:').' <b>'.number_format($order->getTotalWeight(), 3).' '.Configuration::get('PS_WEIGHT_UNIT').'</b><br />
-            '.$this->l('Total Productos:').' <b>'.$totalprod.'</b><br />
 			'.$this->l('Carrier:').' <b>'.($carrier->name == '0' ? Configuration::get('PS_SHOP_NAME') : $carrier->name).'</b>
 			'.(($currentState->delivery OR $order->delivery_number) ? '<br /><a href="pdf.php?id_delivery='.$order->delivery_number.'">'.$this->l('Delivery slip #').'<b>'.Configuration::get('PS_DELIVERY_PREFIX', intval($cookie->id_lang)).sprintf('%06d', $order->delivery_number).'</b></a><br />' : '');
 			if ($order->shipping_number)
@@ -807,14 +808,15 @@ class AdminOrders extends AdminTab
 									echo '<input type="hidden" name="cancelQuantity['.$k.']" value="0" />';
 								elseif (!$order->hasBeenDelivered() OR Configuration::get('PS_ORDER_RETURN'))
 									//echo '<input type="text" id="cancelQuantity_'.intval($product['id_order_detail']).'" name="cancelQuantity['.$k.']" size="2" onclick="selectCheckbox(this);" value="" /> ';
-									echo '<input type="text" id="cancelQuantity_'.intval($product['id_order_detail']).'" name="cancelQuantity['.$k.']" size="2" value=""/> ';
+									echo '<input type="text" id="cancelQuantity_'.intval($product['id_order_detail']).'" name="cancelQuantity['.$k.']" size="2" value="" /> ';
 								echo $this->getCancelledProductNumber($order, $product).'
 									</td>';
 									
 									//if(!$order->isduplicated($order->id)){
 									echo '
-									<td class="check_duplicarvar">
-									<input type="checkbox" name="duplicarvar['.intval($product['id_order_detail']).']" value="'.$product['product_id'].'" disabled="disabled"/>
+									<td>
+									<input type="checkbox" name="duplicarvar['.intval($product['id_order_detail']).']" value="'.$product['product_id'].'">
+									
 									</td>';
 									//}
 								echo '</tr>';
@@ -952,23 +954,6 @@ class AdminOrders extends AdminTab
 		</div>';
 		echo '<div class="clear">&nbsp;</div>';
 		echo '<br /><br /><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
-        
-        echo '
-            <script type="text/javascript">
-                jQuery(function(){
-                    jQuery(".cancelCheck [type=checkbox]").click(function(){
-                        var ele = jQuery(this);
-                        var duplicar = jQuery(this).parent().parent().find(".check_duplicarvar [type=checkbox]");
-                        if(ele.is(":checked"))
-                        {
-                            duplicar.removeAttr("disabled");
-                        }else{
-                            duplicar.attr("disabled", "disabled");
-                        }
-                    });
-                });
-            </script>
-        ';
 	}
 	
 	public function display()

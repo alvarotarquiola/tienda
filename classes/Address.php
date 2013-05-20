@@ -77,7 +77,7 @@ class		Address extends ObjectModel
 	private static $_idZones = array();
 	private static $_idCountries = array();
 
-	protected	$fieldsRequired = array('id_country', 'alias', 'lastname', 'firstname', 'address1', 'postcode', 'city', 'phone', 'phone_mobile', 'alias');
+	protected	$fieldsRequired = array('id_country', 'alias', 'lastname', 'firstname', 'address1', 'postcode', 'city');
 	protected	$fieldsSize = array('alias' => 32, 'company' => 32, 'lastname' => 32, 'firstname' => 32,
 									'address1' => 128, 'address2' => 128, 'postcode' => 12, 'city' => 64,
 									'other' => 300, 'phone' => 16, 'phone_mobile' => 16);

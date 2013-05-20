@@ -83,7 +83,7 @@ class StatsRegistrations extends ModuleGraph
 			<p>'.$this->l('Total customer accounts:').' '.$totalRegistrations.'</p>
 			<center>'.ModuleGraph::engine(array('type' => 'line')).'</center>
 		</fieldset><br />
-		<fieldset class="width3 hide_tag"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 			<h2>'.$this->l('Number of customer accounts created').'</h2>
 			<p>'.$this->l('The total number of accounts created is not in itself important information. However, it is interesting to analyze the number created over time. This will indicate whether or not things are on the right track.').'</p>
 			<br /><h3>'.$this->l('How to act on the registrations\' evolution?').'</h3>

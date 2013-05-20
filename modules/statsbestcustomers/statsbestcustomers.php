@@ -94,7 +94,7 @@ class StatsBestCustomers extends ModuleGrid
 		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
 			'.ModuleGrid::engine($engineParams).'
 		</fieldset><br />
-		<fieldset class="width3 hide_tag"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 			<h2 >'.$this->l('Develop clients\' loyalty').'</h2>
 			<p class="space">
 				'.$this->l('Keeping a client is more profitable than capturing a new one. Thus, it is necessary to develop its loyalty, in other words to make him come back in your webshop.').' <br />

@@ -43,9 +43,12 @@ class AdminEmployees extends AdminTab
 		'id_employee' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
 		'lastname' => array('title' => $this->l('Last name'), 'width' => 130),
 		'firstname' => array('title' => $this->l('First name'), 'width' => 130),
-		'email' => array('title' => $this->l('E-mail address'), 'width' => 180), 
+		'email' => array('title' => $this->l('Email'), 'width' => 180), 
 		'profile' => array('title' => $this->l('Profile'), 'width' => 90, 'type' => 'select', 'select' => $this->profilesArray, 'filter_key' => 'p!name'),
-		'active' => array('title' => $this->l('Can log in'), 'align' => 'center', 'active' => 'status', 'type' => 'bool'));
+		'active' => array('title' => $this->l('Activo'), 'width' => 25, 'align' => 'center', 'active' => 'status', 'type' => 'bool', 'orderby' => false),
+		//'active' => array('title' => $this->l('Can log in'), 'align' => 'center', 'active' => 'status', 'type' => 'bool')
+		);
+
 
 		$this->optionTitle = $this->l('Employees options');
 		$this->_fieldsOptions = array(

@@ -392,20 +392,6 @@ class		Manufacturer extends ObjectModel
         }
         return $res;
     }
-    
-    static public function getFilenameManufacturer($filename)
-    {   
-        $query = Db::getInstance()->ExecuteS('
-            SELECT *
-            FROM `'._DB_PREFIX_.'manufacturer`
-            WHERE `file_name` = "'.$filename.'"
-        ');
-        
-        $id_manufacturer = $query[0]['id_manufacturer'];
-        
-        return $id_manufacturer;
-    }
-    
 }
 
 ?>

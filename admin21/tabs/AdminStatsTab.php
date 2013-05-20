@@ -154,12 +154,12 @@ abstract class AdminStatsTab extends AdminPreferences
 		<fieldset style="width: 200px; font-size:13px;"><legend><img src="../img/admin/date.png" /> '.$translations['Calendar'].'</legend>
 			<div>
 				<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
-					<input type="submit" name="submitDateDay" class="button hide_tag" value="'.$translations['Day'].'">
-					<input type="submit" name="submitDateMonth" class="button hide_tag" value="'.$translations['Month'].'">
-					<input type="submit" name="submitDateYear" class="button hide_tag" value="'.$translations['Year'].'">
-					<input type="submit" name="submitDateDayPrev" class="button hide_tag" value="'.$translations['Day'].'-1">
-					<input type="submit" name="submitDateMonthPrev" class="button hide_tag" value="'.$translations['Month'].'-1">
-					<input type="submit" name="submitDateYearPrev" class="button hide_tag" value="'.$translations['Year'].'-1">
+					<input type="submit" name="submitDateDay" class="button" value="'.$translations['Day'].'">
+					<input type="submit" name="submitDateMonth" class="button" value="'.$translations['Month'].'">
+					<input type="submit" name="submitDateYear" class="button" value="'.$translations['Year'].'"><br />
+					<input type="submit" name="submitDateDayPrev" class="button" value="'.$translations['Day'].'-1">
+					<input type="submit" name="submitDateMonthPrev" class="button" value="'.$translations['Month'].'-1">
+					<input type="submit" name="submitDateYearPrev" class="button" value="'.$translations['Year'].'-1">
 					<p>'.(isset($translations['From']) ? $translations['From'] : 'From:').' <input type="text" name="datepickerFrom" id="datepickerFrom" value="'.Tools::getValue('datepickerFrom', $employee->stats_date_from).'"></p>
 					<p>'.(isset($translations['To']) ? $translations['To'] : 'To:').' <input type="text" name="datepickerTo" id="datepickerTo" value="'.Tools::getValue('datepickerTo', $employee->stats_date_to).'"></p>
 					<input type="submit" name="submitDatePicker" class="button" value="'.(isset($translations['Save']) ? $translations['Save'] : '   Save   ').'" />
@@ -200,16 +200,10 @@ abstract class AdminStatsTab extends AdminPreferences
 			foreach ($modules AS $module)
 	    	{
 				$moduleInstance = Module::getInstanceByName($module['name']);
-                
 				if (!$moduleInstance)
 					continue;
-                if(($module['name'] == "statspersonalinfos") || ($module['name'] == "statslive") || ($module['name'] == "statsequipment") || ($module['name'] == "statsproduct") || ($module['name'] == "statsbestproducts") || ($module['name'] == "statsbestvouchers") || ($module['name'] == "statsbestcategories") || ($module['name'] == "statsbestsuppliers") || ($module['name'] == "statscarrier") || ($module['name'] == "statsnewsletter") || ($module['name'] == "statscheckup") || ($module['name'] == "statssearch"))
-                {
-                    //comentario   
-                }else{
-                    echo '
-				    <h4><img src="../modules/'.$module['name'].'/logo.gif" /> <a href="index.php?tab='.$module['hook'].'&token='.Tools::getAdminToken($module['hook'].intval(Tab::getIdFromClassName($module['hook'])).intval($cookie->id_employee)).'&module='.$module['name'].'">'.$moduleInstance->displayName.'</a></h4>';
-                }				    
+				echo '
+				<h4><img src="../modules/'.$module['name'].'/logo.gif" /> <a href="index.php?tab='.$module['hook'].'&token='.Tools::getAdminToken($module['hook'].intval(Tab::getIdFromClassName($module['hook'])).intval($cookie->id_employee)).'&module='.$module['name'].'">'.$moduleInstance->displayName.'</a></h4>';
 		}
 		else
 			echo $this->l('No module installed', 'AdminStatsTab');
@@ -238,12 +232,9 @@ abstract class AdminStatsTab extends AdminPreferences
 		{
 			// Needed for the graphics display when this is the default module
 			$_GET['module'] = $moduleName;
-            //echo $moduleName;
 			$moduleInstance = Module::getInstanceByName($moduleName);
-			if ($moduleInstance AND $moduleInstance->active){
-                echo Module::hookExec(Tools::getValue('tab'), NULL, $moduleInstance->id);
-                // 
-			}
+			if ($moduleInstance AND $moduleInstance->active)
+				echo Module::hookExec(Tools::getValue('tab'), NULL, $moduleInstance->id);
 			else
 				echo $this->l('Module not found', 'AdminStatsTab');
 		}

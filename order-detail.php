@@ -41,7 +41,6 @@ if (Tools::isSubmit('submitMessage'))
 				$to = new Contact(intval(Configuration::get('PS_MAIL_EMAIL_MESSAGE')));
 				$to = strval($to->email);
 			}
-            $to = strval(Configuration::get('PS_SHOP_EMAIL'));
 			$toName = strval(Configuration::get('PS_SHOP_NAME'));
 			$customer = new Customer(intval($cookie->id_customer));
 			if (Validate::isLoadedObject($customer))
@@ -79,17 +78,6 @@ else
 		$customizedDatas = Product::getAllCustomizedDatas(intval($order->id_cart));
 		Product::addCustomizationPrice($products, $customizedDatas);
 
-        $totalprod = 0;
-        $totalpeso = 0;
-        
-        foreach($products as $value):
-            $aux = $value["product_weight"]*$value["product_quantity"];
-            $totalprod = $totalprod + $value["product_quantity"];
-            $totalpeso = $totalpeso + $aux;
-        endforeach;
-        
-        $totalpeso = number_format($totalpeso, 3);
-
 		$valpxc = Configuration::get('PS_pxc');
 		
 		switch($valpxc){
@@ -126,8 +114,6 @@ else
 			'invoice' => (OrderState::invoiceAvailable(intval($id_order_state)) AND $order->invoice_number),
 			'order_history' => $order->getHistory(intval($cookie->id_lang), false, true),
 			'products' => $products,
-            'total_products' => $totalprod,
-            'total_peso' => $totalpeso,
 			'discounts' => $order->getDiscounts(),
 			'carrier' => $carrier,
 			'address_invoice' => $addressInvoice,
@@ -138,13 +124,6 @@ else
 			'CUSTOMIZE_FILE' => _CUSTOMIZE_FILE_,
 			'CUSTOMIZE_TEXTFIELD' => _CUSTOMIZE_TEXTFIELD_,
 			'customizedDatas' => $customizedDatas));
-        /*echo "<pre>";
-        print_r($order);
-        echo "</pre>";
-        echo "<pre>";
-        print_r($order->getHistory(intval($cookie->id_lang), false, true));
-        echo "</pre>";*/
-        
 		if ($carrier->url AND $order->shipping_number)
 			$smarty->assign('followup', str_replace('@', $order->shipping_number, $carrier->url));
 	}

@@ -21,6 +21,7 @@ class AdminSuppliers extends AdminTab
 	{
 	 	$this->table = 'supplier';
 	 	$this->className = 'Supplier';
+	 	$this->lang = true;
 	 	$this->view = true;
 	 	$this->edit = true;
 	 	$this->delete = true;
@@ -33,8 +34,8 @@ class AdminSuppliers extends AdminTab
 		$this->fieldsDisplay = array(
 			'id_supplier' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
 			'name' => array('title' => $this->l('Name'), 'width' => 120),
-			'logo' => array('title' => $this->l('Logo'), 'align' => 'center', 'image' => 'su', 'orderby' => false, 'search' => false),
-			'products' => array('title' => $this->l('Number of products'), 'align' => 'right', 'filter_type' => 'int', 'tmpTableFilter' => true)
+			'description' => array('title' => $this->l('Descripción'), 'align' => 'center', 'width' => 200),			
+			'products' => array('title' => $this->l('Num. productos'), 'align' => 'right','width' => 30, 'filter_type' => 'int', 'tmpTableFilter' => true)
 		);
 	
 		parent::__construct();

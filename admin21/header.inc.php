@@ -85,7 +85,7 @@ require_once(dirname(__FILE__).'/init.php');
                     });
                 });
                 
-                $(".links_main li a.options_shop, .action_btn_reset, .action_btn_filter, .enlace_ia").click(function(){
+                $(".links_main li a.options_shop, .action_btn_reset, .action_btn_filter").click(function(){
                     $.blockUI(
                     { 
                         message: '<div style="margin:0 auto;overflow: hidden;padding: 10px 0;width: 250px;"><div style="float:left;margin:0 10px 0 0;"><img src="../img/admin/loading2.gif" /></div><h1 style="float:left;margin:5px 0 0 0;">Espere por favor...</h1></div>',
@@ -93,7 +93,7 @@ require_once(dirname(__FILE__).'/init.php');
                     });
                 });
                 
-                $(".action_delete, .action_btn_del, .enlace_del_ia").click(function(){
+                $(".action_delete, .action_btn_del").click(function(){
                     
                     var ele = jQuery(this);
                     var message_del = ele.attr("message");
@@ -121,6 +121,8 @@ require_once(dirname(__FILE__).'/init.php');
                         loadPage();    
                     }
                 });
+                
+                
             });
             
             function loadPage()
@@ -250,7 +252,8 @@ require_once(dirname(__FILE__).'/init.php');
                     var tabActual = array_url_2[0];
                     
                     jQuery(".sub_menu_shop li#"+tabActual).addClass("active_link");
-                    //jQuery(".sub_menu_shop").css("width", jQuery(".sub_menu_shop").width());               
+                    //jQuery(".sub_menu_shop").css("width", jQuery(".sub_menu_shop").width());     
+                    jQuery(".sub_title_tab").css("width", jQuery(".form table tr td table.table").width());                         
                     
                 });
                 
