@@ -66,13 +66,14 @@ countriesNeedIDNumber = new Array();
 	{$HOOK_CREATE_ACCOUNT_TOP}
 	<fieldset class="account_creation">
 		<h3>{l s='Your personal information'}</h3>
+		<!-- modificando
 		<p class="radio required">
 			<span>{l s='Title'}</span>
 			<input type="radio" name="id_gender" id="id_gender1" value="1" {if isset($smarty.post.id_gender) && $smarty.post.id_gender == 1}checked="checked"{/if} />
 			<label for="id_gender1" class="top">{l s='Mr.'}</label>
 			<input type="radio" name="id_gender" id="id_gender2" value="2" {if isset($smarty.post.id_gender) && $smarty.post.id_gender == 2}checked="checked"{/if} />
 			<label for="id_gender2" class="top">{l s='Ms.'}</label>
-		</p>
+		</p>-->
 		<p class="required text">
 			<label for="customer_firstname">{l s='First name'}</label>
 			<input onkeyup="$('#firstname').val(this.value);" type="text" class="text" id="customer_firstname" name="customer_firstname" value="{if isset($smarty.post.customer_firstname)}{$smarty.post.customer_firstname}{/if}" />
@@ -94,6 +95,7 @@ countriesNeedIDNumber = new Array();
 			<sup>*</sup>
 			<span class="form_info">{l s='(5 characters min.)'}</span>
 		</p>
+		<!-- modificando
 		<p class="select">
 			<span>{l s='Birthday'}</span>
 			<select id="days" name="days">
@@ -129,6 +131,7 @@ countriesNeedIDNumber = new Array();
 				{/foreach}
 			</select>
 		</p>
+		-->
 		<p class="checkbox" >
 			<input type="checkbox" name="newsletter" id="newsletter" value="1" {if isset($smarty.post.newsletter) AND $smarty.post.newsletter == 1} checked="checked"{/if}  checked="checked"/>
 			<label for="newsletter">{l s='Sign up for our newsletter'}</label>
@@ -138,11 +141,14 @@ countriesNeedIDNumber = new Array();
 			<label for="optin">{l s='Receive special offers from our partners'}</label>
 		</p>
 	</fieldset>
+	<!-- modificando
+
 	CLAUSULA CONFIDENCIALIDAD DATOS CLIENTE<br/>
 En virtud del art. 5 de la vigente Ley Orgánica de Protección de Datos (Ley 15/1999, de 13 de diciembre), se pone en conocimiento que los datos de carácter personal que se faciliten quedarán registrados en un fichero titularidad de EL PROPIETARIO, con la finalidad de responder a las solicitudes de información y de inscripción en la Newsletter, manifestándole la máxima reserva y confidencialidad acerca de dichos datos, que serán utilizados exclusivamente a los fines antes indicados.
 <br/><br/>
 Con la finalidad de que la información contenida en nuestros ficheros esté siempre actualizada, les agradeceremos nos comuniquen las modificaciones y rectificaciones de sus datos personales.<br/><br/>
 Ud. podrá en cualquier momento ejercer los derechos de acceso, rectificación, cancelación y oposición ante EL PROPIETARIO en la dirección que consta en la Política privacidad.<br/>
+	--> <br>
 	<fieldset class="account_creation">
 		<h3>{l s='Your address'}</h3>
 		<p class="text">

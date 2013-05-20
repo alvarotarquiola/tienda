@@ -12,6 +12,7 @@
 			{/foreach}
 		</ul>
 	</div>
+	<!-- modificando
 	<div class="sitemap_block">
 		<h3>{l s='Our offers'}</h3>
 		<ul>
@@ -19,9 +20,10 @@
 			<li><a href="{$base_dir}best-sales.php">{l s='Top sellers'}</a></li>
 			<li><a href="{$base_dir}prices-drop.php">{l s='Specials'}</a></li>
 			<li><a href="{$base_dir}manufacturer.php">{l s='Manufacturers'}</a></li>
-			<!-- <li><a href="{$base_dir}supplier.php">{l s='Suppliers'}</a></li> -->
+			<!-- <li><a href="{$base_dir}supplier.php">{l s='Suppliers'}</a></li> --
 		</ul>
 	</div>
+	-->
 	<div class="sitemap_block">
 		<h3>{l s='Your Account'}</h3>
 		<ul>
