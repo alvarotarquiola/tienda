@@ -246,7 +246,7 @@ class ImageAttachments extends ObjectModel
     
     static public function uploadFileAttachment($file, $id_product, $isoLang, $ref)
     {
-        $dirorigen = _PS_ROOT_DIR_."/Files";
+        $dirorigen = _PS_ROOT_DIR_."/files";
         ImageAttachments::createFolder();
         
         $ext = strtolower(end(explode('.', $file["name"])));
@@ -338,7 +338,7 @@ class ImageAttachments extends ObjectModel
     
     static public function createFolder()
     {
-        $dirorigen = _PS_ROOT_DIR_."/Files";
+        $dirorigen = _PS_ROOT_DIR_."/files";
         
         if(!file_exists($dirorigen."/tmp"))
             mkdir($dirorigen."/tmp", 0777);
@@ -353,7 +353,7 @@ class ImageAttachments extends ObjectModel
     
     static public function verifyZiseFile($name)
     {
-        $dir = _PS_ROOT_DIR_."/Files";
+        $dir = _PS_ROOT_DIR_."/files";
         $img = $dir."/".$name;
         
         $peso = filesize($img);

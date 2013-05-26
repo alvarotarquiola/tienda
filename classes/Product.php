@@ -2900,7 +2900,31 @@ public static function getIdByReference($reference)
         ');
         
         return $query;
-    }       
+    }
+    
+    static public function getProductReference($reference, $id_lang)
+    {
+        $result = Db::getInstance()->getRow('
+        SELECT *
+        FROM `'._DB_PREFIX_.'product` AS c1
+        LEFT JOIN `'._DB_PREFIX_.'product_lang` AS c2
+        ON c1.id_product = c2.id_product
+        WHERE c1.`reference` = "'.$reference.'" AND c2.`id_lang` = "'.$id_lang.'"
+        ');
+
+        return $result;
+    } 
+    
+    static public function getImagePruduct($id_product)
+    {
+        $result = Db::getInstance()->getRow('
+        SELECT *
+        FROM `'._DB_PREFIX_.'image`
+        WHERE `id_product` = "'.$id_product.'" AND `cover` = 1
+        ');
+        
+        return $result;
+    }      
 }
 
 ?>

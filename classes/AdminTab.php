@@ -1744,6 +1744,14 @@ abstract class AdminTab
         }
         //return Message::getMessagesOrder($id);
      }
+     
+     public function getLog($datas)
+     {
+        echo '<pre>';
+        print_r($datas);
+        echo '</pre>';
+        
+     }
 }
 
 ?>

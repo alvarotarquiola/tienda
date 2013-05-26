@@ -647,7 +647,9 @@ else /* Else display homepage */
                     </li>
                     <li>
                         <span>2-5</span>
-                        <a><?php echo translate('Create newsletters') ?></a>
+                        <a href="index.php?tab=AdminCatalog&createnewslatter=1&token=<?=Tools::getAdminToken("AdminCatalog".intval(Tab::getIdFromClassName("AdminCatalog")).intval($cookie->id_employee))?>">
+                            <?php echo translate('Create newsletters') ?>
+                        </a>
                     </li>
                     <!--<li>
                         <span>2-6</span>

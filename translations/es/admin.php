@@ -257,6 +257,13 @@ $_LANGADM['AdminCatalogaf1b98adf7f686b84cd0b443e022b7a0'] = 'Categorías';
 $_LANGADM['AdminCatalogdc5b753561079ca416a04fa17e221bee'] = 'Categoría Padre';
 $_LANGADM['AdminCatalog18db34b7a7618e6b58dfb31208822d20'] = 'Al borrar Categorias, borra todo los productos asociados a las Categorias borradas. Sera necesario importar Productos.';
 
+$_LANGADM['AdminCatalog800e90e940e7f1fb938b0fda5137f38c'] = '¡En rebajas!';
+$_LANGADM['AdminCatalog901b3cbc35bc72fba17d5ccb45afbbc4'] = '¡Precio rebajado!';
+$_LANGADM['AdminCatalog78945de8de090e90045d299651a68a9b'] = 'Disponible';
+$_LANGADM['AdminCatalogb55197a49e8c4cd8c314bc2aa39d6feb'] = 'Agotado';
+$_LANGADM['AdminCatalog2d0f6b8300be19cf35e89e66f0677f95'] = 'Añadir al carrito';
+$_LANGADM['AdminCatalog4351cfebe4b61d8aa5efa1d020710005'] = 'Ver';
+
 $_LANGADM['AdminCatalog4afecbe4d149447b74b9ab54434c42e4'] = 'Productos en esta categoría';
 $_LANGADM['AdminCategoriesb718adec73e04ce3ec720dd11a06a308'] = 'ID';
 $_LANGADM['AdminCategories49ee3087348e8d44e1feda1917443987'] = 'Nombre';

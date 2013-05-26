@@ -939,3 +939,13 @@ function ValidaURL(url)
     var regex=/^(ht|f)tps?:\/\/\w+([\.\-\w]+)?\.([a-z]{2,4}|travel)(:\d{2,5})?(\/.*)?$/i
     return regex.test(url);
 }
+
+function loadMessage(x, text, x2)
+{
+    var divmessage = '<div id="messageGlobal" style="margin:0 auto;overflow: hidden;padding: 10px 0;width: '+x2+';"><div style="float:left;margin:0 10px 0 0;"><img src="../img/admin/loading2.gif" /></div><h1 style="float:left;margin:5px 0 0 0;" >'+text+'</h1></div>';
+    $.blockUI(
+    { 
+        message: divmessage,
+        css: {width: x} 
+    });
+}

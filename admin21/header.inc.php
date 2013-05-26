@@ -163,7 +163,7 @@ require_once(dirname(__FILE__).'/init.php');
                 <div style="float:left;margin:0 10px 0 0;">
                     <img src="../img/admin/loading2.gif" />
                 </div>
-                <h1 style="float:left;margin:5px 0 0 0;"><?php echo translate("Espere por favor...") ?></h1>
+                <h1 id="textMessageGlobal" style="float:left;margin:5px 0 0 0;"><?php echo translate("Espere por favor...") ?></h1>
             </div>
         </div>
 		<div id="container">
