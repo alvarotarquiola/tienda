@@ -50,7 +50,15 @@
 				<div id="header">
 					{$HOOK_TOP}
 				</div>
+				<ul id="menu_header_bottom">
+				<li class="header-link-bottom"><a title="Contacto" href="http://localhost/tienda/contact-form.php">Presentacion</a></li>
+				<li class="header-link-bottom"><a title="Contacto" href="http://localhost/tienda/contact-form.php">Contacto</a></li>
+				<li class="header-link-bottom"><a title="Contacto" href="http://localhost/tienda/contact-form.php">Su cuenta</a></li>
+				<li class="header-link-bottom"><a title="Mapa" href="http://localhost/tienda/sitemap.php">Politica</a></li>
+				<li class="header-link-bottom"><a href="">Carrito</a></li>
+			</ul>
 			</div>
+			
 
 			<!-- Left -->
 			<div id="left_column" class="column">
