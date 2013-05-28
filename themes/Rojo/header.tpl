@@ -51,10 +51,28 @@
 					{$HOOK_TOP}
 				</div>
 				<ul id="menu_header_bottom">
-				<li class="header-link-bottom"><a title="Contacto" href="http://localhost/tienda/contact-form.php">Presentacion</a></li>
-				<li class="header-link-bottom"><a title="Contacto" href="http://localhost/tienda/contact-form.php">Contacto</a></li>
-				<li class="header-link-bottom"><a title="Contacto" href="http://localhost/tienda/contact-form.php">Su cuenta</a></li>
-				<li class="header-link-bottom"><a title="Mapa" href="http://localhost/tienda/sitemap.php">Politica</a></li>
+				<li class="header-link-bottom"><a title="Contacto" href="">Presentacion</a></li>
+				<li id="header_link_contact" class="header-link-bottom"><a href="{$base_dir_ssl}contact-form.php" title="{l s='contact' mod='blockpermanentlinks'}">{l s='contact' mod='blockpermanentlinks'}</a></li>
+				<li class="header-link-bottom"><a href="{$base_dir_ssl}my-account.php" title="{l s='Your Account' mod='blockuserinfo'}">{l s='Your Account' mod='blockuserinfo'}</a>
+					<ul class="menu-dropdown">
+						<!-- añadiendo -->
+						<li><a href="{$base_dir_ssl}history.php" title="{l s='Orders'}">{l s='History and details of my orders'}</a></li>
+	{if $returnAllowed}
+		<li></a><a href="{$base_dir_ssl}order-follow.php" title="{l s='Merchandise returns'}">{l s='My merchandise returns'}</a></li>
+	{/if}	 
+	<li><a href="{$base_dir_ssl}addresses.php" title="{l s='Addresses'}">{l s='My addresses'}</a></li>
+	<li><a href="{$base_dir_ssl}identity.php" title="{l s='Information'}">{l s='My personal information'}</a></li>
+	
+	<!--fin añadido-->
+					</ul>
+				</li>
+				<li class="header-link-bottom"><a title="Mapa" href="http://localhost/tienda/sitemap.php">Politica</a>
+				<ul class="menu-dropdown">
+					{foreach from=$cmslinks item=cmslink}
+						<li><a href="{$cmslink.link}" title="{$cmslink.meta_title|escape:html:'UTF-8'}">{$cmslink.meta_title|escape:html:'UTF-8'}</a></li>
+					{/foreach}
+					</ul>
+				</li>
 				<li class="header-link-bottom"><a href="">Carrito</a></li>
 			</ul>
 			</div>

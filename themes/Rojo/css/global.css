@@ -359,7 +359,7 @@ ul#header_links {
 
 /* block top search */
 #header #search_block_top {
-	background: #e5e6e7 url('../img/block_search_bg.jpg') no-repeat top right;
+	/*background: #e5e6e7 url('../img/block_search_bg.jpg') no-repeat top right;*/
 	height: 28px;
 	width: 330px;
 	float: left;
@@ -367,7 +367,7 @@ ul#header_links {
 #header #search_block_top p { padding: 0.4em 0 0.4em 1em; }
 #header #search_block_top label, #header #search_block_top input{ float:left; }
 #header #search_block_top label {
-	background: transparent url('../img/icon/search.gif') no-repeat 0 2px;
+	/*background: transparent url('../img/icon/search.gif') no-repeat 0 2px;*/
 	float: left;
 	width: 19px;
 	height: 18px;
@@ -2665,14 +2665,36 @@ div.star a:hover{
 	display: inline-block;
 	margin-bottom: 15px;
 }
-#menu_header_bottom .header-link-bottom > a{
+#menu_header_bottom .header-link-bottom  a{
 	display: block;
 	margin: 0 10px;
-	padding: 5px 53px;	
-	background: #f2f2f2;
+	padding: 5px 51px;	
+	background:  #ECEDF0;
 	color: black;
 	font-size: 14px;
+	border: solid 1px #e7e7e7
 }
-#menu_header_bottom .header-link-bottom > a:hover{
-	background: url("../img/block_search_bg.jpg") no-repeat scroll right top #E5E6E7
+#menu_header_bottom .header-link-bottom  a:hover{
+	background: #e7e7e7	;
+	
+}
+#menu_header_bottom .header-link-bottom > ul.menu-dropdown{
+	margin: 0px 0 0 10px;
+	position: absolute;
+	float: left;
+	display: none;
+}
+
+#menu_header_bottom .header-link-bottom > ul.menu-dropdown li{	
+	list-style: none;	
+}
+#menu_header_bottom .header-link-bottom > ul.menu-dropdown li a{
+	margin-left: 0;
+	border-top: 1px solid white;	
+}	
+#header_link_contact{
+	display: none
+}
+#header_user > #header_nav{
+	display: none;
 }
