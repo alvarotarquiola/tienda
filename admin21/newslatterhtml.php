@@ -108,12 +108,21 @@ if(isset($_POST['add_products_references']) && $_POST['add_products_references']
 if(isset($_POST['newnewslatter']) && $_POST['newnewslatter'] == 1)
 {
     $textHTML = $_POST['texthtml'];
+    $nameRamdon = substr(sha1(uniqid(rand(), true)), 0, 5);
+    $name_file = 'newsletter_'.$nameRamdon.'.html';
+    
+    /*$control = fopen($name_file,"w+");
+    if($control == false)
+    {
+        die("No se ha podido crear el archivo.");
+    }*/
     
     $styles = Category::getStylesNewslatter();
     
     $text = $styles.$textHTML;
     
-    $fichero = _PS_FILES_DIR_.'newslatter/newslatter.html';
+    $fichero = _PS_FILES_DIR_.'newslatter/'.$name_file;
+    
     if($textHTML != '')
     {
         $texto = $_POST["texto"];
@@ -121,7 +130,7 @@ if(isset($_POST['newnewslatter']) && $_POST['newnewslatter'] == 1)
 		if($fp = fopen($fichero,"w+")){ 
 			fwrite($fp,stripslashes($text));  
 		} 
-        fclose($fp);        
+        fclose($fp);      
     }
  
 }

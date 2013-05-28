@@ -562,7 +562,10 @@ class AdminOrders extends AdminTab
 					<select name="id_order_state">';
 			$currentStateTab = $order->getCurrentStateFull($cookie->id_lang);
 			foreach ($states AS $state)
-				echo '<option value="'.$state['id_order_state'].'"'.(($state['id_order_state'] == $currentStateTab['id_order_state']) ? ' selected="selected"' : '').'>'.stripslashes($state['name']).'</option>';
+			{
+					$name_position = ($state['position'] != "" || $state['position'] != null) ? $state['position'].'-'.$state['name'] : $state['name'];
+					echo '<option value="'.$state['id_order_state'].'"'.(($state['id_order_state'] == $currentStateTab['id_order_state']) ? ' selected="selected"' : '').'>'.stripslashes($name_position).'</option>';
+			}
 			echo '
 					</select>
 					<input type="hidden" name="id_order" value="'.$order->id.'" />

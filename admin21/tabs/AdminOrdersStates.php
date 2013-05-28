@@ -29,7 +29,8 @@ class AdminOrdersStates extends AdminTab
 
 		$this->fieldsDisplay = array(
 		'id_order_state' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
-		'name' => array('title' => $this->l('Name'), 'width' => 130),
+		'position' => array('title' => $this->l('Position'), 'align' => 'center', 'width' => 25),
+        'name' => array('title' => $this->l('Name'), 'width' => 130),
 		'logo' => array('title' => $this->l('Icon'), 'align' => 'center', 'image' => 'os', 'orderby' => false, 'search' => false),
 		'send_email' => array('title' => $this->l('Send e-mail to customer'), 'align' => 'center', 'icon' => array('1' => 'enabled.gif', '0' => 'disabled.gif'), 'type' => 'bool', 'orderby' => false),
 		'invoice' => array('title' => $this->l('Invoice'), 'align' => 'center', 'icon' => array('1' => 'enabled.gif', '0' => 'disabled.gif'), 'type' => 'bool', 'orderby' => false),
@@ -117,6 +118,12 @@ class AdminOrdersStates extends AdminTab
 		echo '		<p class="clear">'.$this->l('Order status (e.g., \'Pending\')').'</p>
 				</div>
 				<div class="clear"></div>
+                <label>'.$this->l('Position:').' </label>
+				<div class="margin-form">
+					<input type="text" name="position" id="position" value="'.htmlentities($this->getFieldValue($obj, 'position'), ENT_COMPAT, 'UTF-8').'" />
+                    <p>'.$this->l('Posicion estado del pedido (ej: 1, 2)').'</p>
+				</div>
+                <div class="clear"></div>
 				<label>'.$this->l('Icon:').' </label>
 				<div class="margin-form">
 					<input type="file" name="icon" />
