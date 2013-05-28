@@ -281,7 +281,7 @@ class AdminCatalog extends AdminTab
         
         $id_eso = Language::getIsoById($cookie->id_lang);
         $dir_img_default = _PS_BASE_URL_._PS_IMG_.'p/'.$id_eso.'-default-home.jpg';
-        $dir_files = _PS_FILES_NEWS_.'newslatter.html';
+        $dir_files = _PS_FILES_NEWS_.'newsletter_c813e.txt';
         
         $style = $this->newsletterStyle();
         echo $style;
@@ -315,7 +315,9 @@ class AdminCatalog extends AdminTab
                 <div class="message_result">
                     <img alt="" src="../img/admin/ok.gif"/>'.$this->l('El archivo se a creado correctamente.').'<br/>
                     <a href="newslatter/export_accessory_05fcd164.xls">'.$this->l('Download file').' newslatter.html</a>
-                </div>
+                    <input type="image" src="newslatter/newsletter_b4bfd.html" alt="Submit">
+                    <a href="newslatter/newsletter_c813e.txt">'.$this->l('Download file').' newslatter.html</a>
+                </div><a href="'.$dir_files.'">'.$this->l('Download file').' newslatter.html</a>
                 <div id="ligth-box-newslatter">
                     <div id="html_newslater_generado">
                         <ul id="product_list_newslatter" class="clear">

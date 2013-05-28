@@ -248,8 +248,10 @@ class Tools
 		}
 		if ($isNegative)
 			$ret = '-'.$ret;
-		if ($no_utf8)
-			return str_replace('€', chr(128), $ret);
+		if ($no_utf8){
+            //return str_replace('€', chr(128), $ret);
+            return str_replace('&euro;', chr(128), $ret);
+		}
 		return $ret;
 	}
 

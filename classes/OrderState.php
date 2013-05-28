@@ -16,6 +16,9 @@ class		OrderState extends ObjectModel
 {
  	/** @var string Name */
 	public 		$name;
+    
+    /** @var integer position */
+    public      $position;
 	
 	/** @var string Template name if there is any e-mail to send */	
 	public 		$template;
@@ -40,8 +43,8 @@ class		OrderState extends ObjectModel
 	/** @var boolean Hidden */
 	public		$hidden;
 
- 	protected 	$fieldsValidate = array('send_email' => 'isBool', 'invoice' => 'isBool', 'color' => 'isColor', 'logable' => 'isBool');
-	protected 	$fieldsRequiredLang = array('name');
+ 	protected 	$fieldsValidate = array('position' => 'isInt', 'send_email' => 'isBool', 'invoice' => 'isBool', 'color' => 'isColor', 'logable' => 'isBool');
+	protected 	$fieldsRequiredLang = array('name');    
  	protected 	$fieldsSizeLang = array('name' => 64, 'template' => 64);
  	protected 	$fieldsValidateLang = array('name' => 'isGenericName', 'template' => 'isTplName');
 	
@@ -51,6 +54,7 @@ class		OrderState extends ObjectModel
 	public function getFields()
 	{
 		parent::validateFields();
+        $fields['position'] = intval($this->position);        
 		$fields['send_email'] = intval($this->send_email);
 		$fields['invoice'] = intval($this->invoice);
 		$fields['color'] = pSQL($this->color);
@@ -80,11 +84,17 @@ class		OrderState extends ObjectModel
 	*/
 	static public function getOrderStates($id_lang)
 	{
-		return Db::getInstance()->ExecuteS('
+		/*return Db::getInstance()->ExecuteS('
 		SELECT *
 		FROM `'._DB_PREFIX_.'order_state` os
 		LEFT JOIN `'._DB_PREFIX_.'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = '.intval($id_lang).')
-		ORDER BY `name` ASC');
+		ORDER BY `name` ASC');*/
+        
+        return Db::getInstance()->ExecuteS('
+		SELECT *
+		FROM `'._DB_PREFIX_.'order_state` os
+		LEFT JOIN `'._DB_PREFIX_.'order_state_lang` osl ON (os.`id_order_state` = osl.`id_order_state` AND osl.`id_lang` = '.intval($id_lang).')
+		ORDER BY os.`position` ASC');
 	}
 
 	/**
