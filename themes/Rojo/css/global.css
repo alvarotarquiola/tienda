@@ -504,7 +504,7 @@ div.rte ol, .mceContentBody ol {
 div.table_block {
 	background: transparent url('../img/table_footer.gif') no-repeat bottom left;
 	padding-bottom:6px;
-	margin:0 auto 2em;
+	margin:0 0 2em;/*margin:0 auto 2em;*/
 	width:541px;
 }
 table.std {
@@ -1017,7 +1017,7 @@ div.myaccount .block_content {
 }
 
 /* block in the center column */
-#center_column p { margin: 0.5em 0; padding-left:0.7em;}
+#center_column p { margin: 0.5em 0; padding-left:0; /*padding-left:0.7em;*/}
 #center_column div.block { width: 536px; margin:auto;}
 #center_column div.block h4 {
 	background: transparent url('../img/block_header_large.gif') no-repeat top left;
@@ -1153,6 +1153,10 @@ div.myaccount .block_content {
 #center_column div.products_block a.product_image img{
 	float:none;
 	margin:0;
+	/*añadiendo*/
+	width: 100%;
+	height: 100%;
+	/* fin */
 }
 #center_column div.products_block p.product_desc, #center_column div.products_block h5 {
 	margin-left:0.5em;
@@ -1669,7 +1673,9 @@ table.cart_last_product_content {
 }
 
 p.cart_navigation {
-	padding: 1em 0!important;
+	padding: 1em 0!important;	
+	float: left;
+	width:90%;
 }
 p.cart_navigation .button, p.cart_navigation .button_large {
 	float: left;
