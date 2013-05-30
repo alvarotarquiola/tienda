@@ -321,8 +321,9 @@ class AdminPreferences extends AdminTab
     						(_THEME_NAME_ == $theme['name'] ? 'checked="checked"' : '').' />
     						<label class="t" for="'.$key.'_'.$theme['name'].'_on"> '.Tools::strtolower($theme['name']).'</label>
     						<br />
-    						<label class="t" for="'.$key.'_'.$theme['name'].'_on">
-    							<img src="../themes/'.$theme['name'].'/preview.jpg" alt="'.Tools::strtolower($theme['name']).'">
+    						<label class="t" for="'.$key.'_'.$theme['name'].'_on">';
+    							//<img src="../themes/'.$theme['name'].'/preview.jpg" alt="'.Tools::strtolower($theme['name']).'">
+    						echo '
     						</label>
     						</td>';
     						if (isset($field['max']) AND ($i+1) % $field['max'] == 0)
