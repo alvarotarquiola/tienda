@@ -32,6 +32,13 @@ class AdminLangInvoices extends AdminTab
                 
                 jQuery(".tap-shop-menu a").click(function(){
                     var ele = jQuery(this);
+                    var id = ele.data("type");
+                    jQuery(".tap-shop-menu a").removeClass("active");
+                    ele.addClass("active");
+                    jQuery(".options-tap .tab-active").addClass("hide_tag");
+                    jQuery(".options-tap").find(".tab-active").removeClass("tab-active");
+                    jQuery("#"+id).removeClass("hide_tag");
+                    jQuery("#"+id).addClass("tab-active");
                 });
                 
                 jQuery("#lang_invoice_select").change(function(e){
@@ -53,8 +60,8 @@ class AdminLangInvoices extends AdminTab
                     <a href="#" class="active" data-type="ivoice-delivery">'.$this->l('Idioma Factura y Albaranes').'</a>
                     <a href="#" class="" data-type="me-shop">'.$this->l('Idioma Tienda').'</a>
                 </div>
-                <div id="tap-options-shop">
-                    <div id="ivoice-delivery" class="">
+                <div id="tap-options-shop" class="options-tap">
+                    <div id="ivoice-delivery" class="tab-active">
                         <h2 class="sub_title_tab">'.$this->l('Idioma Factura y Albaranes').'</h2>
                         <div class="warning warn" style="width: 600px;"><h3>'.$this->l('Choose the languaje for the generation of invoices and delivery slips.').'</h3>
                         <h3>'.$this->l('If you change your languaje, change the languaje in all existing invoices and delevery slips.').'</h3></div>
