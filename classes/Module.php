@@ -404,6 +404,10 @@ abstract class Module
 		foreach ($result AS $k => $module)
     	{
 			$moduleInstance = Module::getInstanceByName($module['name']);
+            /*echo '<pre>';
+            print_r($module);
+            echo '<pre>';*/
+            
 			if (!$moduleInstance)
 				continue;
 			$exceptions = $moduleInstance->getExceptions(intval($module['id_hook']), intval($moduleInstance->id));
