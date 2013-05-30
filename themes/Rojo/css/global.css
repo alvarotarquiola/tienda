@@ -2696,5 +2696,9 @@ div.star a:hover{
 	display: none
 }
 #header_user > #header_nav{
+	/*display: none;*/
+}
+
+#header_user #header_nav #your_account{
 	display: none;
 }

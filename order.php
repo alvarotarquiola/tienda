@@ -137,6 +137,7 @@ if ($cart->nbProducts())
 	{
 		case 1:
 			displayAddress();
+            
 			break;
 		case 2:
 			if(Tools::isSubmit('processAddress'))
@@ -150,7 +151,6 @@ if ($cart->nbProducts())
 				processCarrier();
 			autoStep(3);
 			checkFreeOrder();
-			
 			displayPayment();
 			break;
 		default:
@@ -254,6 +254,7 @@ function procesapxc(){
 	}
 	
 	if($paso1){
+	   
 		if(!$cart->checkQuantitiesv2()){
 			setNoCarrier();
 			$order = new FreeOrder();
