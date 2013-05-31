@@ -1523,6 +1523,56 @@ ul.box_manu_cus li .box_supp_ref div label{
     display: none;
 }
 
+/*=========== Estilos para los idiomas ===========*/
+.content-tab-shop{
+    background: none repeat scroll 0 0 #FFFFF0;
+    border: 1px solid #CCCCCC;
+}
+.content-tab-shop .tap-shop-menu{
+    border-bottom: 1px solid #CCCCCC;
+    overflow: hidden;
+}
+
+.content-tab-shop .tap-shop-menu a{
+    background: none repeat scroll 0 0 #EFEFEF;
+    border-right: 1px solid #CCCCCC;
+    color: #000000;
+    display: block;
+    float: left;
+    padding: 10px;
+}
+
+.content-tab-shop .tap-shop-menu a.active{
+    background: #FFF6D3;
+}
+
+#tap-options-shop{
+    padding: 5px 20px 40px 20px;
+}
+
+.row-form{
+    overflow: hidden;
+}
+
+.row-form .form-label{
+    float: left;
+    width: auto;
+    padding-right: 10px;   
+}
+
+.block-tag{
+    display: block;
+}
+
+.row-form .margin-form{
+    float: left;
+    padding: 0;
+}
+
+
+
+/* Fin estilos idiomas */
+
 #PS_LOGO .margin-form img{
     width: 505px;
 }
