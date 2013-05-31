@@ -1889,9 +1889,11 @@ div.sitemap_block h3, .categTree h3{
 	margin-bottom:1em;
 }
 div.categTree {
-	margin-top:25px;
-	margin-bottom:1em;
-	margin-left:5em;
+	margin-top:0px;/*margin-top:25px;*/
+	/*margin-bottom:1em;*/
+	/*margin-left:5em;*/
+	margin-right: 6em;
+	float: left;
 }
 
 /* product.tpl */
@@ -2714,8 +2716,12 @@ div.star a:hover{
 	width: 30%;
 	float: left;
 }
-.content-contact-information .contact-map{
-	
-	/*width: 70%;*/
+.content-contact-information .contact-map{		
 	float: right;
+}
+.content-contact-information p{
+	margin-left: 10px !important;
+}
+.content-contact-information p a{
+	color: #4040FF
 }

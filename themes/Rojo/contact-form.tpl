@@ -50,12 +50,12 @@
 		España <br>
 		Telf: 93-420-55-23 <br>
 		Movil: 686-46-46-44<br>
-		<a href="mailto:info@team-web.es">info@team-web.es</a>		
-		<a href="team-web.es" style="">team-web.es</a>
+		<a href="mailto:info@team-web.es">info@team-web.es</a> <br/>
+		<a href="team-web.es" style="font-weight: bold">team-web.es</a>
 		</p>
 	</div>
 	<div class="contact-map">
-		<iframe width="450" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.bo/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=Carrer+Tolr%C3%A0,+45-46&amp;aq=&amp;sll=41.425384,2.157011&amp;sspn=0.008737,0.021136&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Tolr%C3%A0,+45,+08032+Barcelona,+Espa%C3%B1a&amp;ll=41.425384,2.157011&amp;spn=0.008736,0.021136&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.bo/maps?f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp;q=Carrer+Tolr%C3%A0,+45-46&amp;aq=&amp;sll=41.425384,2.157011&amp;sspn=0.008737,0.021136&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Tolr%C3%A0,+45,+08032+Barcelona,+Espa%C3%B1a&amp;ll=41.425384,2.157011&amp;spn=0.008736,0.021136&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>
+		<iframe width="480" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.bo/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=Carrer+Tolr%C3%A0,+45-46&amp;aq=&amp;sll=41.425384,2.157011&amp;sspn=0.008737,0.021136&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Tolr%C3%A0,+45,+08032+Barcelona,+Espa%C3%B1a&amp;ll=41.425384,2.157011&amp;spn=0.008736,0.021136&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.bo/maps?f=q&amp;source=embed&amp;hl=es&amp;geocode=&amp;q=Carrer+Tolr%C3%A0,+45-46&amp;aq=&amp;sll=41.425384,2.157011&amp;sspn=0.008737,0.021136&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Tolr%C3%A0,+45,+08032+Barcelona,+Espa%C3%B1a&amp;ll=41.425384,2.157011&amp;spn=0.008736,0.021136&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>
 	</div>
 </div>
 {/if}
