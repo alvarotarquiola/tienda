@@ -39,9 +39,11 @@ class AdminLangInvoices extends AdminTab
                     jQuery(".options-tap").find(".tab-active").removeClass("tab-active");
                     jQuery("#"+id).removeClass("hide_tag");
                     jQuery("#"+id).addClass("tab-active");
+                    
+                    return false;
                 });
                 
-                jQuery("#lang_invoice_select").change(function(e){
+                /*jQuery("#lang_invoice_select").change(function(e){
                     var ele = jQuery(this);
                     var mensage = \''.$mensage.'\';
                     console.log(ele.attr("value"));
@@ -49,7 +51,18 @@ class AdminLangInvoices extends AdminTab
                     $.post("ajax.php", {id_lang_factura: id_lang, invoice: "invoice"}, function(res){
                         $(".message_result").css("display", "block");
                     });
+                });*/
+                
+                jQuery(".tab-active div div div select").change(function(){
+                    var ele = jQuery(this);
+                    var id_lang = ele.attr("value");
+                    var type = ele.data("type");
+                    $.post("ajax.php", {lang_id: id_lang, invoice: "invoice", type: , "lang"}, function(res){
+                        $("#message-"+type).css("display", "block");
+                    });
                 });
+                
+                
             });
         </script>';
         
@@ -69,7 +82,7 @@ class AdminLangInvoices extends AdminTab
                             <div class="row-form">
                                 <label class="form-label left">'.$this->l('Language').': </label>
                                 <div class="margin-form">
-                                    <select name="lang_invoice_select" id="lang_invoice_select"> 
+                                    <select name="lang_invoice_select" id="lang_invoice_select" data-type="lang-invoice"> 
                                         <option>'.$this->l('Select language').'</option>';
                                     foreach($languages as $language)
                                         echo '<option value="'.$language['id_lang'].'" '.($cookie->id_lang_factura == $language['id_lang'] ? "selected='selected'" : "").'>'.$language['name'].'</option>';
@@ -85,7 +98,7 @@ class AdminLangInvoices extends AdminTab
                             <div class="row-form">
                                 <label class="form-label left">'.$this->l('Language').': </label>
                                 <div class="margin-form">
-                                    <select name="lang_invoice_select" id="lang_invoice_select"> 
+                                    <select name="lang_shop_select" id="lang_shop_select" data-type="lang-shop"> 
                                         <option>'.$this->l('Select language').'</option>';
                                     foreach($languages as $language)
                                         echo '<option value="'.$language['id_lang'].'" '.($cookie->id_lang_factura == $language['id_lang'] ? "selected='selected'" : "").'>'.$language['name'].'</option>';
