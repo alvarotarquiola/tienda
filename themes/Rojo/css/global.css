@@ -190,7 +190,7 @@ h2 span {
 	color: #5d5d5e;
 	margin-left: 1em;
 }
-h3 { font-size: 1.1em; margin: 1em 0; color: #div.myaccount, div.myaccount a { color: #555; } }
+h3 { font-size: 1.1em; margin: 1em 0; /*color: */}#div.myaccount, div.myaccount a { color: #555; } }
 h4 { font-size: 1em; }
 
 /* global layout */
@@ -202,8 +202,8 @@ h4 { font-size: 1em; }
 h1#logo {
 	float: left;
 	width: 100%;
-	margin-top:
-	padding-bottom:
+	/*margin-top:
+	padding-bottom:*/
 }
 
 #header-wrap {
@@ -217,8 +217,8 @@ h1#logo {
 	text-align: right;
 	padding-top: 20px;
 	padding-left: 5px;
-	background:
-	border:
+	/*background:
+	border:*/
 	margin-bottom: 10px;
 }
 #left_column, #center_column, #right_column {
@@ -237,7 +237,8 @@ h1#logo {
 #right_column {
 	width: 190px;
 	padding-left: 15px;
-	display: none; /*añadido*/
+	 /*añadido*/
+	 display: none;	
 }
 
 
@@ -913,9 +914,9 @@ form#productsSortForm p select{ font-size:1em; }
 
 /* Footer */
 #footer {
-	border-top:
+	/*border-top:
 	background:
-	padding:
+	padding:*/
 	clear: both;
 	text-align: center;
 	width:980px;
@@ -938,8 +939,8 @@ div.block {
 	width: 191px;
 }
 #left_column div.block, #right_column div.block {
-	padding-bottom:
-	background:
+	/*padding-bottom:
+	background:*/
 }
 div.block h4 {
 	font-family: Helvetica, Sans-Serif;
@@ -2707,4 +2708,14 @@ div.star a:hover{
 
 #header_user #header_nav #your_account{
 	display: none;
+}
+/*añadiendo*/
+.content-contact-information .contact-information{	
+	width: 30%;
+	float: left;
+}
+.content-contact-information .contact-map{
+	
+	/*width: 70%;*/
+	float: right;
 }

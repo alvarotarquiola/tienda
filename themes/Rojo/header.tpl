@@ -73,7 +73,7 @@
 					{/foreach}
 					</ul>
 				</li>
-				<li class="header-link-bottom"><a href="">Carrito</a></li>
+				<li class="header-link-bottom"><a href="{$base_dir_ssl}order.php" title="{l s='Your Shopping Cart' mod='blockuserinfo'}">{l s='Carrito' mod='blockuserinfo'}</a></li>
 			</ul>
 			</div>
 			
