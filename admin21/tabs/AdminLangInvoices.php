@@ -23,9 +23,9 @@ class AdminLangInvoices extends AdminTab
         global $currentIndex, $cookie;
         
         $languages = Language::getLanguages();
+        $lang_invoice = Configuration::get('PS_LANG_INVOICE');
+        $lang_shop = Configuration::get('PS_LANG_SHOP');
         $mensage = $this->l('The language was changed successfully.');
-        
-        echo '<div class="message_result" style="display:none;"><img alt="" src="../img/admin/ok.gif"/>'.$this->l('The language was changed successfully.').'</div>';
         
         echo '<script type="text/javascript">
             jQuery(function(){
@@ -42,33 +42,22 @@ class AdminLangInvoices extends AdminTab
                     
                     return false;
                 });
-                
-                /*jQuery("#lang_invoice_select").change(function(e){
-                    var ele = jQuery(this);
-                    var mensage = \''.$mensage.'\';
-                    console.log(ele.attr("value"));
-                    var id_lang = ele.attr("value");
-                    $.post("ajax.php", {id_lang_factura: id_lang, invoice: "invoice"}, function(res){
-                        $(".message_result").css("display", "block");
-                    });
-                });*/
-                
-                jQuery(".tab-active div div div select").change(function(){
+
+                jQuery(".form-select-shop").change(function(){
                     var ele = jQuery(this);
                     var id_lang = ele.attr("value");
                     var type = ele.data("type");
-                    $.post("ajax.php", {lang_id: id_lang, invoice: "invoice", type: , "lang"}, function(res){
+                    console.log("entras");
+                    
+                    $.post("ajax.php", {lang_id: id_lang, type: type, lang_change: "lang-change"}, function(res){
                         $("#message-"+type).css("display", "block");
                     });
                 });
-                
-                
             });
         </script>';
         
         echo '
             <div id="language-shop-config" class="content-tab-shop">
-            
                 <div class="tap-shop-menu">
                     <a href="#" class="active" data-type="ivoice-delivery">'.$this->l('Idioma Factura y Albaranes').'</a>
                     <a href="#" class="" data-type="me-shop">'.$this->l('Idioma Tienda').'</a>
@@ -76,16 +65,17 @@ class AdminLangInvoices extends AdminTab
                 <div id="tap-options-shop" class="options-tap">
                     <div id="ivoice-delivery" class="tab-active">
                         <h2 class="sub_title_tab">'.$this->l('Idioma Factura y Albaranes').'</h2>
+                        <div id="message-lang-invoice" class="message_result" style="display:none;"><img alt="" src="../img/admin/ok.gif"/>'.$this->l('The language was changed successfully.').'</div>
                         <div class="warning warn" style="width: 600px;"><h3>'.$this->l('Choose the languaje for the generation of invoices and delivery slips.').'</h3>
                         <h3>'.$this->l('If you change your languaje, change the languaje in all existing invoices and delevery slips.').'</h3></div>
                         <div class="width2" style="width: 612px;">
                             <div class="row-form">
                                 <label class="form-label left">'.$this->l('Language').': </label>
                                 <div class="margin-form">
-                                    <select name="lang_invoice_select" id="lang_invoice_select" data-type="lang-invoice"> 
+                                    <select name="lang_invoice_select" id="lang_invoice_select" data-type="lang-invoice" class="form-select-shop"> 
                                         <option>'.$this->l('Select language').'</option>';
                                     foreach($languages as $language)
-                                        echo '<option value="'.$language['id_lang'].'" '.($cookie->id_lang_factura == $language['id_lang'] ? "selected='selected'" : "").'>'.$language['name'].'</option>';
+                                        echo '<option value="'.$language['id_lang'].'" '.($lang_invoice == $language['id_lang'] ? "selected='selected'" : "").'>'.$language['name'].'</option>';
                     echo '          </select>
                                     <!--<p class="clear">'.$this->l('The invoice will be shown in the selected language').'</p>-->
                     		    </div>    
@@ -94,14 +84,15 @@ class AdminLangInvoices extends AdminTab
                     </div>
                     <div id="me-shop" class="hide_tag">
                         <h2 class="sub_title_tab">'.$this->l('Idioma de su Tienda').'</h2>
+                        <div id="message-lang-shop" class="message_result" style="display:none;"><img alt="" src="../img/admin/ok.gif"/>'.$this->l('The language was changed successfully.').'</div>
                         <div class="width2" style="width: 612px;">
                             <div class="row-form">
                                 <label class="form-label left">'.$this->l('Language').': </label>
                                 <div class="margin-form">
-                                    <select name="lang_shop_select" id="lang_shop_select" data-type="lang-shop"> 
+                                    <select name="lang_shop_select" id="lang_shop_select" data-type="lang-shop" class="form-select-shop"> 
                                         <option>'.$this->l('Select language').'</option>';
                                     foreach($languages as $language)
-                                        echo '<option value="'.$language['id_lang'].'" '.($cookie->id_lang_factura == $language['id_lang'] ? "selected='selected'" : "").'>'.$language['name'].'</option>';
+                                        echo '<option value="'.$language['id_lang'].'" '.($lang_shop == $language['id_lang'] ? "selected='selected'" : "").'>'.$language['name'].'</option>';
                     echo '          </select>
                     		    </div>    
                             </div>
@@ -110,24 +101,7 @@ class AdminLangInvoices extends AdminTab
                 </div>
             </div>
         ';
-		
-        echo '<div class="warning warn" style="width: 600px;"><h3>'.$this->l('Choose the languaje for the generation of invoices and delivery slips.').'</h3>';
-        echo '<h3>'.$this->l('If you change your languaje, change the languaje in all existing invoices and delevery slips.').'</h3></div>';
-            
-            echo '<fieldset class="width2" style="width: 612px;">
-                    <label>'.$this->l('Language').': </label>
-				    <div class="margin-form">
-					   <select name="lang_invoice_select" id="lang_invoice_select"> 
-                            <option>'.$this->l('Select language').'</option>';
-                        foreach($languages as $language)
-                            echo '<option value="'.$language['id_lang'].'" '.($cookie->id_lang_factura == $language['id_lang'] ? "selected='selected'" : "").'>'.$language['name'].'</option>';
-        echo '          </select>
-                        <!--<p class="clear">'.$this->l('The invoice will be shown in the selected language').'</p>-->
-				    </div>
-                </fieldset> 
-                <br/>                   
-            '; 
-        
+
 	}
 	
 	public function postProcess()
