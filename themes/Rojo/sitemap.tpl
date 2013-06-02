@@ -2,7 +2,21 @@
 {include file=$tpl_dir./breadcrumb.tpl}
 
 <h2>{l s='Sitemap'}</h2>
+
 <div id="sitemap_content">
+	<div class="categTree">
+	<h3>{l s='Categories'}</h3>
+	<div class="tree_top"><a href="{$base_dir_ssl}">{$categoriesTree.name|escape:'htmlall':'UTF-8'}</a></div>
+	<ul class="tree">
+	{foreach from=$categoriesTree.children item=child name=sitemapTree}
+		{if $smarty.foreach.sitemapTree.last}
+			{include file=$tpl_dir./category-tree-branch.tpl node=$child last='true'}
+		{else}
+			{include file=$tpl_dir./category-tree-branch.tpl node=$child}
+		{/if}
+	{/foreach}
+	</ul>
+</div>
 	<div class="sitemap_block">
 		<h3>{l s='Information'}</h3>
 		<ul>
@@ -35,17 +49,4 @@
 		</ul>
 	</div>
 	<br class="clear" />
-</div>
-<div class="categTree">
-	<h3>{l s='Categories'}</h3>
-	<div class="tree_top"><a href="{$base_dir_ssl}">{$categoriesTree.name|escape:'htmlall':'UTF-8'}</a></div>
-	<ul class="tree">
-	{foreach from=$categoriesTree.children item=child name=sitemapTree}
-		{if $smarty.foreach.sitemapTree.last}
-			{include file=$tpl_dir./category-tree-branch.tpl node=$child last='true'}
-		{else}
-			{include file=$tpl_dir./category-tree-branch.tpl node=$child}
-		{/if}
-	{/foreach}
-	</ul>
 </div>
