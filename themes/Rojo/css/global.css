@@ -296,9 +296,11 @@ h1#logo {
 }
 
 /* block top languages */
+
 #header #languages_block_top {
-	margin: 0.4em 0.3em 0 0;
-	float: left;
+	/*margin: 0.4em 0.3em 0 0;*/
+	top: 181px !important;
+	left: 480px;
 }
 #header #languages_block_top p {
 	clear: left;
