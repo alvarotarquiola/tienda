@@ -370,4 +370,5 @@ if(isset($_POST["control_stock"]) && $_POST["control_stock"] != "")
     echo $res;
 }
 
+
 ?>
