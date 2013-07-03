@@ -262,7 +262,7 @@ if ($tab)
     			$id_parent = 3;
                 echo '<li id="AdminOrders"><a href="index.php?tab=AdminOrders&token='.Tools::getAdminToken("AdminOrders".intval(Tab::getIdFromClassName('AdminOrders')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminOrders.gif"></a>
                     <a href="index.php?tab=AdminOrders&token='.Tools::getAdminToken("AdminOrders".intval(Tab::getIdFromClassName('AdminOrders')).intval($cookie->id_employee)).'">'.translate('Orders').'</a></li>'; 
-    		}elseif((isset($_GET["tab"]) && $_GET["tab"]=="AdminInvoices") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminDeliverySlip") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminOrderMessage") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminMessages") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminLangInvoices")){
+    		}elseif((isset($_GET["tab"]) && $_GET["tab"]=="AdminInvoices") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminDeliverySlip") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminOrderMessage") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminMessages") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminLangInvoices") || (isset($_GET["tab"]) && $_GET["tab"]=="AdminCancelReservations")){
     		   echo '<li id="AdminOrders"><a href="index.php?tab=AdminOrders&token='.Tools::getAdminToken("AdminOrders".intval(Tab::getIdFromClassName('AdminOrders')).intval($cookie->id_employee)).'"><img style="margin-right:5px" src="../img/t/AdminOrders.gif"></a>
                     <a href="index.php?tab=AdminOrders&token='.Tools::getAdminToken("AdminOrders".intval(Tab::getIdFromClassName('AdminOrders')).intval($cookie->id_employee)).'">'.translate('Orders').'</a></li>';
     		}
