@@ -271,10 +271,26 @@ if(isset($_GET['category_object']))
     $array = unserialize($array);
 }
 
-if(isset($_POST['id_lang_factura']) && isset($_POST['invoice']))
+if(isset($_POST['lang_id']) && isset($_POST['lang_change']))
 {
-    $id_lang = $_POST['id_lang_factura'];
-    $cookie->id_lang_factura = $id_lang;
+    $id_lang = $_POST['lang_id'];
+		$type = $_POST['type'];
+
+		if(isset($id_lang) && $id_lang != "")
+    {
+				if($type == "lang-invoice"){
+						Configuration::updateValue("PS_LANG_INVOICE", $id_lang);
+						$cookie->id_lang_factura = $id_lang;
+						echo "entras";
+						exit();
+				}elseif($type == "lang-shop"){
+						Configuration::updateValue("PS_LANG_SHOP", $id_lang);
+				}
+				$res = "success";
+    }else{
+        $res = "error";
+    }
+    echo $res;
 }
 
 if(isset($_POST['backup_restore']) && isset($_POST['backup_restore']))
@@ -353,5 +369,6 @@ if(isset($_POST["control_stock"]) && $_POST["control_stock"] != "")
     }
     echo $res;
 }
+
 
 ?>

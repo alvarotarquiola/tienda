@@ -27,6 +27,7 @@ if ($pathServer != $pathUser)
 				Tools::displayError('- Browser:').'</b><br />'.htmlentities($pathUser);
 
 $cookie = new Cookie('psAdmin', substr($_SERVER['PHP_SELF'], strlen(__PS_BASE_URI__), -10));
+
 /*if (!isset($cookie->id_lang))
 	$cookie->id_lang = Configuration::get('PS_LANG_DEFAULT');*/
 if (!isset($cookie->id_lang))

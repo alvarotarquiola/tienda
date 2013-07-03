@@ -58,6 +58,11 @@ else
 			$smarty->assign('nb_products', $nbProducts);
 			$cat_products = $category->getProducts(intval($cookie->id_lang), intval($p), intval($n), $orderBy, $orderWay);
 		}
+        
+        /*echo '<pre>';
+        print_r($cat_products);
+        echo '</pre>';*/
+        
 		$smarty->assign(array(
 			'products' => (isset($cat_products) AND $cat_products) ? $cat_products : NULL,
 			'id_category' => intval($category->id),

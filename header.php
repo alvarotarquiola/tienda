@@ -11,6 +11,15 @@ $css_files[_PS_CSS_DIR_.'front-office.css'] = 'all';
 
 /* Hooks are volontary out the initialize array (need those variables already assigned) */
 
+$HOOK_HEADER =  Module::hookExec('header');
+$HOOK_LEFT_COLUMN =  Module::hookExec('leftColumn');
+$HOOK_TOP =  Module::hookExec('top');
+
+/*echo "<pre>";
+print_r($HOOK_LEFT_COLUMN);
+echo "</pre>";*/
+
+
 $smarty->assign(array(
 	'HOOK_HEADER' => Module::hookExec('header'),
 	'HOOK_LEFT_COLUMN' => Module::hookExec('leftColumn'),
