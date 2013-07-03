@@ -38,7 +38,23 @@ class AdminImportv2 extends AdminTab
         $language = Language::getLanguage($cookie->id_lang);
         $url = $link->getLanguageLinkAdmin($language['id_lang'], $language['name'])."&adminlang=1";
         
-        if(isset($_GET["check"]) && $_GET["check"] != ""){
+        
+        if(Tools::getValue('import') == 'stock'){
+            
+            echo '
+                <h2 class="box_title_import">'.$this->l('Importacion de stock').'</h2>
+        		<fieldset><legend><img src="../img/admin/import.gif" />'.$this->l('Subir').'</legend>
+                    <form action="'.$currentIndex.'&submitImportExcel=1&token='.$token.'" method="post" enctype="multipart/form-data">
+        				<label class="clear">'.$this->l('Seleccione un archivo').' </label>
+        				<div class="margin-form">
+        					<input name="file" type="file" />
+                            &nbsp;<input type="submit" name="submitFileUpload" value="'.$this->l('Subir').'" class="button" />
+                            <input type="hidden" name="type_import" value="stock"/>
+        				</div>
+        			</form>
+        		</fieldset>';
+        }
+        elseif(isset($_GET["check"]) && $_GET["check"] != ""){
             
             echo '<div class="import_excel">
     		  <h2 class="box_title_import">'.$this->l('Check fields excel').'</h2>
@@ -154,8 +170,20 @@ class AdminImportv2 extends AdminTab
                     ';
                 }
             }            
-        }
-        else{
+        }elseif(isset($_GET["submitImportExcel"]) && $_GET["submitImportExcel"] == 1){
+            $post = $_POST;
+            $dirfile = $this->uploadFileExcel();
+            $name_post = $_POST['type_import'];
+            $array_excel = $this->orderExcelArray($dirfile);
+            
+            $array_excel[1];
+            
+            
+            $this->getLog($array_excel[1]);
+            $this->getLog($dirfile);
+            
+            
+        }else{
             echo '<div class="import_excel">
     		  <h2 class="box_title_import">'.$this->l('Imports').'</h2>
             </div>';
@@ -183,8 +211,9 @@ class AdminImportv2 extends AdminTab
         
         if(isset($_POST["submitCheckcategory"]) == 1)
         {
-            //echo "welcome.";
+            echo "welcome.";
         }
+        
         
 	}
 
