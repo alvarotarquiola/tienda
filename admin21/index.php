@@ -593,8 +593,20 @@ else /* Else display homepage */
                         </a>
                     </li>
                     <li>
-                        <?php $base_remoto = Configuration::get("PS_STORE_REMOTE") ?>
                         <span>1-7</span>
+                        <a class="options_shop" href="index.php?tab=AdminImport&token=<?=Tools::getAdminToken("AdminImport".intval(Tab::getIdFromClassName("AdminImport")).intval($cookie->id_employee))?>&importStock=stock">
+                            <?php echo translate('Importar Stock') ?>
+                        </a>
+                    </li>
+                    <li>
+                        <span>1-7</span>
+                        <a class="options_shop" href="index.php?tab=AdminImportv2&token=<?=Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee))?>&import=stock">
+                            <?php echo translate('Importar Stock') ?>
+                        </a>
+                    </li>
+                    <li>
+                        <?php $base_remoto = Configuration::get("PS_STORE_REMOTE") ?>
+                        <span>1-8</span>
                         <a id="shop_remote_update_catalog" data-url_remote='<?php echo $base_remoto ?>' href="<?php echo $base_remoto ?>/index.php?tab=AdminImportv2&token=<?=Tools::getAdminToken("AdminImportv2".intval(Tab::getIdFromClassName("AdminImportv2")).intval($cookie->id_employee))?>">
                             <?php echo translate('Actualizar Catalogo') ?>
                         </a>
@@ -603,7 +615,7 @@ else /* Else display homepage */
                         </a>-->
                     </li>
                     <li>
-                        <span>1-8</span>
+                        <span>1-9</span>
                         <a class="options_shop" href="index.php?tab=adminExportDatas&token=<?=Tools::getAdminToken("adminExportDatas".intval(Tab::getIdFromClassName("adminExportDatas")).intval($cookie->id_employee))?>">
                             <?php echo translate('Export') ?>
                         </a>

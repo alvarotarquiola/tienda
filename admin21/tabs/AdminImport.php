@@ -58,7 +58,7 @@ class AdminImport extends AdminTab
 		
 	public function __construct()
 	{
-		$this->entities = array_flip(array($this->l('Categories'), $this->l('Products'), $this->l('Attributes'), $this->l('Customers'), $this->l('Addresses'), $this->l('Manufacturers'), $this->l('Suppliers')));
+		$this->entities = array_flip(array($this->l('Categories'), $this->l('Products'), $this->l('Attributes'), $this->l('Customers'), $this->l('Addresses'), $this->l('Manufacturers'), $this->l('Suppliers'), $this->l('Stock')));
 		$identidad=Tools::getValue('entity');
 		if (isset($_GET['identity'])) $identidad=$_GET['identity'];
 		switch (intval($identidad))
@@ -1516,7 +1516,12 @@ echo "</pre>";
 	{
 		global $currentIndex;
 		
-		if (Tools::isSubmit('submitFileUpload'))
+        if(Tools::getValue('importStock'))
+        {
+            $this->stockImport();
+            exit();
+        }
+		elseif (Tools::isSubmit('submitFileUpload'))
 		{
 			if (!isset($_FILES['file']['tmp_name']) OR empty($_FILES['file']['tmp_name']))
 				$this->_errors[] = $this->l('no file selected');
@@ -1562,6 +1567,21 @@ echo "</pre>";
 		
 		parent::postProcess();
 	}
+    
+    public function stockImport()
+    {
+        echo "stock";
+        
+        echo '
+		<fieldset><legend><img src="../img/admin/import.gif" />'.$this->l('Upload').'</legend>
+			<form action="'.$currentIndex.(isset($_GET['identity'])?'&identity='.$_GET['identity']:'').'&token='.$this->token.'" method="POST" enctype="multipart/form-data">
+				<label class="clear">'.$this->l('Select a file').' </label>
+				<div class="margin-form">
+					<input name="file" type="file" /><input type="submit" name="submitFileUpload" value="'.$this->l('Upload').'" class="button" />
+				</div>
+			</form>
+		</fieldset>';
+    }
 	
 	public static function setLocale()
 	{
